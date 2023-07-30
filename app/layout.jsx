@@ -1,6 +1,6 @@
-import Image from 'next/image'
-
 import "@/styles/global.css"
+import { Provider } from '@/components/Provider'
+import { Header } from "@/components/Header"
 
 export const metadata = {
   title: 'Astrobale Expeditions - Data platform',
@@ -12,18 +12,10 @@ export default function RootLayout({ children }) {
     <html lang="fr">
       <body className="flex">
         <main className="max-w-3xl mx-auto mt-16">
-          <header className='flex flex-col items-center'>
-          <Image
-            src="/logo.png"
-            width={64}
-            height={64}
-            alt="Picture of the author"
-          />
-            <h1 className="text-2xl font-bold">
-              Astrolabe Expeditions
-            </h1>
-          </header>
-          {children}
+          <Provider>          
+            <Header />
+            {children}
+          </Provider>
         </main>
       </body>
     </html>
