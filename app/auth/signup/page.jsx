@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/Input";
+import { Input } from "@/components/ui/Input/Input";
 import Link from "next/link";
 
 export default function Signup() {
