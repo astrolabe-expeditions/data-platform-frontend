@@ -1,7 +1,4 @@
 import "@/styles/global.css"
-import { Providers } from '@/components/Providers'
-import { Header } from "@/components/Header"
-
 
 export const metadata = {
   title: 'Astrobale Expeditions - Data platform',
@@ -12,12 +9,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr">
       <body className="flex">
-        <main className="max-w-3xl mx-auto mt-16">
-            <Providers>          
-              <Header />
-              {children}
-            </Providers>
-        </main>
+        {children}
       </body>
     </html>
   )
