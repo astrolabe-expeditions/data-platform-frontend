@@ -18,7 +18,8 @@ module.exports = {
         800: '#344054',
         900: '#344054',
       },
-      'primary': colors.blue
+      'primary': colors.blue,
+      white: "#FFF",
     },
     boxShadow: {
       'xs': '0px 1px 2px 0px rgba(16, 24, 40, 0.05)',
