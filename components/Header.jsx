@@ -4,7 +4,7 @@ const Header = () => {
     return (
         <header className='flex flex-col items-center'>
             <Navbar />
-    
+
         </header>
     )
 }
