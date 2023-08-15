@@ -1,10 +1,12 @@
 import { getServerSession } from 'next-auth/next'
 import { redirect } from 'next/navigation'
+import { useTranslations } from 'next-intl';
 
 import { db } from "@/lib/db"
 import { authOptions } from "@/lib/auth"
 
 export default async function Home() {
+
   const session = await getServerSession(authOptions)
 
   if (!session) {
@@ -18,9 +20,16 @@ export default async function Home() {
     }
   })
 
+  return <DumbHome stations={stations} />
+}
+
+const DumbHome = ({ stations }) => {
+  const t = useTranslations('Home');
+
   return (
     <>
       <h2>Stations</h2>
+      <p>{t('title')}</p>
       <ul>
         {stations.map(({ id, name }) => <li key={id}>{name}</li>)}
       </ul>
