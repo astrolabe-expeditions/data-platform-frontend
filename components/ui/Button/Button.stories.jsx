@@ -4,13 +4,21 @@ export default {
     component: Button,
 }
 
+const renderVariants = ({ ...args }) => (
+    <div className='flex gap-2.5 items-start'>
+        <Button variant='primary' {...args} />
+        <Button variant='secondary' {...args} />
+    </div>
+) 
+
 export const Default = {
     args: {
         label: "Default",
-    }
+    },
+    render: renderVariants
 };
 
-export const Size = {
+export const Sizes = {
     args: {
         label: "Default",
     },
@@ -30,4 +38,5 @@ export const Disabled = {
         label: "Default",
         disabled: true
     },
+    render: renderVariants
 }

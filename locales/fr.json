@@ -11,6 +11,7 @@
             "password": "Mot de passe"
         },
         "signup": "S'incrire",
+        "github": "Continuer avec Github",
         "already_signup": "Déjà inscrit ?",
         "already_signup_link": "Connectez-vous"
     },
@@ -22,6 +23,7 @@
             "password": "Mot de passe"
         },
         "login": "Se connecter",
+        "github": "Continuer avec Github",
         "no_account": "Vous n'avez pas encore de compte ?",
         "no_account_link": "Créer un compte"
     }

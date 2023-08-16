@@ -20,6 +20,7 @@ export default function Signup() {
                 <Input type="password" name="password" label={t('labels.password')} />
                 <Button type="submit" label={t('signup')} />
             </form>
+            <Button variant="secondary" label={t('github')} className="mt-4" fullWidth />
             <Typography variant="body2" color="textSecondary" className="mt-8" alignCenter>
                 {t('already_signup')} <Link variant="body2" href="/auth/login" as={NextLink}>{t('already_signup_link')}</Link></Typography>
         </>

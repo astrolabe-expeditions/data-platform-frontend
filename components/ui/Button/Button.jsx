@@ -1,12 +1,12 @@
 import clsx from "clsx"
 
-const Button = ({ label, size = 'md', variant = 'primary', disabled = false, ...props }) => {
+const Button = ({ label, size = 'md', variant = 'primary', disabled = false, fullWidth, className, ...props }) => {
+
+
 
     const variants = {
         'primary': [
-            'shadow-xs',
             'text-white',
-            'font-semibold',
             'border-primary-600',
             'bg-primary-600',
             'hover:border-primary-700',
@@ -15,9 +15,18 @@ const Button = ({ label, size = 'md', variant = 'primary', disabled = false, ...
             'focus:bg-primary-600',
             'focus:ring-4',
             'focus:ring-primary-100',
-            'focus:outline-none',
             'disabled:border-primary-200',
             'disabled:bg-primary-200',
+        ],
+        'secondary': [
+            'text-gray-800',
+            'border-gray-300',
+            'hover:bg-gray-50',
+            'focus:ring-4',
+            'focus:ring-gray-100',
+            'disabled:text-gray-300',
+            'disabled:border-gray-200',
+            'disabled:bg-white'
         ]
     }
 
@@ -30,7 +39,9 @@ const Button = ({ label, size = 'md', variant = 'primary', disabled = false, ...
     }
 
     return <button className={clsx(
-        'rounded-lg border',
+        className,
+        'rounded-lg border shadow-xs font-semibold focus:outline-none',
+        fullWidth ? 'w-full' : null,
         variants[variant],
         sizes[size],
     )} disabled={disabled} {...props}>{label}</button>

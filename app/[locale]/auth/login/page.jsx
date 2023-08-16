@@ -18,6 +18,7 @@ export default function Login() {
                 <Input type="password" name="password" label={t('labels.password')} />
                 <Button type="submit" label={t('login')} />
             </form>
+            <Button variant="secondary" label={t('github')} className="mt-4" fullWidth />
             <Typography variant="body2" color="textSecondary" className="mt-8" alignCenter>
                 {t('no_account')} <Link variant="body2" href="/auth/signup" as={NextLink}>{t('no_account_link')}</Link>
             </Typography>
