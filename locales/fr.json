@@ -1,5 +1,28 @@
 {
     "Home": {
         "title": "Bienvenue!"
+    },
+    "Signup": {
+        "title": "Créer votre compte",
+        "subtitle": "Outil pour gérer vos expéditions",
+        "labels": {
+            "name": "Nom",
+            "email": "Email",
+            "password": "Mot de passe"
+        },
+        "signup": "S'incrire",
+        "already_signup": "Déjà inscrit ?",
+        "already_signup_link": "Connectez-vous"
+    },
+    "Login": {
+        "title": "Connectez-vous à votre compte",
+        "subtitle": "Bienvenue à nouveau !",
+        "labels": {
+            "email": "Email",
+            "password": "Mot de passe"
+        },
+        "login": "Se connecter",
+        "no_account": "Vous n'avez pas encore de compte ?",
+        "no_account_link": "Créer un compte"
     }
 }
