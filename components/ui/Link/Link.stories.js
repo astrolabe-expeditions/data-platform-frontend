@@ -1,13 +1,13 @@
-import { Link } from '.';
+import { Link } from '.'
 
 export default {
-    component: Link,
+  component: Link,
 }
 
 export const Default = {
-    args: {
-        children: "Default",
-        href: '#',
-        color: 'primary'
-    }
+  args: {
+    children: 'Default',
+    href: '#',
+    color: 'primary',
+  },
 }

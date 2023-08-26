@@ -1,30 +1,30 @@
 {
-    "Home": {
-        "title": "Bienvenue!"
+  "Home": {
+    "title": "Bienvenue!"
+  },
+  "Signup": {
+    "title": "Créer votre compte",
+    "subtitle": "Outil pour gérer vos expéditions",
+    "labels": {
+      "name": "Nom",
+      "email": "Email",
+      "password": "Mot de passe"
     },
-    "Signup": {
-        "title": "Créer votre compte",
-        "subtitle": "Outil pour gérer vos expéditions",
-        "labels": {
-            "name": "Nom",
-            "email": "Email",
-            "password": "Mot de passe"
-        },
-        "signup": "S'incrire",
-        "github": "Continuer avec Github",
-        "already_signup": "Déjà inscrit ?",
-        "already_signup_link": "Connectez-vous"
+    "signup": "S'incrire",
+    "github": "Continuer avec Github",
+    "already_signup": "Déjà inscrit ?",
+    "already_signup_link": "Connectez-vous"
+  },
+  "Login": {
+    "title": "Connectez-vous à votre compte",
+    "subtitle": "Bienvenue à nouveau !",
+    "labels": {
+      "email": "Email",
+      "password": "Mot de passe"
     },
-    "Login": {
-        "title": "Connectez-vous à votre compte",
-        "subtitle": "Bienvenue à nouveau !",
-        "labels": {
-            "email": "Email",
-            "password": "Mot de passe"
-        },
-        "login": "Se connecter",
-        "github": "Continuer avec Github",
-        "no_account": "Vous n'avez pas encore de compte ?",
-        "no_account_link": "Créer un compte"
-    }
+    "login": "Se connecter",
+    "github": "Continuer avec Github",
+    "no_account": "Vous n'avez pas encore de compte ?",
+    "no_account_link": "Créer un compte"
+  }
 }

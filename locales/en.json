@@ -1,28 +1,28 @@
 {
-    "Home": {
-        "title": "Hello world!"
+  "Home": {
+    "title": "Hello world!"
+  },
+  "Signup": {
+    "title": "Create an account",
+    "subtitle": "To manage your expeditions",
+    "labels": {
+      "name": "Name",
+      "email": "Email",
+      "password": "Password"
     },
-    "Signup": {
-        "title": "Create an account",
-        "subtitle": "To manage your expeditions",
-        "labels": {
-            "name": "Name",
-            "email": "Email",
-            "password": "Password"
-        },
-        "signup": "Signup",
-        "already_signup": "Already signed up?",
-        "already_signup_link": "Login"
+    "signup": "Signup",
+    "already_signup": "Already signed up?",
+    "already_signup_link": "Login"
+  },
+  "Login": {
+    "title": "Log in to your account",
+    "subtitle": "Welcome back! Please enter your details.",
+    "labels": {
+      "email": "Email",
+      "password": "Password"
     },
-    "Login": {
-        "title": "Log in to your account",
-        "subtitle": "Welcome back! Please enter your details.",
-        "labels": {
-            "email": "Email",
-            "password": "Password"
-        },
-        "login": "Login",
-        "no_account": "Don't have an account yet?",
-        "no_account_link": "Create an account"
-    }
+    "login": "Login",
+    "no_account": "Don't have an account yet?",
+    "no_account_link": "Create an account"
+  }
 }

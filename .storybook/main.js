@@ -1,19 +1,17 @@
 /** @type { import('@storybook/nextjs').StorybookConfig } */
 const config = {
-  stories: [
-    "../components/**/*.stories.@(js|jsx)"
-  ],
+  stories: ['../components/**/*.stories.@(js|jsx)'],
   addons: [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-interactions',
   ],
   framework: {
-    name: "@storybook/nextjs",
+    name: '@storybook/nextjs',
     options: {},
   },
   docs: {
-    autodocs: "tag",
+    autodocs: 'tag',
   },
-};
-export default config;
+}
+export default config

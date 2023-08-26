@@ -1,5 +1,4 @@
-import { db } from "@/lib/db"
-
+import { db } from '@/lib/db'
 
 export async function GET() {
   try {
@@ -7,7 +6,7 @@ export async function GET() {
       select: {
         id: true,
         name: true,
-      }
+      },
     })
 
     return new Response(JSON.stringify(stations))

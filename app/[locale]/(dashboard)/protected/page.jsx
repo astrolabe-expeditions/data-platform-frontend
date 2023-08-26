@@ -1,6 +1,3 @@
-
 export default function Protected() {
-    return (
-        <h1>Protected page</h1>
-    )
+  return <h1>Protected page</h1>
 }

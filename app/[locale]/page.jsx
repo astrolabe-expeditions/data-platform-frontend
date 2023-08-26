@@ -1,13 +1,12 @@
 import { getServerSession } from 'next-auth/next'
 import { redirect } from 'next/navigation'
-import { useTranslations as getTranslations } from 'next-intl';
+import { useTranslations as getTranslations } from 'next-intl'
 
-import { db } from "@/lib/db"
-import { authOptions } from "@/lib/auth"
+import { db } from '@/lib/db'
+import { authOptions } from '@/lib/auth'
 
 export default async function Home() {
-
-  const t = getTranslations('Home');
+  const t = getTranslations('Home')
   const session = await getServerSession(authOptions)
 
   if (!session) {
@@ -18,7 +17,7 @@ export default async function Home() {
     select: {
       id: true,
       name: true,
-    }
+    },
   })
 
   return (
@@ -26,9 +25,10 @@ export default async function Home() {
       <h2>Stations</h2>
       <p>{t('title')}</p>
       <ul>
-        {stations.map(({ id, name }) => <li key={id}>{name}</li>)}
+        {stations.map(({ id, name }) => (
+          <li key={id}>{name}</li>
+        ))}
       </ul>
     </>
-
   )
 }
