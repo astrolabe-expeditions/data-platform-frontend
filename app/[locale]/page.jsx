@@ -1,12 +1,11 @@
 import { getServerSession } from 'next-auth/next'
 import { redirect } from 'next/navigation'
-import { useTranslations as getTranslations } from 'next-intl'
 
 import { db } from '@/lib/db'
 import { authOptions } from '@/lib/auth'
+import { withTranslations } from '@/lib/i18n'
 
-export default async function Home() {
-  const t = getTranslations('Home')
+async function Home({ t }) {
   const session = await getServerSession(authOptions)
 
   if (!session) {
@@ -32,3 +31,5 @@ export default async function Home() {
     </>
   )
 }
+
+export default withTranslations(Home, 'Home')
