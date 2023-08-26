@@ -1,10 +1,10 @@
 import NextLink from 'next/link'
 import { useTranslations as getTranslations } from 'next-intl'
 
-import { Input } from '@/components/ui/Input/Input'
 import { Button } from '@/components/ui/Button/Button'
 import { Link } from '@/components/ui/Link'
 import { Typography } from '@/components/ui/Typography'
+import { SignupForm } from './components/form'
 
 export default function Signup() {
   const t = getTranslations('Signup')
@@ -17,12 +17,7 @@ export default function Signup() {
       <Typography variant="subtitle" alignCenter className="mb-8">
         {t('subtitle')}
       </Typography>
-      <form className="flex flex-col gap-3 w-full">
-        <Input type="text" name="name" label={t('labels.name')} />
-        <Input type="email" name="email" label={t('labels.email')} />
-        <Input type="password" name="password" label={t('labels.password')} />
-        <Button type="submit" label={t('signup')} />
-      </form>
+      <SignupForm />
       <Button
         variant="secondary"
         label={t('github')}

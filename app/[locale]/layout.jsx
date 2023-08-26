@@ -1,3 +1,4 @@
+import { I18nProvider } from '@/components/I18nProvider'
 import '@/styles/global.css'
 import { useLocale } from 'next-intl'
 
@@ -11,7 +12,9 @@ const RootLayout = ({ children }) => {
 
   return (
     <html lang={locale}>
-      <body className="flex">{children}</body>
+      <body className="flex">
+        <I18nProvider locale={locale}>{children}</I18nProvider>
+      </body>
     </html>
   )
 }
