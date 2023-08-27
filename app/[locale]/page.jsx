@@ -5,7 +5,7 @@ import { db } from '@/lib/db'
 import { authOptions } from '@/lib/auth'
 import { withTranslations } from '@/lib/i18n'
 
-async function Home({ t }) {
+async function Home() {
   const session = await getServerSession(authOptions)
 
   if (!session) {
@@ -22,7 +22,6 @@ async function Home({ t }) {
   return (
     <>
       <h2>Stations</h2>
-      <p>{t('title')}</p>
       <ul>
         {stations.map(({ id, name }) => (
           <li key={id}>{name}</li>
@@ -32,4 +31,4 @@ async function Home({ t }) {
   )
 }
 
-export default withTranslations(Home, 'Home')
+export default Home
