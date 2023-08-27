@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import NextLink from 'next/link'
 import { useTranslations as getTranslations } from 'next-intl'
 
@@ -5,9 +8,31 @@ import { Input } from '@/components/ui/Input/Input'
 import { Button } from '@/components/ui/Button/Button'
 import { Link } from '@/components/ui/Link'
 import { Typography } from '@/components/ui/Typography'
+import { signIn } from 'next-auth/react'
 
 export default function Login() {
   const t = getTranslations('Login')
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+  })
+
+  const handleChange = (inputName) => (evt) => {
+    setFormData({
+      ...formData,
+      [inputName]: evt.target.value,
+    })
+  }
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault()
+    signIn('credentials', {
+      ...formData,
+      callbackUrl: '/',
+    })
+  }
 
   return (
     <>
@@ -17,9 +42,21 @@ export default function Login() {
       <Typography variant="subtitle" alignCenter className="mb-8">
         {t('subtitle')}
       </Typography>
-      <form className="flex flex-col gap-3 w-full">
-        <Input type="email" name="email" label={t('labels.email')} />
-        <Input type="password" name="password" label={t('labels.password')} />
+      <form className="flex flex-col gap-3 w-full" onSubmit={handleSubmit}>
+        <Input
+          type="email"
+          name="email"
+          label={t('labels.email')}
+          value={formData.email}
+          onChange={handleChange('email')}
+        />
+        <Input
+          type="password"
+          name="password"
+          label={t('labels.password')}
+          value={formData.password}
+          onChange={handleChange('password')}
+        />
         <Button type="submit" label={t('login')} />
       </form>
       <Button
