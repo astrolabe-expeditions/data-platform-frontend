@@ -1,13 +1,13 @@
 import { Providers } from '@/components/Providers'
-import { Header } from '@/components/Header'
+import { Sidebar } from '@/components/Sidebar/Sidebar'
 
 export default function DashboardLayout({ children }) {
   return (
-    <main className="max-w-3xl mx-auto mt-16">
-      <Providers>
-        <Header />
+    <Providers>
+      <main className="flex flex-row-reverse">
         {children}
-      </Providers>
-    </main>
+        <Sidebar />
+      </main>
+    </Providers>
   )
 }

@@ -12,7 +12,7 @@ const RootLayout = ({ children }) => {
 
   return (
     <html lang={locale}>
-      <body className="flex">
+      <body>
         <I18nProvider locale={locale}>{children}</I18nProvider>
       </body>
     </html>

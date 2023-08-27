@@ -3,7 +3,8 @@ import { redirect } from 'next/navigation'
 
 import { db } from '@/lib/db'
 import { authOptions } from '@/lib/auth'
-import { withTranslations } from '@/lib/i18n'
+import { Page } from '@/components/Page/Page'
+import { PageHeader } from '@/components/Page/PageHeader'
 
 async function Home() {
   const session = await getServerSession(authOptions)
@@ -20,14 +21,14 @@ async function Home() {
   })
 
   return (
-    <>
-      <h2>Stations</h2>
+    <Page>
+      <PageHeader title="Stations" />
       <ul>
         {stations.map(({ id, name }) => (
           <li key={id}>{name}</li>
         ))}
       </ul>
-    </>
+    </Page>
   )
 }
 
