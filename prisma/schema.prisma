@@ -16,6 +16,11 @@ model Station {
   type String
 }
 
+model Sensor {
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  identifier String
+}
+
 model Account {
   id                String  @id @default(auto()) @map("_id") @db.ObjectId
   userId            String  @map("user_id") @db.ObjectId
