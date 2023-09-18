@@ -15,6 +15,17 @@ const stations = [
   },
 ]
 
+const stationWithSensors = {
+  name: 'Station with sensors',
+  type: 'fixed',
+  sensors: {
+    create: [
+      { identifier: 'AA333302' },
+      { identifier: 'AS322122' }, 
+    ],
+  },
+};
+
 const sensors = [
   {
     identifier: 'AB123345',
@@ -46,5 +57,6 @@ const getUsers = async () => {
 module.exports = {
   stations,
   sensors,
+  stationWithSensors,
   getUsers,
 }
