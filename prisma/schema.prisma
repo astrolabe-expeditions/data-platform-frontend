@@ -14,11 +14,14 @@ model Station {
   id   String @id @default(auto()) @map("_id") @db.ObjectId
   name String
   type String
+  sensors Sensor[]
 }
 
 model Sensor {
   id   String @id @default(auto()) @map("_id") @db.ObjectId
-  identifier String
+  identifier String @unique
+  stationId String? @db.ObjectId
+  station Station? @relation(fields: [stationId], references: [id])
 }
 
 model Account {
