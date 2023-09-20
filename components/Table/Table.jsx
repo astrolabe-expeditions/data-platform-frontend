@@ -46,10 +46,14 @@ export default function BasicTable({
       return (
         <td key={cell.id}>
           {cell.row.original[objectName].map((obj) => (
+<<<<<<< feat/improve-table
             <Button
               key={obj[objectLabel]}
               label={obj[objectLabel]}
               variant="tag"></Button>
+=======
+            <Button label={obj[objectLabel]} variant="tag"></Button>
+>>>>>>> feat: table v1 accepting stations
           ))}
         </td>
       )
