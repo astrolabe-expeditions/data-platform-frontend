@@ -9,7 +9,7 @@ const Sidebar = () => {
       <nav>
         <ul className="flex flex-col gap-1">
           <SidebarItem name="Stations" to="/" />
-          <SidebarItem name="Capteurs" to="/sensors" />
+          <SidebarItem name="Sensors" to="/sensors" />
         </ul>
       </nav>
       <div className="mt-auto">
