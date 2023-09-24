@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import { Icon } from '../Icon/Icon'
 
 const Button = ({
   label,
@@ -7,6 +8,8 @@ const Button = ({
   disabled = false,
   fullWidth,
   className,
+  leftIcon,
+  rightIcon,
   ...props
 }) => {
   const variants = {
@@ -36,25 +39,35 @@ const Button = ({
   }
 
   const sizes = {
-    sm: 'py-2 px-3.5 text-sm',
-    md: 'py-2.5 px-4 text-sm ',
-    lg: 'py-2.5 px-4 text-base',
-    xl: 'py-3 px-5 text-base',
-    '2xl': 'py-4 px-7 text-lg',
+    sm: 'py-2 px-3.5 text-sm gap-1.5',
+    md: 'py-2.5 px-4 text-sm gap-1.5',
+    lg: 'py-2.5 px-4 text-base gap-2',
+    xl: 'py-3 px-5 text-base gap-2',
+    '2xl': 'py-4 px-7 text-lg gap-2.5',
+  }
+
+  const iconMargin = {
+    sm: '1.5',
+    md: '1.5',
+    lg: '2',
+    xl: '2',
+    '2xl': '2.5',
   }
 
   return (
     <button
       className={clsx(
         className,
-        'rounded-lg border shadow-xs font-semibold focus:outline-none',
+        'flex items-center rounded-lg border shadow-xs font-semibold focus:outline-none',
         fullWidth ? 'w-full' : null,
         variants[variant],
         sizes[size],
       )}
       disabled={disabled}
       {...props}>
+      {leftIcon ? <Icon icon={leftIcon} /> : null}
       {label}
+      {rightIcon ? <Icon icon={rightIcon} /> : null}
     </button>
   )
 }
