@@ -1,3 +1,4 @@
+import { DotsVertical, Trash } from '../Icons'
 import { Button } from './Button'
 
 export default {
@@ -21,6 +22,23 @@ export const Default = {
 export const Sizes = {
   args: {
     label: 'Default',
+  },
+  render: ({ ...args }) => (
+    <div className="flex gap-2.5 items-start">
+      <Button size="sm" {...args} />
+      <Button size="md" {...args} />
+      <Button size="lg" {...args} />
+      <Button size="xl" {...args} />
+      <Button size="2xl" {...args} />
+    </div>
+  ),
+}
+
+export const Icons = {
+  args: {
+    label: 'Default',
+    leftIcon: <Trash />,
+    rightIcon: <DotsVertical />,
   },
   render: ({ ...args }) => (
     <div className="flex gap-2.5 items-start">

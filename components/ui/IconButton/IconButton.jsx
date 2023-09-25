@@ -1,16 +1,13 @@
 import clsx from 'clsx'
 import { Icon } from '../Icon/Icon'
 
-const Button = ({
+const IconButton = ({
+  icon,
   label,
   size = 'md',
   variant = 'primary',
   disabled = false,
-  fullWidth,
-  className,
-  leftIcon,
-  rightIcon,
-  ...props
+  onClick,
 }) => {
   const variants = {
     primary: [
@@ -39,37 +36,25 @@ const Button = ({
   }
 
   const sizes = {
-    sm: 'py-2 px-3.5 text-sm gap-1.5',
-    md: 'py-2.5 px-4 text-sm gap-1.5',
-    lg: 'py-2.5 px-4 text-base gap-2',
-    xl: 'py-3 px-5 text-base gap-2',
-    '2xl': 'py-4 px-7 text-lg gap-2.5',
-  }
-
-  const iconMargin = {
-    sm: '1.5',
-    md: '1.5',
-    lg: '2',
-    xl: '2',
-    '2xl': '2.5',
+    sm: 'p-2',
+    md: 'p-2.5',
+    lg: 'p-3',
+    xl: 'p-3.5',
+    '2xl': 'p-4',
   }
 
   return (
     <button
       className={clsx(
-        className,
-        'flex items-center rounded-lg border shadow-xs font-semibold focus:outline-none',
-        fullWidth ? 'w-full' : null,
-        variants[variant],
+        'rounded-lg border shadow-xs font-semibold focus:outline-none',
         sizes[size],
+        variants[variant],
       )}
-      disabled={disabled}
-      {...props}>
-      {leftIcon ? <Icon icon={leftIcon} /> : null}
-      {label}
-      {rightIcon ? <Icon icon={rightIcon} /> : null}
+      aria-label={label}
+      onClick={onClick}>
+      <Icon icon={icon} size={size} />
     </button>
   )
 }
 
-export { Button }
+export { IconButton }
