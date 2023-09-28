@@ -11,15 +11,16 @@ import {
 import { useState } from 'react'
 import { Button } from '../ui/Button/Button'
 import { Edit, Trash } from '../ui/Icons'
+import { CRUD } from '@/lib/crud'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
-export default function BasicTable({
-  data,
-  columns,
-  editFunction,
-  removeFunction,
-}) {
+export default function BasicTable({ data, url, columns }) {
   const [sorting, setSorting] = useState([])
   const [filtering, setFiltering] = useState('')
+
+  const router = useRouter()
+  const crud = new CRUD(url)
 
   const table = useReactTable({
     data,
@@ -40,26 +41,21 @@ export default function BasicTable({
     var cellType = cell.column.columnDef.cellType
 
     if (cellType === 'multi-select') {
-      var objectName = cell.column.columnDef.objectName
-      var objectLabel = cell.column.columnDef.objectLabel
+      var objectConfig = cell.column.columnDef.objectConfig
 
       return (
         <td key={cell.id}>
-          {cell.row.original[objectName].map((obj) => (
-<<<<<<< feat/improve-table
+          {cell.row.original[objectConfig.name].map((obj) => (
             <Button
-              key={obj[objectLabel]}
-              label={obj[objectLabel]}
-              variant="tag"></Button>
-=======
-            <Button label={obj[objectLabel]} variant="tag"></Button>
->>>>>>> feat: table v1 accepting stations
+              label={obj[objectConfig.label]}
+              variant="tag"
+              key={obj[objectConfig.label]}></Button>
           ))}
         </td>
       )
     } else if (cellType === 'select') {
       return (
-        <td key={cell.id} class="whitespace-nowrap px-6 py-4">
+        <td key={cell.id} className="whitespace-nowrap px-6 py-4">
           <Button
             label={cell.row.original.type}
             variant="tag"
@@ -68,7 +64,7 @@ export default function BasicTable({
       )
     } else {
       return (
-        <td key={cell.id} class="whitespace-nowrap px-6 py-4">
+        <td key={cell.id} className="whitespace-nowrap px-6 py-4">
           {flexRender(cell.column.columnDef.cell, cell.getContext())}
         </td>
       )
@@ -77,17 +73,17 @@ export default function BasicTable({
 
   return (
     <div>
-      {/* <input className='border-color: rgb(0 0 0);'
+      {/* <input classNameName='border-color: rgb(0 0 0);'
           type='text'
           value={filtering}
           onChange={e => setFiltering(e.target.value)}
         /> */}
-      <div class="flex flex-col">
-        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-            <div class="overflow-hidden">
-              <table class="min-w-full text-left text-md font-light">
-                <thead class="border-b font-medium dark:border-neutral-500">
+      <div className="flex flex-col">
+        <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+            <div className="overflow-hidden">
+              <table className="min-w-full text-left text-md font-light">
+                <thead className="border-b font-medium dark:border-neutral-500">
                   {table.getHeaderGroups().map((headerGroup) => (
                     <tr key={headerGroup.id}>
                       {headerGroup.headers.map((header) => (
@@ -95,7 +91,7 @@ export default function BasicTable({
                           key={header.id}
                           onClick={header.column.getToggleSortingHandler()}
                           scope="col"
-                          class="px-6 py-4">
+                          className="px-6 py-4">
                           {header.isPlaceholder ? null : (
                             <div>
                               {flexRender(
@@ -121,24 +117,27 @@ export default function BasicTable({
                   {table.getRowModel().rows.map((row) => (
                     <tr
                       key={row.id}
-                      class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
+                      className="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
                       {row
                         .getVisibleCells()
                         .map((cell) => returnCellTable(cell))}
-                      <td class="whitespace-nowrap px-6 py-4">
+                      <td className="whitespace-nowrap px-6 py-4">
                         <Button
                           label={'Edit'}
-                          startIcon={Edit}
+                          // starticon={Edit}
                           variant="tag"
-                          onClick={(e) =>
-                            removeFunction(row.original.id)
+                          onClick={() =>
+                            router.push(`/${row.original.id}`)
                           }></Button>
                       </td>
-                      <td class="whitespace-nowrap px-6 py-4">
+                      <td className="whitespace-nowrap px-6 py-4">
                         <Button
                           label={'Remove'}
-                          startIcon={Trash}
-                          variant="tag"></Button>
+                          // startIcon={Trash}
+                          variant="tag"
+                          onClick={(e) =>
+                            crud.remove(row.original.id)
+                          }></Button>
                       </td>
                     </tr>
                   ))}
@@ -148,7 +147,7 @@ export default function BasicTable({
           </div>
         </div>
       </div>
-      <div class="flex justify-center">
+      <div className="flex justify-center">
         <Button
           label={'First Page'}
           onClick={() => table.setPageIndex(0)}
