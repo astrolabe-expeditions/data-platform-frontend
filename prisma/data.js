@@ -13,18 +13,20 @@ const stations = [
     name: 'Station n°3',
     type: 'fixed',
   },
+  {
+    name: 'Station n°4',
+    type: 'fixed',
+    deletedAt: new Date(),
+  },
 ]
 
 const stationWithSensors = {
   name: 'Station with sensors',
   type: 'fixed',
   sensors: {
-    create: [
-      { identifier: 'AA333302' },
-      { identifier: 'AS322122' }, 
-    ],
+    create: [{ identifier: 'AA333302' }, { identifier: 'AS322122' }],
   },
-};
+}
 
 const sensors = [
   {
@@ -52,9 +54,10 @@ const getUsers = async () => {
       email: 'emma@gmail.com',
     },
     {
-      name: 'Felipe', 
-      password: (await hash('123', 12)).toString(), 
-      email: 'felipelobato99@hotmail.com'},
+      name: 'Felipe',
+      password: (await hash('123', 12)).toString(),
+      email: 'felipelobato99@hotmail.com',
+    },
   ]
 }
 
