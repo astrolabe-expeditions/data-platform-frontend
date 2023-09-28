@@ -1,12 +1,12 @@
 import { getServerSession } from 'next-auth/next'
 import { redirect } from 'next/navigation'
 
-import { db } from '@/lib/db'
 import { authOptions } from '@/lib/auth'
 import { Page } from '@/components/Page/Page'
 import { PageHeader } from '@/components/Page/PageHeader'
 
 import BasicTable from '@/components/Table/Table'
+import { BasicForm } from '@/components/Form/Form'
 
 async function Home() {
   const session = await getServerSession(authOptions)
@@ -15,41 +15,46 @@ async function Home() {
     redirect('/auth/login')
   }
 
-  const stations = await db.station.findMany({
-    select: {
-      sensors:true,
-      name:true, 
-      type: true,
-      id: true,
-    }
-  })
+  //const stations = await getData()
 
-  const mainColumns = [
+  const columnsConfig = [
     {
       header: 'Name',
       accessorKey: 'name',
-      footer: 'Name',
-      cellType: 'string',
+      cellType: 'text',
+      formConfig: {
+        placeholder: '',
+        data: '',
+      },
     },
     {
       header: 'Type',
       accessorKey: 'type',
-      footer: 'type',
       cellType: 'select',
+      formConfig: {
+        placeholder: '',
+        data: '',
+      },
     },
     {
       header: 'Sensors',
       accessorKey: 'sensors',
-      footer: 'Sensors',
       cellType: 'multi-select',
-      objectName: 'sensors',
-      objectLabel: 'identifier',
+      objectConfig: {
+        name: 'sensors',
+        label: 'identifier',
+      },
+      formConfig: {
+        placeholder: '',
+        data: '',
+      },
     },
   ]
 
   return (
     <Page>
       <PageHeader title="Stations" />
+      <BasicForm columns={columnsConfig} />
       <BasicTable 
         data={stations} 
         columns={mainColumns}/>
