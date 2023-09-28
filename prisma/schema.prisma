@@ -15,6 +15,7 @@ model Station {
   name String
   type String
   sensors Sensor[]
+  deletedAt DateTime?
 }
 
 model Sensor {
