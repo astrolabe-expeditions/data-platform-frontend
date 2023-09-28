@@ -7,6 +7,11 @@ import { PageHeader } from '@/components/Page/PageHeader'
 
 import BasicTable from '@/components/Table/Table'
 import { BasicForm } from '@/components/Form/Form'
+import { CRUD } from '@/lib/crud'
+
+const url = 'http://localhost:3000/api/stations'
+const crud = new CRUD(url)
+crud.data = await crud.getData()
 
 async function Home() {
   const session = await getServerSession(authOptions)
@@ -55,7 +60,7 @@ async function Home() {
     <Page>
       <PageHeader title="Stations" />
       <BasicForm columns={columnsConfig} />
-      <BasicTable data={stations} columns={mainColumns} />
+      <BasicTable data={crud.data} columns={columnsConfig} url={url} />
     </Page>
   )
 }
