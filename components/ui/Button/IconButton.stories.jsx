@@ -7,8 +7,8 @@ export default {
 
 const renderVariants = ({ ...args }) => (
   <div className="flex gap-2.5 items-start">
-    <IconButton variant="primary" {...args} />
-    <IconButton variant="secondary" {...args} />
+    <IconButton variant="solid" {...args} />
+    <IconButton variant="outline" colorScheme="gray" {...args} />
   </div>
 )
 
