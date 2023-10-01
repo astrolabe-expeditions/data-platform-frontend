@@ -33,13 +33,43 @@ const ButtonBase = ({
       `disabled:border-gray-200`,
       'disabled:bg-white',
     ],
+    ghost_primary: [
+      `text-primary-500`,
+      `hover:bg-primary-50`,
+      `hover:text-primary-600`,
+      `focus:text-primary-500`,
+      `disabled:text-primary-300`,
+      'disabled:bg-white',
+    ],
+    ghost_gray: [
+      `text-gray-500`,
+      `hover:bg-gray-50`,
+      `hover:text-gray-600`,
+      `focus:text-gray-500`,
+      `disabled:text-gray-300`,
+      'disabled:bg-white',
+    ],
+    link_primary: [
+      `text-primary-500`,
+      `hover:text-primary-600`,
+      `focus:text-primary-500`,
+      `disabled:text-primary-300`,
+    ],
+    link_gray: [
+      `text-gray-500`,
+      `hover:text-gray-600`,
+      `focus:text-gray-500`,
+      `disabled:text-gray-300`,
+    ],
   }
 
   return (
     <button
       className={clsx(
         className,
-        'rounded-lg border shadow-xs font-semibold focus:outline-none',
+        variant !== 'ghost' && variant !== 'link' ? 'border shadow-xs' : null,
+        variant !== 'link' ? 'rounded-lg' : null,
+        'font-semibold focus:outline-none',
         fullWidth ? 'w-full' : null,
         variants[`${variant}_${colorScheme}`],
       )}

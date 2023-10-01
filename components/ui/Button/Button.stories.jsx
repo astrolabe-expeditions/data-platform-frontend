@@ -6,9 +6,13 @@ export default {
 }
 
 const renderVariants = ({ ...args }) => (
-  <div className="flex gap-2.5 items-start">
+  <div className="flex gap-2.5 items-center">
     <Button variant="solid" {...args} />
     <Button variant="outline" colorScheme="gray" {...args} />
+    <Button variant="ghost" colorScheme="primary" {...args} />
+    <Button variant="ghost" colorScheme="gray" {...args} />
+    <Button variant="link" colorScheme="primary" {...args} />
+    <Button variant="link" colorScheme="gray" {...args} />
   </div>
 )
 
