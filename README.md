@@ -1,3 +1,18 @@
+# Data platform
+
+## What is Astrolabe Expeditions?
+
+[Astrolabe Expeditions](https://www.astrolabe-expeditions.org/) is an non-profit association that develops participatory science programmes with
+laboratories to enable citizens to actively contribute to scientific research.
+
+Citizens' expeditions are set up to collect large-scale scientific data and involve citizens in understanding and preserving the ocean.
+
+## What is the data plaform?
+
+This platform aims to simplify the process of gathering all data from the various citizen expeditions.
+
+Feel free to [open an issue](https://github.com/astrolabe-expeditions/data-platform/issues/new) for questions and suggestions.
+
 ## Installation
 
 Clone the repository
@@ -58,9 +73,10 @@ email: emma@gmail.com
 pass: hi123
 ```
 
-## Learn More
+## How to contribute?
 
-To learn more about Next.js, take a look at the following resources:
+We are eager for contributions and very happy when we receive them! It can be code, of course, but it can also take other forms. The workflow is explained in [the contributing guide](https://github.com/astrolabe-expeditions/data-platform/blob/dev/docs/CONTRIBUTING.md).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Licensing
+
+Data plaform is an Open Source software, released under the MIT License.
