@@ -12,7 +12,7 @@ async function Home({ params }) {
 
   return (
     <Page>
-      <PageHeader title={params.id} />
+      <PageHeader title={`Seeing id of sensors: ${params.id}`} />
     </Page>
   )
 }

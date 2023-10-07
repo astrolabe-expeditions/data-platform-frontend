@@ -8,7 +8,8 @@ const Sidebar = () => {
       <SidebarLogo />
       <nav>
         <ul className="flex flex-col gap-1">
-          <SidebarItem name="Stations" to="/" />
+          <SidebarItem name="Dashboard" to="/" />
+          <SidebarItem name="Stations" to="/stations" />
           <SidebarItem name="Sensors" to="/sensors" />
         </ul>
       </nav>
