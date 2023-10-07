@@ -1,11 +1,9 @@
 import { getServerSession } from 'next-auth/next'
-import { redirect } from 'next/navigation'
-
 import { authOptions } from '@/lib/auth'
 import { Page } from '@/components/Page/Page'
 import { PageHeader } from '@/components/Page/PageHeader'
 
-async function Home() {
+async function Home({ params }) {
   const session = await getServerSession(authOptions)
 
   if (!session) {
@@ -14,7 +12,7 @@ async function Home() {
 
   return (
     <Page>
-      <PageHeader title="Dashboard" />
+      <PageHeader title={`Seeing add stations`} />
     </Page>
   )
 }
