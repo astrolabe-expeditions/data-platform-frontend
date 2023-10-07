@@ -65,8 +65,8 @@ After you can connect with
 
 ```
 // Gabriel
-email : gabriel@gmail.com
-pass :  hi123
+email: gabriel@gmail.com
+pass:  hi123
 
 // Emma
 email: emma@gmail.com
