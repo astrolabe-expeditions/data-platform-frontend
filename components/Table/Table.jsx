@@ -46,7 +46,10 @@ export default function BasicTable({
       return (
         <td key={cell.id}>
           {cell.row.original[objectName].map((obj) => (
-            <Button label={obj[objectLabel]} variant="tag"></Button>
+            <Button
+              key={obj[objectLabel]}
+              label={obj[objectLabel]}
+              variant="tag"></Button>
           ))}
         </td>
       )
