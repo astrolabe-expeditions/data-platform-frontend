@@ -1,8 +1,8 @@
 'use client'
 
 import { Table } from '@radix-ui/themes'
-import { IconButton } from '../ui/IconButton/IconButton'
-import { Edit } from '../ui/Icons'
+import Link from 'next/link'
+import { StationTableDropdown } from '../ui/Dropdown/StationTableDropdown'
 
 export default function StationTable({ data }) {
   return (
@@ -22,12 +22,17 @@ export default function StationTable({ data }) {
             <Table.Row key={row.id}>
               <Table.RowHeaderCell>{row.name}</Table.RowHeaderCell>
               <Table.Cell>{row.type}</Table.Cell>
-              <Table.Cell>{row.sensors.id}</Table.Cell>
               <Table.Cell>
-                <IconButton
-                  icon={Edit}
-                  size="sm"
-                  variant="secondary"></IconButton>
+                {row.sensors.map((sensor) => (
+                  <div>
+                    <Link href={`/sensors/${sensor.id}`}>
+                      {sensor.identifier}
+                    </Link>
+                  </div>
+                ))}
+              </Table.Cell>
+              <Table.Cell>
+                <StationTableDropdown obj={row}></StationTableDropdown>
               </Table.Cell>
             </Table.Row>
           ))}
