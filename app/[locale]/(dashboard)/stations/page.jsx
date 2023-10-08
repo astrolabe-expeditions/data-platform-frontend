@@ -26,44 +26,11 @@ async function Home() {
     redirect('/auth/login')
   }
 
-  // const columnsConfig = [
-  //   {
-  //     header: 'Name',
-  //     accessorKey: 'name',
-  //     cellType: 'text',
-  //     formConfig: {
-  //       placeholder: '',
-  //       data: '',
-  //     },
-  //   },
-  //   {
-  //     header: 'Type',
-  //     accessorKey: 'type',
-  //     cellType: 'select',
-  //     formConfig: {
-  //       placeholder: '',
-  //       data: '',
-  //     },
-  //   },
-  //   {
-  //     header: 'Sensors',
-  //     accessorKey: 'sensors',
-  //     cellType: 'multi-select',
-  //     objectConfig: {
-  //       name: 'sensors',
-  //       label: 'identifier',
-  //     },
-  //     formConfig: {
-  //       placeholder: '',
-  //       data: '',
-  //     },
-  //   },
-  // ]
-
   return (
     <Page>
       <PageHeader title="Stations" />
       <Theme>
+        <Link href={'/stations/add'}>Add Station</Link>
         <StationTable data={stations} />
       </Theme>
     </Page>
