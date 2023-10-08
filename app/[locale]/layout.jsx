@@ -1,6 +1,8 @@
 import { I18nProvider } from '@/components/I18nProvider'
 import '@/styles/global.css'
+import '@radix-ui/themes/styles.css'
 import { useLocale } from 'next-intl'
+import { Theme } from '@radix-ui/themes'
 
 export const metadata = {
   title: 'Astrobale Expeditions - Data platform',
@@ -13,7 +15,9 @@ const RootLayout = ({ children }) => {
   return (
     <html lang={locale}>
       <body>
-        <I18nProvider locale={locale}>{children}</I18nProvider>
+        <Theme>
+          <I18nProvider locale={locale}>{children}</I18nProvider>
+        </Theme>
       </body>
     </html>
   )
