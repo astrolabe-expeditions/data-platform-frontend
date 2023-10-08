@@ -9,6 +9,7 @@ import StationTable from '@/components/Table/StationTable'
 import { Theme } from '@radix-ui/themes'
 
 import { db } from '@/lib/db'
+import { Link } from '@/components/ui/Link'
 
 const stations = await db.station.findMany({
   select: {
