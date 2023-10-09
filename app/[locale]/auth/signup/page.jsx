@@ -2,15 +2,20 @@
 
 import { useState } from 'react'
 import NextLink from 'next/link'
-import { useTranslations as getTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl'
+import { useMutation } from '@tanstack/react-query'
 
+import { registerUser } from '@/lib/queries'
 import { Input } from '@/components/ui/Input/Input'
 import { Button } from '@/components/ui/Button/Button'
 import { Link } from '@/components/ui/Link'
 import { Typography } from '@/components/ui/Typography'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/Alert'
 
 export default function Signup() {
-  const t = getTranslations('Signup')
+  const t = useTranslations('Signup')
+
+  const { mutate, isError, error } = useMutation({ mutationFn: registerUser })
 
   const [formData, setFormData] = useState({
     name: '',
@@ -27,16 +32,7 @@ export default function Signup() {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault()
-    console.log(formData)
-    try {
-      const res = await fetch('/api/register', {
-        method: 'POST',
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
-        }),
-      })
-    } catch (e) {}
+    mutate(formData)
   }
 
   return (
@@ -48,6 +44,14 @@ export default function Signup() {
         {t('subtitle')}
       </Typography>
       <form className="flex flex-col gap-3 w-full" onSubmit={handleSubmit}>
+        {isError ? (
+          <Alert variant="destructive">
+            <AlertTitle>{t('error_alert.title')}</AlertTitle>
+            <AlertDescription>
+              {t(`error_alert.errors.${error}`)}
+            </AlertDescription>
+          </Alert>
+        ) : null}
         <Input
           type="text"
           name="name"
