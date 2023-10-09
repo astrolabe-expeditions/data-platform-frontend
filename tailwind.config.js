@@ -17,6 +17,7 @@ module.exports = {
         900: '#344054',
       },
       primary: colors.blue,
+      destructive: colors.red,
       white: '#FFF',
     },
     boxShadow: {
