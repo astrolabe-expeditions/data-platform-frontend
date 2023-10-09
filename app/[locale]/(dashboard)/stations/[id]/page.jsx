@@ -13,7 +13,11 @@ async function Home({ params }) {
 
   return (
     <Page>
-      <PageHeader title={`Seeing id of station: ${params.id}`} />
+      <BackpageButton></BackpageButton>
+      <PageHeader
+        title={`Seeing id of station: ${params.id}`}
+        className={'inline-flex pl-5'}
+      />
     </Page>
   )
 }
