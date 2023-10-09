@@ -7,16 +7,20 @@ export async function POST(req) {
   const { email, password } = await req.json()
   const hashed = await hash(password, 12)
 
-  const user = await db.user.create({
-    data: {
-      email,
-      password: hashed,
-    },
-  })
+  try {
+    const user = await db.user.create({
+      data: {
+        email,
+        password: hashed,
+      },
+    })
 
-  return NextResponse.json({
-    user: {
-      email: user.email,
-    },
-  })
+    return NextResponse.json({
+      user: {
+        email: user.email,
+      },
+    })
+  } catch {
+    return NextResponse.json({ error: 'same_email' }, { status: 500 })
+  }
 }

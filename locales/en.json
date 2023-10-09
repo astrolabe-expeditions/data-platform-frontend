@@ -12,7 +12,13 @@
     },
     "signup": "Signup",
     "already_signup": "Already signed up?",
-    "already_signup_link": "Login"
+    "already_signup_link": "Login",
+    "error_alert": {
+      "title": "Error",
+      "errors": {
+        "same_email": "Your email already exists with us"
+      }
+    }
   },
   "Login": {
     "title": "Log in to your account",

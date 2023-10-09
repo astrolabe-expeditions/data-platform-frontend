@@ -13,7 +13,13 @@
     "signup": "S'incrire",
     "github": "Continuer avec Github",
     "already_signup": "Déjà inscrit ?",
-    "already_signup_link": "Connectez-vous"
+    "already_signup_link": "Connectez-vous",
+    "error_alert": {
+      "title": "Erreur",
+      "errors": {
+        "same_email": "Votre email existe déjà chez nous"
+      }
+    }
   },
   "Login": {
     "title": "Connectez-vous à votre compte",
