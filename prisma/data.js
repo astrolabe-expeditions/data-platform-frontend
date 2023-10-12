@@ -58,6 +58,11 @@ const getUsers = async () => {
       password: (await hash('123', 12)).toString(),
       email: 'felipelobato99@hotmail.com',
     },
+    {
+      name: 'Arthur',
+      password: (await hash('16/07/2012deDE', 12)).toString(),
+      email: 'arthur.nerambourg64@gmail.com',
+    },
   ]
 }
 
