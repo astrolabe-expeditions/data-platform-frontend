@@ -30,5 +30,12 @@
     "login": "Login",
     "no_account": "Don't have an account yet?",
     "no_account_link": "Create an account"
+  },
+  "Sensors": {
+    "upload_screen": {
+      "upload_file": "Upload file",
+      "upload_file_for_sensor": "Upload file for the sensor",
+      "submit_form": "Submit file"
+    }
   }
 }
