@@ -10,19 +10,70 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum StationType {
+  Fixed
+  Mobile
+}
+
 model Station {
-  id   String @id @default(auto()) @map("_id") @db.ObjectId
-  name String
-  type String
-  sensors Sensor[]
-  deletedAt DateTime?
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  type          StationType
+  latitude      String
+  longitude     String
+  description   String
+  image_url     String
+  sensors       Sensor[]   // Define a relation to Sensor
+}
+
+enum SensorType {
+  LittObs
+  SensOcean
 }
 
 model Sensor {
-  id   String @id @default(auto()) @map("_id") @db.ObjectId
-  identifier String @unique
-  stationId String? @db.ObjectId
-  station Station? @relation(fields: [stationId], references: [id])
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  identifier    String   @unique
+  type          SensorType
+  nbr_measures  Int
+  stationId     String?  @db.ObjectId // Add a reference to the Station model
+  station       Station? @relation(fields: [stationId], references: [id])
+  records       Record[]    // Add a one-to-many relationship to Record
+  files         File[]      // Add a one-to-many relationship to File
+}
+
+model Record {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  latitude      String
+  longitude     String
+  createdAt     DateTime @default(now())
+  bat           String
+  pression_ext  Float
+  temp_ext      Float
+  temp_int      Float
+  temp_sea      Float[]
+  temp_sea_mean Float
+  ec_sea        Float[]
+  ec_sea_mean   Float 
+  sensorId      String?  @db.ObjectId  // Reference to Sensor model
+  sensor        Sensor?  @relation(fields: [sensorId], references: [id])
+}
+
+model File {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  update_date   DateTime
+  status        String?
+  file_url      String?
+  sensorId      String?  @db.ObjectId  // Reference to Sensor model
+  sensor        Sensor?  @relation(fields: [sensorId], references: [id])
+}
+
+model Organisation {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  description   String    
+  users       User[]   // Add a one-to-many relationship to User
 }
 
 model Account {
@@ -56,13 +107,17 @@ model Session {
 model User {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
-  password      String?
-  email         String?   @unique
+  email         String    @unique
   emailVerified DateTime? @map("email_verified")
-  image         String?
+  password      String?
+  image_url     String?
   accounts      Account[]
   sessions      Session[]
+  organisationId String? @db.ObjectId
+  organisation  Organisation? @relation(fields: [organisationId], references: [id])
 }
+
+
 
 model VerificationToken {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
@@ -73,3 +128,4 @@ model VerificationToken {
   @@unique([identifier, token])
   @@map("verification_tokens")
 }
+
