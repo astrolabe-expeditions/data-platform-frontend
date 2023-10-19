@@ -22,6 +22,26 @@ const StationForm = ({ columns }) => {
           <Select label={'Sensors'}></Select>
         </div>
       </div>
+      <div className="flex flex-wrap -mx-3 mb-6">
+        <div className="w-full px-3">
+          <Input label={'Latitude'}></Input>
+        </div>
+      </div>
+      <div className="flex flex-wrap -mx-3 mb-6">
+        <div className="w-full px-3">
+          <Input label={'Longitude'}></Input>
+        </div>
+      </div>
+      <div className="flex flex-wrap -mx-3 mb-6">
+        <div className="w-full px-3">
+          <Input label={'Description'}></Input>
+        </div>
+      </div>
+      <div className="flex flex-wrap -mx-3 mb-6">
+        <div className="w-full px-3">
+          <Input label={'Image_URL'}></Input>
+        </div>
+      </div>
       <Button label={'Add station'} />
     </form>
   )
