@@ -31,12 +31,18 @@ const stationWithSensors = {
 const sensors = [
   {
     identifier: 'AB123345',
+    type: 'test1',
+    nbr_measures: 3122,
   },
   {
     identifier: 'CD343344',
+    type: 'test2',
+    nbr_measures: 1,
   },
   {
     identifier: 'ER344344',
+    type: 'test3',
+    nbr_measures: 5,
   },
 ]
 

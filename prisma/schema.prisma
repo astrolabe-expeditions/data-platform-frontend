@@ -23,6 +23,8 @@ model Sensor {
   identifier String @unique
   stationId String? @db.ObjectId
   station Station? @relation(fields: [stationId], references: [id])
+  type String?
+  nbr_measures Int?
 }
 
 model Account {
