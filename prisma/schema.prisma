@@ -43,20 +43,21 @@ model Sensor {
 }
 
 model Record {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
-  latitude      String
-  longitude     String
-  createdAt     DateTime @default(now())
-  bat           String
-  pression_ext  Float
-  temp_ext      Float
-  temp_int      Float
-  temp_sea      Float[]
-  temp_sea_mean Float
-  ec_sea        Float[]
-  ec_sea_mean   Float 
-  sensorId      String?  @db.ObjectId  // Reference to Sensor model
-  sensor        Sensor?  @relation(fields: [sensorId], references: [id])
+  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
+  latitude            String
+  longitude           String
+  recorded_at         DateTime @default(now())
+  battery_voltage     Float
+  battery_percentage  Float
+  pression_ext        Float
+  temp_ext            Float
+  temp_int            Float
+  temp_sea            Float[]
+  temp_sea_mean       Float
+  ec_sea              Float[]
+  ec_sea_mean         Float 
+  sensorId            String?  @db.ObjectId  // Reference to Sensor model
+  sensor              Sensor?  @relation(fields: [sensorId], references: [id])
 }
 
 model File {
@@ -73,7 +74,7 @@ model Organisation {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
   description   String    
-  users       User[]   // Add a one-to-many relationship to User
+  users         User[]   // Add a one-to-many relationship to User
 }
 
 model Account {
@@ -105,16 +106,16 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  name          String?
-  email         String    @unique
-  emailVerified DateTime? @map("email_verified")
-  password      String?
-  image_url     String?
-  accounts      Account[]
-  sessions      Session[]
-  organisationId String? @db.ObjectId
-  organisation  Organisation? @relation(fields: [organisationId], references: [id])
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  name            String?
+  email           String    @unique
+  emailVerified   DateTime? @map("email_verified")
+  password        String?
+  image_url       String?
+  accounts        Account[]
+  sessions        Session[]
+  organisationId  String? @db.ObjectId
+  organisation    Organisation? @relation(fields: [organisationId], references: [id])
 }
 
 
