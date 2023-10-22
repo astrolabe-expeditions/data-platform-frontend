@@ -41,38 +41,6 @@ const stations = [
     description: 'Fixed station in Chicago',
     image_url: 'https://example.com/station5.jpg',
   },
-  {
-    name: 'Station n°6',
-    type: 'Mobile',
-    latitude: '51.5074',
-    longitude: '0.1278',
-    description: 'Mobile station in London',
-    image_url: 'https://example.com/station6.jpg',
-  },
-  {
-    name: 'Station n°7',
-    type: 'Fixed',
-    latitude: '52.5200',
-    longitude: '13.4050',
-    description: 'Fixed station in Berlin',
-    image_url: 'https://example.com/station7.jpg',
-  },
-  {
-    name: 'Station n°8',
-    type: 'Mobile',
-    latitude: '34.0522',
-    longitude: '-118.2437',
-    description: 'Mobile station in Los Angeles',
-    image_url: 'https://example.com/station8.jpg',
-  },
-  {
-    name: 'Station n°9',
-    type: 'Fixed',
-    latitude: '52.2297',
-    longitude: '21.0122',
-    description: 'Fixed station in Warsaw',
-    image_url: 'https://example.com/station9.jpg',
-  },
 ]
 
 const sensors = [
@@ -105,26 +73,6 @@ const sensors = [
     identifier: 'JK765432',
     type: 'LittObs',
     nbr_measures: 850,
-  },
-  {
-    identifier: 'UV987654',
-    type: 'SensOcean',
-    nbr_measures: 720,
-  },
-  {
-    identifier: 'QR123456',
-    type: 'LittObs',
-    nbr_measures: 920,
-  },
-  {
-    identifier: 'MN567890',
-    type: 'SensOcean',
-    nbr_measures: 630,
-  },
-  {
-    identifier: 'OP234567',
-    type: 'LittObs',
-    nbr_measures: 780,
   },
 ]
 
@@ -262,16 +210,6 @@ const organisations = [
     name: 'Tech Innovators for Sustainability',
     description:
       'A tech organization focused on sustainable solutions and environmental data analysis.',
-  },
-  {
-    name: 'Climate Change Advocates',
-    description:
-      'A non-profit organization committed to raising awareness and taking action on climate change.',
-  },
-  {
-    name: 'Global Environmental Solutions',
-    description:
-      'A company specializing in environmental monitoring and sustainable technology.',
   },
 ]
 
