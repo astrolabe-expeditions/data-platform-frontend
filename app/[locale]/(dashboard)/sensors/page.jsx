@@ -22,7 +22,7 @@ export default async function Sensors() {
 
   return (
     <Page>
-      <PageHeader title="Capteurs" />
+      <PageHeader title={'Capteurs'} showBack />
       <ul>
         {sensors.map(({ id, identifier }) => (
           <li key={id}>{identifier}</li>

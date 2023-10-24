@@ -29,7 +29,7 @@ export default function SensorsUploadForm({ sensor }) {
 
   return (
     <>
-      <PageHeader title={t('upload_screen.upload_file')} />
+      <PageHeader title={t('upload_screen.upload_file')} showBack />
       <SensorCard sensor={sensor} />
       <input
         type="file"

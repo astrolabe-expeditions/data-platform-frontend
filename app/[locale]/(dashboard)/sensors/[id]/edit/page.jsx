@@ -12,7 +12,7 @@ async function Home({ params }) {
 
   return (
     <Page>
-      <PageHeader title={`Seeing edit of id: ${params.id}`} />
+      <PageHeader title={`Seeing edit of id: ${params.id}`} showBack />
     </Page>
   )
 }
