@@ -4,18 +4,16 @@ const stations = [
   {
     name: 'Station n°1',
     type: 'Mobile',
-    latitude: '40.7128',
-    longitude: '-74.0060',
     description: 'Mobile station in New York City',
-    image_url: 'https://example.com/station1.jpg',
+    image_url: 'https://picsum.photos/200/300.jpg',
   },
   {
     name: 'Station n°2',
-    type: 'Mobile',
+    type: 'Fixed',
     latitude: '34.0522',
     longitude: '-118.2437',
-    description: 'Mobile station in Los Angeles',
-    image_url: 'https://example.com/station2.jpg',
+    description: 'Fixed station in Los Angeles',
+    image_url: 'https://picsum.photos/200/300.jpg',
   },
   {
     name: 'Station n°3',
@@ -23,15 +21,13 @@ const stations = [
     latitude: '48.8566',
     longitude: '2.3522',
     description: 'Fixed station in Paris',
-    image_url: 'https://example.com/station3.jpg',
+    image_url: 'https://picsum.photos/200/300.jpg',
   },
   {
     name: 'Station n°4',
     type: 'Mobile',
-    latitude: '35.682839',
-    longitude: '139.759455',
     description: 'Mobile station in Tokyo',
-    image_url: 'https://example.com/station4.jpg',
+    image_url: 'https://picsum.photos/200/300.jpg',
   },
   {
     name: 'Station n°5',
@@ -39,7 +35,7 @@ const stations = [
     latitude: '41.8781',
     longitude: '-87.6298',
     description: 'Fixed station in Chicago',
-    image_url: 'https://example.com/station5.jpg',
+    image_url: 'https://picsum.photos/200/300.jpg',
   },
 ]
 
@@ -47,32 +43,32 @@ const sensors = [
   {
     identifier: 'AB123345',
     type: 'LittObs',
-    nbr_measures: 800,
+    nbr_measures: 5,
   },
   {
     identifier: 'CD343344',
     type: 'SensOcean',
-    nbr_measures: 900,
+    nbr_measures: 3,
   },
   {
     identifier: 'ER344344',
     type: 'LittObs',
-    nbr_measures: 1000,
+    nbr_measures: 5,
   },
   {
     identifier: 'XY987654',
     type: 'LittObs',
-    nbr_measures: 950,
+    nbr_measures: 4,
   },
   {
     identifier: 'ZW543210',
     type: 'SensOcean',
-    nbr_measures: 700,
+    nbr_measures: 3,
   },
   {
     identifier: 'JK765432',
     type: 'LittObs',
-    nbr_measures: 850,
+    nbr_measures: 3,
   },
 ]
 
@@ -110,31 +106,26 @@ const records = [
 const files = [
   {
     name: 'File 1',
-    update_date: new Date(),
     status: 'Active',
     file_url: 'https://example.com/file1.csv',
   },
   {
     name: 'File 2',
-    update_date: new Date(),
     status: 'Inactive',
     file_url: 'https://example.com/file2.csv',
   },
   {
     name: 'File 3',
-    update_date: new Date(),
     status: 'Active',
     file_url: 'https://example.com/file3.csv',
   },
   {
     name: 'File 4',
-    update_date: new Date(),
     status: 'Active',
     file_url: 'https://example.com/file4.csv',
   },
   {
     name: 'File 5',
-    update_date: new Date(),
     status: 'Inactive',
     file_url: 'https://example.com/file5.csv',
   },
@@ -155,19 +146,19 @@ const getUsers = async () => {
       name: 'Gabriel',
       password,
       email: 'gabriel@gmail.com',
-      image_url: 'https://example.com/gabriel.jpg',
+      avatar_url: 'https://picsum.photos/200/300.jpg',
     },
     {
       name: 'Emma',
       password,
       email: 'emma@gmail.com',
-      image_url: 'https://example.com/emma.jpg',
+      avatar_url: 'https://picsum.photos/200/300.jpg',
     },
     {
       name: 'Felipe',
       password: (await hash('123', 12)).toString(),
       email: 'felipelobato99@hotmail.com',
-      image_url: 'https://example.com/felipe.jpg',
+      avatar_url: 'https://picsum.photos/200/300.jpg',
     },
   ]
 }

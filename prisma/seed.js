@@ -62,16 +62,14 @@ const load = async () => {
       data: {
         name: 'Station n°6',
         type: 'Mobile',
-        latitude: '51.5074',
-        longitude: '0.1278',
         description: 'Mobile station in London',
-        image_url: 'https://example.com/station6.jpg',
+        image_url: 'https://picsum.photos/200/300.jpg',
         sensors: {
           create: [
             {
               identifier: 'UV987654',
               type: 'SensOcean',
-              nbr_measures: 720,
+              nbr_measures: 3,
               records: {
                 create: [
                   {
@@ -94,7 +92,6 @@ const load = async () => {
                 create: [
                   {
                     name: 'File 6',
-                    update_date: new Date(),
                     status: 'Active',
                     file_url: 'https://example.com/file6.csv',
                   },
@@ -113,27 +110,27 @@ const load = async () => {
         latitude: '52.5200',
         longitude: '13.4050',
         description: 'Fixed station in Berlin',
-        image_url: 'https://example.com/station7.jpg',
+        image_url: 'https://picsum.photos/200/300.jpg',
         sensors: {
           create: [
             {
               identifier: 'QR123456',
               type: 'LittObs',
-              nbr_measures: 920,
+              nbr_measures: 4,
               records: {
                 create: [
                   {
-                    latitude: '51.5074',
-                    longitude: '0.1278',
+                    latitude: '52.5200',
+                    longitude: '13.4050',
                     recorded_at: new Date(),
                     battery_voltage: 3.8,
                     battery_percentage: 91,
                     pression_ext: 1014.28,
                     temp_ext: 23.5,
                     temp_int: 20.1,
-                    temp_sea: [18.7, 18.9, 18.6],
+                    temp_sea: [18.7, 18.9, 18.6, 18.7],
                     temp_sea_mean: 18.7,
-                    ec_sea: [35.8, 35.9, 35.7],
+                    ec_sea: [35.8, 35.9, 35.7, 35.8],
                     ec_sea_mean: 35.8,
                   },
                 ],
@@ -142,7 +139,6 @@ const load = async () => {
                 create: [
                   {
                     name: 'File 7',
-                    update_date: new Date(),
                     status: 'Inactive',
                     file_url: 'https://example.com/file7.csv',
                   },
@@ -158,16 +154,14 @@ const load = async () => {
       data: {
         name: 'Station n°8',
         type: 'Mobile',
-        latitude: '34.0522',
-        longitude: '-118.2437',
         description: 'Mobile station in Los Angeles',
-        image_url: 'https://example.com/station8.jpg',
+        image_url: 'https://picsum.photos/200/300.jpg',
         sensors: {
           create: [
             {
               identifier: 'AB123456',
               type: 'LittObs',
-              nbr_measures: 800,
+              nbr_measures: 5,
               records: {
                 create: [
                   {
@@ -179,9 +173,9 @@ const load = async () => {
                     pression_ext: 1011.75,
                     temp_ext: 26.8,
                     temp_int: 23.2,
-                    temp_sea: [20.5, 20.7, 20.8],
+                    temp_sea: [20.5, 20.7, 20.8, 20.6, 20.9],
                     temp_sea_mean: 20.7,
-                    ec_sea: [36.2, 36.3, 36.1],
+                    ec_sea: [36.2, 36.3, 36.1, 36.1, 36.3],
                     ec_sea_mean: 36.2,
                   },
                 ],
@@ -190,7 +184,6 @@ const load = async () => {
                 create: [
                   {
                     name: 'File 8',
-                    update_date: new Date(),
                     status: 'Inactive',
                     file_url: 'https://example.com/file8.csv',
                   },
@@ -209,7 +202,7 @@ const load = async () => {
         latitude: '52.2297',
         longitude: '21.0122',
         description: 'Fixed station in Warsaw',
-        image_url: 'https://example.com/station9.jpg',
+        image_url: 'https://picsum.photos/200/300.jpg',
         sensors: {
           create: [
             {
@@ -219,8 +212,8 @@ const load = async () => {
               records: {
                 create: [
                   {
-                    latitude: '34.0522',
-                    longitude: '-118.2437',
+                    latitude: '52.2297',
+                    longitude: '21.0122',
                     recorded_at: new Date(),
                     battery_voltage: 3.6,
                     battery_percentage: 75,
@@ -238,7 +231,6 @@ const load = async () => {
                 create: [
                   {
                     name: 'File 9',
-                    update_date: new Date(),
                     status: 'Inactive',
                     file_url: 'https://example.com/file9.csv',
                   },
@@ -253,11 +245,9 @@ const load = async () => {
     const station_10 = await prisma.station.create({
       data: {
         name: 'Station n°10',
-        type: 'Fixed',
-        latitude: '34.7478',
-        longitude: '10.7661',
-        description: 'Fixed station in Sfax',
-        image_url: 'https://example.com/station10.jpg',
+        type: 'Mobile',
+        description: 'Mobile station in Brest',
+        image_url: 'https://picsum.photos/200/300.jpg',
         sensors: {
           create: [
             {
@@ -286,7 +276,6 @@ const load = async () => {
                 create: [
                   {
                     name: 'File 10',
-                    update_date: new Date(),
                     status: 'Inactive',
                     file_url: 'https://example.com/file10.csv',
                   },
@@ -320,7 +309,7 @@ const load = async () => {
               name: 'user1',
               password: password,
               email: 'user1@gmail.com',
-              image_url: 'https://example.com/user1.jpg',
+              avatar_url: 'https://picsum.photos/200/300.jpg',
             },
           ],
         },
@@ -338,7 +327,7 @@ const load = async () => {
               name: 'user2',
               password: password,
               email: 'user2@gmail.com',
-              image_url: 'https://example.com/user2.jpg',
+              avatar_url: 'https://picsum.photos/200/300.jpg',
             },
           ],
         },
@@ -356,7 +345,7 @@ const load = async () => {
               name: 'user3',
               password: password,
               email: 'user3@gmail.com',
-              image_url: 'https://example.com/user3.jpg',
+              avatar_url: 'https://picsum.photos/200/300.jpg',
             },
           ],
         },

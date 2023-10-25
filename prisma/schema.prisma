@@ -15,12 +15,22 @@ enum StationType {
   Mobile
 }
 
+type Audit {
+  created_at  DateTime?  @default(now())
+  created_by  DateTime?  @default(now())
+  updated_at  DateTime?  @default(now())
+  updated_by  DateTime?  @default(now())
+  deleted_at  DateTime?  @default(now())
+  deleted_by  DateTime?  @default(now())
+}
+
 model Station {
   id            String   @id @default(auto()) @map("_id") @db.ObjectId
   name          String
   type          StationType
-  latitude      String
-  longitude     String
+  audit         Audit?
+  latitude      String?
+  longitude     String?
   description   String
   image_url     String
   sensors       Sensor[]   // Define a relation to Sensor
@@ -35,15 +45,17 @@ model Sensor {
   id            String   @id @default(auto()) @map("_id") @db.ObjectId
   identifier    String   @unique
   type          SensorType
+  audit         Audit?
   nbr_measures  Int
-  stationId     String?  @db.ObjectId // Add a reference to the Station model
-  station       Station? @relation(fields: [stationId], references: [id])
+  station_id    String?  @db.ObjectId // Add a reference to the Station model
+  station       Station? @relation(fields: [station_id], references: [id])
   records       Record[]    // Add a one-to-many relationship to Record
   files         File[]      // Add a one-to-many relationship to File
 }
 
 model Record {
   id                  String   @id @default(auto()) @map("_id") @db.ObjectId
+  audit               Audit?
   latitude            String
   longitude           String
   recorded_at         DateTime @default(now())
@@ -56,18 +68,18 @@ model Record {
   temp_sea_mean       Float
   ec_sea              Float[]
   ec_sea_mean         Float 
-  sensorId            String?  @db.ObjectId  // Reference to Sensor model
-  sensor              Sensor?  @relation(fields: [sensorId], references: [id])
+  sensor_id            String?  @db.ObjectId  // Reference to Sensor model
+  sensor              Sensor?  @relation(fields: [sensor_id], references: [id])
 }
 
 model File {
   id            String   @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
-  update_date   DateTime
+  audit         Audit?
   status        String?
   file_url      String?
-  sensorId      String?  @db.ObjectId  // Reference to Sensor model
-  sensor        Sensor?  @relation(fields: [sensorId], references: [id])
+  sensor_id     String?  @db.ObjectId  // Reference to Sensor model
+  sensor        Sensor?  @relation(fields: [sensor_id], references: [id])
 }
 
 model Organisation {
@@ -106,16 +118,16 @@ model Session {
 }
 
 model User {
-  id              String    @id @default(auto()) @map("_id") @db.ObjectId
-  name            String?
-  email           String    @unique
-  emailVerified   DateTime? @map("email_verified")
-  password        String?
-  image_url       String?
-  accounts        Account[]
-  sessions        Session[]
-  organisationId  String? @db.ObjectId
-  organisation    Organisation? @relation(fields: [organisationId], references: [id])
+  id                String    @id @default(auto()) @map("_id") @db.ObjectId
+  name              String?
+  email             String    @unique
+  emailVerified     DateTime? @map("email_verified")
+  password          String?
+  avatar_url        String?
+  accounts          Account[]
+  sessions          Session[]
+  organisation_id   String? @db.ObjectId
+  organisation      Organisation? @relation(fields: [organisation_id], references: [id])
 }
 
 
