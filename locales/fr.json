@@ -43,6 +43,7 @@
       "longitude": "Longitude",
       "description": "Description",
       "image_URL": "image_URL"
-    }
+    },
+    "addStation": "Ajouter Station"
   }
 }

@@ -4,8 +4,11 @@ import { Input } from '@/components/ui/Input/Input'
 import { Select } from '../ui/Select/Select'
 import { Button } from '../ui/Button/Button'
 import { useTranslations as getTranslations } from 'next-intl'
+import { PageHeader } from '@/components/Page/PageHeader'
 
-export default function StationForm() {
+
+
+export default function StationForm({sensors}) {
 
   const t = getTranslations('Station')
 
@@ -36,6 +39,8 @@ export default function StationForm() {
 
   return (
     <>
+
+      <PageHeader title={t('title')} className={'inline-flex pl-5'} />
       
       <form className="w-full max-w-lg" onSubmit={handleSubmit}>
         <div className="flex flex-wrap -mx-3 mb-6">
@@ -49,13 +54,17 @@ export default function StationForm() {
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-6">
-        <div className="w-full px-3">
-          <Select
-            name="type"
-            label={t('labels.type')}
-            value={formData.type}
-            onChange={handleChange('type')}
-          />
+          <div className="w-full px-3">
+            <Select
+              name="type"
+              label={t('labels.type')}
+              value={formData.type}
+              onChange={handleChange('type')}
+            >
+              <option>-- Choisir type --</option>
+              <option value="fixe">Fixe</option>
+              <option value="mobile">Mobile</option>
+            </Select>
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-6">
@@ -65,7 +74,11 @@ export default function StationForm() {
               label={t('labels.sensors')}
               value={formData.sensors}
               onChange={handleChange('sensors')}
-            />
+            >
+              {sensors.map((s)=>(
+                <option value={s.id}>{s.identifier}</option>
+              ))}
+            </Select>
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-6">
@@ -108,7 +121,7 @@ export default function StationForm() {
             />
           </div>
         </div>
-        <Button label={'Add station'} />
+        <Button type='submit' label={t('addStation')} />
       </form>
     </>
 
