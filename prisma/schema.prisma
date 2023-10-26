@@ -17,11 +17,11 @@ enum StationType {
 
 type Audit {
   created_at  DateTime?  @default(now())
-  created_by  DateTime?  @default(now())
+  created_by  String?
   updated_at  DateTime?  @default(now())
-  updated_by  DateTime?  @default(now())
+  updated_by  String?
   deleted_at  DateTime?  @default(now())
-  deleted_by  DateTime?  @default(now())
+  deleted_by  String?
 }
 
 model Station {

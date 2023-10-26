@@ -62,6 +62,14 @@ const load = async () => {
       data: {
         name: 'Station n°6',
         type: 'Mobile',
+        audit: {
+          created_at: new Date('2023-10-26T08:00:00Z'),
+          created_by: 'User1',
+          updated_at: new Date('2023-10-26T10:30:00Z'),
+          updated_by: 'User1',
+          deleted_at: null, // No deletion yet
+          deleted_by: null, // No deletion yet
+        },
         description: 'Mobile station in London',
         image_url: 'https://picsum.photos/200/300.jpg',
         sensors: {
@@ -69,10 +77,26 @@ const load = async () => {
             {
               identifier: 'UV987654',
               type: 'SensOcean',
+              audit: {
+                created_at: new Date('2023-10-26T08:00:00Z'),
+                created_by: 'Gabriel',
+                updated_at: new Date('2023-10-26T10:30:00Z'),
+                updated_by: 'Gabriel',
+                deleted_at: null, // No deletion yet
+                deleted_by: null, // No deletion yet
+              },
               nbr_measures: 3,
               records: {
                 create: [
                   {
+                    audit: {
+                      created_at: new Date('2023-10-26T08:00:00Z'),
+                      created_by: 'Gabriel',
+                      updated_at: new Date('2023-10-26T10:30:00Z'),
+                      updated_by: 'Gabriel',
+                      deleted_at: null, // No deletion yet
+                      deleted_by: null, // No deletion yet
+                    },
                     latitude: '52.5200',
                     longitude: '13.4050',
                     recorded_at: new Date(),
@@ -92,6 +116,14 @@ const load = async () => {
                 create: [
                   {
                     name: 'File 6',
+                    audit: {
+                      created_at: new Date('2023-10-26T08:00:00Z'),
+                      created_by: 'Gabriel',
+                      updated_at: new Date('2023-10-26T10:30:00Z'),
+                      updated_by: 'Gabriel',
+                      deleted_at: null, // No deletion yet
+                      deleted_by: null, // No deletion yet
+                    },
                     status: 'Active',
                     file_url: 'https://example.com/file6.csv',
                   },
@@ -107,6 +139,14 @@ const load = async () => {
       data: {
         name: 'Station n°7',
         type: 'Fixed',
+        audit: {
+          created_at: new Date('2023-10-26T08:00:00Z'),
+          created_by: 'User2',
+          updated_at: new Date('2023-10-26T10:30:00Z'),
+          updated_by: 'User2',
+          deleted_at: null, // No deletion yet
+          deleted_by: null, // No deletion yet
+        },
         latitude: '52.5200',
         longitude: '13.4050',
         description: 'Fixed station in Berlin',
@@ -116,10 +156,26 @@ const load = async () => {
             {
               identifier: 'QR123456',
               type: 'LittObs',
+              audit: {
+                created_at: new Date('2023-10-26T08:00:00Z'),
+                created_by: 'Gabriel',
+                updated_at: new Date('2023-10-26T10:30:00Z'),
+                updated_by: 'Gabriel',
+                deleted_at: null, // No deletion yet
+                deleted_by: null, // No deletion yet
+              },
               nbr_measures: 4,
               records: {
                 create: [
                   {
+                    audit: {
+                      created_at: new Date('2023-10-26T08:00:00Z'),
+                      created_by: 'Gabriel',
+                      updated_at: new Date('2023-10-26T10:30:00Z'),
+                      updated_by: 'Gabriel',
+                      deleted_at: null, // No deletion yet
+                      deleted_by: null, // No deletion yet
+                    },
                     latitude: '52.5200',
                     longitude: '13.4050',
                     recorded_at: new Date(),
@@ -139,6 +195,14 @@ const load = async () => {
                 create: [
                   {
                     name: 'File 7',
+                    audit: {
+                      created_at: new Date('2023-10-26T08:00:00Z'),
+                      created_by: 'Gabriel',
+                      updated_at: new Date('2023-10-26T10:30:00Z'),
+                      updated_by: 'Gabriel',
+                      deleted_at: null, // No deletion yet
+                      deleted_by: null, // No deletion yet
+                    },
                     status: 'Inactive',
                     file_url: 'https://example.com/file7.csv',
                   },
@@ -154,6 +218,14 @@ const load = async () => {
       data: {
         name: 'Station n°8',
         type: 'Mobile',
+        audit: {
+          created_at: new Date('2023-10-26T08:00:00Z'),
+          created_by: 'Gabriel',
+          updated_at: new Date('2023-10-26T10:30:00Z'),
+          updated_by: 'Gabriel',
+          deleted_at: null, // No deletion yet
+          deleted_by: null, // No deletion yet
+        },
         description: 'Mobile station in Los Angeles',
         image_url: 'https://picsum.photos/200/300.jpg',
         sensors: {
@@ -161,10 +233,26 @@ const load = async () => {
             {
               identifier: 'AB123456',
               type: 'LittObs',
+              audit: {
+                created_at: new Date('2023-10-26T08:00:00Z'),
+                created_by: 'Gabriel',
+                updated_at: new Date('2023-10-26T10:30:00Z'),
+                updated_by: 'Gabriel',
+                deleted_at: null, // No deletion yet
+                deleted_by: null, // No deletion yet
+              },
               nbr_measures: 5,
               records: {
                 create: [
                   {
+                    audit: {
+                      created_at: new Date('2023-10-26T08:00:00Z'),
+                      created_by: 'Gabriel',
+                      updated_at: new Date('2023-10-26T10:30:00Z'),
+                      updated_by: 'Gabriel',
+                      deleted_at: null, // No deletion yet
+                      deleted_by: null, // No deletion yet
+                    },
                     latitude: '41.8781',
                     longitude: '-87.6298',
                     recorded_at: new Date(),
@@ -184,6 +272,14 @@ const load = async () => {
                 create: [
                   {
                     name: 'File 8',
+                    audit: {
+                      created_at: new Date('2023-10-26T08:00:00Z'),
+                      created_by: 'Gabriel',
+                      updated_at: new Date('2023-10-26T10:30:00Z'),
+                      updated_by: 'Gabriel',
+                      deleted_at: null, // No deletion yet
+                      deleted_by: null, // No deletion yet
+                    },
                     status: 'Inactive',
                     file_url: 'https://example.com/file8.csv',
                   },
@@ -199,6 +295,14 @@ const load = async () => {
       data: {
         name: 'Station n°9',
         type: 'Fixed',
+        audit: {
+          created_at: new Date('2023-10-26T08:00:00Z'),
+          created_by: 'User3',
+          updated_at: new Date('2023-10-26T10:30:00Z'),
+          updated_by: 'User3',
+          deleted_at: null, // No deletion yet
+          deleted_by: null, // No deletion yet
+        },
         latitude: '52.2297',
         longitude: '21.0122',
         description: 'Fixed station in Warsaw',
@@ -208,7 +312,15 @@ const load = async () => {
             {
               identifier: 'OP234567',
               type: 'LittObs',
-              nbr_measures: 780,
+              audit: {
+                created_at: new Date('2023-10-26T08:00:00Z'),
+                created_by: 'Gabriel',
+                updated_at: new Date('2023-10-26T10:30:00Z'),
+                updated_by: 'Gabriel',
+                deleted_at: null, // No deletion yet
+                deleted_by: null, // No deletion yet
+              },
+              nbr_measures: 3,
               records: {
                 create: [
                   {
@@ -231,6 +343,14 @@ const load = async () => {
                 create: [
                   {
                     name: 'File 9',
+                    audit: {
+                      created_at: new Date('2023-10-26T08:00:00Z'),
+                      created_by: 'Gabriel',
+                      updated_at: new Date('2023-10-26T10:30:00Z'),
+                      updated_by: 'Gabriel',
+                      deleted_at: null, // No deletion yet
+                      deleted_by: null, // No deletion yet
+                    },
                     status: 'Inactive',
                     file_url: 'https://example.com/file9.csv',
                   },
@@ -246,6 +366,14 @@ const load = async () => {
       data: {
         name: 'Station n°10',
         type: 'Mobile',
+        audit: {
+          created_at: new Date('2023-10-26T08:00:00Z'),
+          created_by: 'User3',
+          updated_at: new Date('2023-10-26T10:30:00Z'),
+          updated_by: 'User2',
+          deleted_at: null, // No deletion yet
+          deleted_by: null, // No deletion yet
+        },
         description: 'Mobile station in Brest',
         image_url: 'https://picsum.photos/200/300.jpg',
         sensors: {
@@ -253,10 +381,26 @@ const load = async () => {
             {
               identifier: 'MN567890',
               type: 'SensOcean',
-              nbr_measures: 630,
+              audit: {
+                created_at: new Date('2023-10-26T08:00:00Z'),
+                created_by: 'Gabriel',
+                updated_at: new Date('2023-10-26T10:30:00Z'),
+                updated_by: 'Gabriel',
+                deleted_at: null, // No deletion yet
+                deleted_by: null, // No deletion yet
+              },
+              nbr_measures: 3,
               records: {
                 create: [
                   {
+                    audit: {
+                      created_at: new Date('2023-10-26T08:00:00Z'),
+                      created_by: 'Gabriel',
+                      updated_at: new Date('2023-10-26T10:30:00Z'),
+                      updated_by: 'Gabriel',
+                      deleted_at: null, // No deletion yet
+                      deleted_by: null, // No deletion yet
+                    },
                     latitude: '40.7128',
                     longitude: '-74.0060',
                     recorded_at: new Date(),
@@ -276,6 +420,14 @@ const load = async () => {
                 create: [
                   {
                     name: 'File 10',
+                    audit: {
+                      created_at: new Date('2023-10-26T08:00:00Z'),
+                      created_by: 'Gabriel',
+                      updated_at: new Date('2023-10-26T10:30:00Z'),
+                      updated_by: 'Gabriel',
+                      deleted_at: null, // No deletion yet
+                      deleted_by: null, // No deletion yet
+                    },
                     status: 'Inactive',
                     file_url: 'https://example.com/file10.csv',
                   },
@@ -306,7 +458,7 @@ const load = async () => {
         users: {
           create: [
             {
-              name: 'user1',
+              name: 'User1',
               password: password,
               email: 'user1@gmail.com',
               avatar_url: 'https://picsum.photos/200/300.jpg',
@@ -324,7 +476,7 @@ const load = async () => {
         users: {
           create: [
             {
-              name: 'user2',
+              name: 'User2',
               password: password,
               email: 'user2@gmail.com',
               avatar_url: 'https://picsum.photos/200/300.jpg',
@@ -342,7 +494,7 @@ const load = async () => {
         users: {
           create: [
             {
-              name: 'user3',
+              name: 'User3',
               password: password,
               email: 'user3@gmail.com',
               avatar_url: 'https://picsum.photos/200/300.jpg',
