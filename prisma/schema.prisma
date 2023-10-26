@@ -10,19 +10,83 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum StationType {
+  Fixed
+  Mobile
+}
+
+type Audit {
+  created_at  DateTime?  @default(now())
+  created_by  DateTime?  @default(now())
+  updated_at  DateTime?  @default(now())
+  updated_by  DateTime?  @default(now())
+  deleted_at  DateTime?  @default(now())
+  deleted_by  DateTime?  @default(now())
+}
+
 model Station {
-  id   String @id @default(auto()) @map("_id") @db.ObjectId
-  name String
-  type String
-  sensors Sensor[]
-  deletedAt DateTime?
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  type          StationType
+  audit         Audit?
+  latitude      String?
+  longitude     String?
+  description   String
+  image_url     String
+  sensors       Sensor[]   // Define a relation to Sensor
+}
+
+enum SensorType {
+  LittObs
+  SensOcean
 }
 
 model Sensor {
-  id   String @id @default(auto()) @map("_id") @db.ObjectId
-  identifier String @unique
-  stationId String? @db.ObjectId
-  station Station? @relation(fields: [stationId], references: [id])
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  identifier    String   @unique
+  type          SensorType
+  audit         Audit?
+  nbr_measures  Int
+  station_id    String?  @db.ObjectId // Add a reference to the Station model
+  station       Station? @relation(fields: [station_id], references: [id])
+  records       Record[]    // Add a one-to-many relationship to Record
+  files         File[]      // Add a one-to-many relationship to File
+}
+
+model Record {
+  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
+  audit               Audit?
+  latitude            String
+  longitude           String
+  recorded_at         DateTime @default(now())
+  battery_voltage     Float
+  battery_percentage  Float
+  pression_ext        Float
+  temp_ext            Float
+  temp_int            Float
+  temp_sea            Float[]
+  temp_sea_mean       Float
+  ec_sea              Float[]
+  ec_sea_mean         Float 
+  sensor_id            String?  @db.ObjectId  // Reference to Sensor model
+  sensor              Sensor?  @relation(fields: [sensor_id], references: [id])
+}
+
+model File {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  audit         Audit?
+  status        String?
+  file_url      String?
+  sensor_id     String?  @db.ObjectId  // Reference to Sensor model
+  sensor        Sensor?  @relation(fields: [sensor_id], references: [id])
+}
+
+model Organisation {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  description   String    
+  users         User[]   // Add a one-to-many relationship to User
 }
 
 model Account {
@@ -54,15 +118,19 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  name          String?
-  password      String?
-  email         String?   @unique
-  emailVerified DateTime? @map("email_verified")
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
+  id                String    @id @default(auto()) @map("_id") @db.ObjectId
+  name              String?
+  email             String    @unique
+  emailVerified     DateTime? @map("email_verified")
+  password          String?
+  avatar_url        String?
+  accounts          Account[]
+  sessions          Session[]
+  organisation_id   String? @db.ObjectId
+  organisation      Organisation? @relation(fields: [organisation_id], references: [id])
 }
+
+
 
 model VerificationToken {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
@@ -73,3 +141,4 @@ model VerificationToken {
   @@unique([identifier, token])
   @@map("verification_tokens")
 }
+
