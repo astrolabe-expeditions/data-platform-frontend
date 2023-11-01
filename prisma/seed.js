@@ -34,13 +34,11 @@ const load = async () => {
     await prisma.station.createMany({
       data: stations,
     })
-
     console.log('Added station data')
 
     await prisma.sensor.createMany({
       data: sensors,
     })
-
     console.log('Added sensor data')
 
     await prisma.organisation.createMany({
@@ -58,394 +56,10 @@ const load = async () => {
     })
     console.log('Added file data')
 
-    const station_6 = await prisma.station.create({
-      data: {
-        name: 'Station n°6',
-        type: 'Mobile',
-        audit: {
-          created_at: new Date('2023-10-26T08:00:00Z'),
-          created_by: 'User1',
-          updated_at: new Date('2023-10-26T10:30:00Z'),
-          updated_by: 'User1',
-          deleted_at: null, // No deletion yet
-          deleted_by: null, // No deletion yet
-        },
-        description: 'Mobile station in London',
-        image_url: 'https://picsum.photos/200/300.jpg',
-        sensors: {
-          create: [
-            {
-              identifier: 'UV987654',
-              type: 'SensOcean',
-              audit: {
-                created_at: new Date('2023-10-26T08:00:00Z'),
-                created_by: 'Gabriel',
-                updated_at: new Date('2023-10-26T10:30:00Z'),
-                updated_by: 'Gabriel',
-                deleted_at: null, // No deletion yet
-                deleted_by: null, // No deletion yet
-              },
-              nbr_measures: 3,
-              records: {
-                create: [
-                  {
-                    audit: {
-                      created_at: new Date('2023-10-26T08:00:00Z'),
-                      created_by: 'Gabriel',
-                      updated_at: new Date('2023-10-26T10:30:00Z'),
-                      updated_by: 'Gabriel',
-                      deleted_at: null, // No deletion yet
-                      deleted_by: null, // No deletion yet
-                    },
-                    latitude: '52.5200',
-                    longitude: '13.4050',
-                    recorded_at: new Date(),
-                    battery_voltage: 3.5,
-                    battery_percentage: 88,
-                    pression_ext: 1010.98,
-                    temp_ext: 24.3,
-                    temp_int: 21.6,
-                    temp_sea: [19.8, 19.9, 19.7],
-                    temp_sea_mean: 19.8,
-                    ec_sea: [35.7, 35.8, 35.6],
-                    ec_sea_mean: 35.7,
-                  },
-                ],
-              },
-              files: {
-                create: [
-                  {
-                    name: 'File 6',
-                    audit: {
-                      created_at: new Date('2023-10-26T08:00:00Z'),
-                      created_by: 'Gabriel',
-                      updated_at: new Date('2023-10-26T10:30:00Z'),
-                      updated_by: 'Gabriel',
-                      deleted_at: null, // No deletion yet
-                      deleted_by: null, // No deletion yet
-                    },
-                    status: 'Active',
-                    file_url: 'https://example.com/file6.csv',
-                  },
-                ],
-              },
-            },
-          ],
-        },
-      },
-    })
-
-    const station_7 = await prisma.station.create({
-      data: {
-        name: 'Station n°7',
-        type: 'Fixed',
-        audit: {
-          created_at: new Date('2023-10-26T08:00:00Z'),
-          created_by: 'User2',
-          updated_at: new Date('2023-10-26T10:30:00Z'),
-          updated_by: 'User2',
-          deleted_at: null, // No deletion yet
-          deleted_by: null, // No deletion yet
-        },
-        latitude: '52.5200',
-        longitude: '13.4050',
-        description: 'Fixed station in Berlin',
-        image_url: 'https://picsum.photos/200/300.jpg',
-        sensors: {
-          create: [
-            {
-              identifier: 'QR123456',
-              type: 'LittObs',
-              audit: {
-                created_at: new Date('2023-10-26T08:00:00Z'),
-                created_by: 'Gabriel',
-                updated_at: new Date('2023-10-26T10:30:00Z'),
-                updated_by: 'Gabriel',
-                deleted_at: null, // No deletion yet
-                deleted_by: null, // No deletion yet
-              },
-              nbr_measures: 4,
-              records: {
-                create: [
-                  {
-                    audit: {
-                      created_at: new Date('2023-10-26T08:00:00Z'),
-                      created_by: 'Gabriel',
-                      updated_at: new Date('2023-10-26T10:30:00Z'),
-                      updated_by: 'Gabriel',
-                      deleted_at: null, // No deletion yet
-                      deleted_by: null, // No deletion yet
-                    },
-                    latitude: '52.5200',
-                    longitude: '13.4050',
-                    recorded_at: new Date(),
-                    battery_voltage: 3.8,
-                    battery_percentage: 91,
-                    pression_ext: 1014.28,
-                    temp_ext: 23.5,
-                    temp_int: 20.1,
-                    temp_sea: [18.7, 18.9, 18.6, 18.7],
-                    temp_sea_mean: 18.7,
-                    ec_sea: [35.8, 35.9, 35.7, 35.8],
-                    ec_sea_mean: 35.8,
-                  },
-                ],
-              },
-              files: {
-                create: [
-                  {
-                    name: 'File 7',
-                    audit: {
-                      created_at: new Date('2023-10-26T08:00:00Z'),
-                      created_by: 'Gabriel',
-                      updated_at: new Date('2023-10-26T10:30:00Z'),
-                      updated_by: 'Gabriel',
-                      deleted_at: null, // No deletion yet
-                      deleted_by: null, // No deletion yet
-                    },
-                    status: 'Inactive',
-                    file_url: 'https://example.com/file7.csv',
-                  },
-                ],
-              },
-            },
-          ],
-        },
-      },
-    })
-
-    const station_8 = await prisma.station.create({
-      data: {
-        name: 'Station n°8',
-        type: 'Mobile',
-        audit: {
-          created_at: new Date('2023-10-26T08:00:00Z'),
-          created_by: 'Gabriel',
-          updated_at: new Date('2023-10-26T10:30:00Z'),
-          updated_by: 'Gabriel',
-          deleted_at: null, // No deletion yet
-          deleted_by: null, // No deletion yet
-        },
-        description: 'Mobile station in Los Angeles',
-        image_url: 'https://picsum.photos/200/300.jpg',
-        sensors: {
-          create: [
-            {
-              identifier: 'AB123456',
-              type: 'LittObs',
-              audit: {
-                created_at: new Date('2023-10-26T08:00:00Z'),
-                created_by: 'Gabriel',
-                updated_at: new Date('2023-10-26T10:30:00Z'),
-                updated_by: 'Gabriel',
-                deleted_at: null, // No deletion yet
-                deleted_by: null, // No deletion yet
-              },
-              nbr_measures: 5,
-              records: {
-                create: [
-                  {
-                    audit: {
-                      created_at: new Date('2023-10-26T08:00:00Z'),
-                      created_by: 'Gabriel',
-                      updated_at: new Date('2023-10-26T10:30:00Z'),
-                      updated_by: 'Gabriel',
-                      deleted_at: null, // No deletion yet
-                      deleted_by: null, // No deletion yet
-                    },
-                    latitude: '41.8781',
-                    longitude: '-87.6298',
-                    recorded_at: new Date(),
-                    battery_voltage: 3.6,
-                    battery_percentage: 87,
-                    pression_ext: 1011.75,
-                    temp_ext: 26.8,
-                    temp_int: 23.2,
-                    temp_sea: [20.5, 20.7, 20.8, 20.6, 20.9],
-                    temp_sea_mean: 20.7,
-                    ec_sea: [36.2, 36.3, 36.1, 36.1, 36.3],
-                    ec_sea_mean: 36.2,
-                  },
-                ],
-              },
-              files: {
-                create: [
-                  {
-                    name: 'File 8',
-                    audit: {
-                      created_at: new Date('2023-10-26T08:00:00Z'),
-                      created_by: 'Gabriel',
-                      updated_at: new Date('2023-10-26T10:30:00Z'),
-                      updated_by: 'Gabriel',
-                      deleted_at: null, // No deletion yet
-                      deleted_by: null, // No deletion yet
-                    },
-                    status: 'Inactive',
-                    file_url: 'https://example.com/file8.csv',
-                  },
-                ],
-              },
-            },
-          ],
-        },
-      },
-    })
-
-    const station_9 = await prisma.station.create({
-      data: {
-        name: 'Station n°9',
-        type: 'Fixed',
-        audit: {
-          created_at: new Date('2023-10-26T08:00:00Z'),
-          created_by: 'User3',
-          updated_at: new Date('2023-10-26T10:30:00Z'),
-          updated_by: 'User3',
-          deleted_at: null, // No deletion yet
-          deleted_by: null, // No deletion yet
-        },
-        latitude: '52.2297',
-        longitude: '21.0122',
-        description: 'Fixed station in Warsaw',
-        image_url: 'https://picsum.photos/200/300.jpg',
-        sensors: {
-          create: [
-            {
-              identifier: 'OP234567',
-              type: 'LittObs',
-              audit: {
-                created_at: new Date('2023-10-26T08:00:00Z'),
-                created_by: 'Gabriel',
-                updated_at: new Date('2023-10-26T10:30:00Z'),
-                updated_by: 'Gabriel',
-                deleted_at: null, // No deletion yet
-                deleted_by: null, // No deletion yet
-              },
-              nbr_measures: 3,
-              records: {
-                create: [
-                  {
-                    latitude: '52.2297',
-                    longitude: '21.0122',
-                    recorded_at: new Date(),
-                    battery_voltage: 3.6,
-                    battery_percentage: 75,
-                    pression_ext: 1015.75,
-                    temp_ext: 28.2,
-                    temp_int: 22.8,
-                    temp_sea: [20.0, 20.2, 20.1],
-                    temp_sea_mean: 20.1,
-                    ec_sea: [36.1, 36.0, 36.2],
-                    ec_sea_mean: 36.1,
-                  },
-                ],
-              },
-              files: {
-                create: [
-                  {
-                    name: 'File 9',
-                    audit: {
-                      created_at: new Date('2023-10-26T08:00:00Z'),
-                      created_by: 'Gabriel',
-                      updated_at: new Date('2023-10-26T10:30:00Z'),
-                      updated_by: 'Gabriel',
-                      deleted_at: null, // No deletion yet
-                      deleted_by: null, // No deletion yet
-                    },
-                    status: 'Inactive',
-                    file_url: 'https://example.com/file9.csv',
-                  },
-                ],
-              },
-            },
-          ],
-        },
-      },
-    })
-
-    const station_10 = await prisma.station.create({
-      data: {
-        name: 'Station n°10',
-        type: 'Mobile',
-        audit: {
-          created_at: new Date('2023-10-26T08:00:00Z'),
-          created_by: 'User3',
-          updated_at: new Date('2023-10-26T10:30:00Z'),
-          updated_by: 'User2',
-          deleted_at: null, // No deletion yet
-          deleted_by: null, // No deletion yet
-        },
-        description: 'Mobile station in Brest',
-        image_url: 'https://picsum.photos/200/300.jpg',
-        sensors: {
-          create: [
-            {
-              identifier: 'MN567890',
-              type: 'SensOcean',
-              audit: {
-                created_at: new Date('2023-10-26T08:00:00Z'),
-                created_by: 'Gabriel',
-                updated_at: new Date('2023-10-26T10:30:00Z'),
-                updated_by: 'Gabriel',
-                deleted_at: null, // No deletion yet
-                deleted_by: null, // No deletion yet
-              },
-              nbr_measures: 3,
-              records: {
-                create: [
-                  {
-                    audit: {
-                      created_at: new Date('2023-10-26T08:00:00Z'),
-                      created_by: 'Gabriel',
-                      updated_at: new Date('2023-10-26T10:30:00Z'),
-                      updated_by: 'Gabriel',
-                      deleted_at: null, // No deletion yet
-                      deleted_by: null, // No deletion yet
-                    },
-                    latitude: '40.7128',
-                    longitude: '-74.0060',
-                    recorded_at: new Date(),
-                    battery_voltage: 3.7,
-                    battery_percentage: 90,
-                    pression_ext: 1013.25,
-                    temp_ext: 25.5,
-                    temp_int: 21.3,
-                    temp_sea: [18.5, 19.0, 19.2],
-                    temp_sea_mean: 18.9,
-                    ec_sea: [35.5, 35.7, 35.9],
-                    ec_sea_mean: 35.7,
-                  },
-                ],
-              },
-              files: {
-                create: [
-                  {
-                    name: 'File 10',
-                    audit: {
-                      created_at: new Date('2023-10-26T08:00:00Z'),
-                      created_by: 'Gabriel',
-                      updated_at: new Date('2023-10-26T10:30:00Z'),
-                      updated_by: 'Gabriel',
-                      deleted_at: null, // No deletion yet
-                      deleted_by: null, // No deletion yet
-                    },
-                    status: 'Inactive',
-                    file_url: 'https://example.com/file10.csv',
-                  },
-                ],
-              },
-            },
-          ],
-        },
-      },
-    })
-
-    console.log(station_6, station_7, station_8, station_9, station_10)
-
     const users = await getUsers()
     await prisma.user.createMany({
       data: users,
     })
-
     console.log('Added user data')
 
     const password = await hash('hi123', 12)
@@ -505,6 +119,363 @@ const load = async () => {
     })
 
     console.log(organisation_3, organisation_4, organisation_5)
+
+    const User4 = await prisma.user.create({
+      data: {
+        name: 'User4',
+        password: password,
+        email: 'user4@gmail.com',
+        avatar_url: 'https://picsum.photos/200/300.jpg',
+      },
+    })
+
+    const User5 = await prisma.user.create({
+      data: {
+        name: 'User5',
+        password: password,
+        email: 'user5@gmail.com',
+        avatar_url: 'https://picsum.photos/200/300.jpg',
+      },
+    })
+
+    const User6 = await prisma.user.create({
+      data: {
+        name: 'User6',
+        password: password,
+        email: 'user6@gmail.com',
+        avatar_url: 'https://picsum.photos/200/300.jpg',
+      },
+    })
+
+    const User7 = await prisma.user.create({
+      data: {
+        name: 'User7',
+        password: password,
+        email: 'user7@gmail.com',
+        avatar_url: 'https://picsum.photos/200/300.jpg',
+      },
+    })
+
+    const User8 = await prisma.user.create({
+      data: {
+        name: 'User8',
+        password: password,
+        email: 'user8@gmail.com',
+        avatar_url: 'https://picsum.photos/200/300.jpg',
+      },
+    })
+
+    const station_6 = await prisma.station.create({
+      data: {
+        name: 'Station n°6',
+        type: 'Mobile',
+        description: 'Mobile station in London',
+        image_url: 'https://picsum.photos/200/300.jpg',
+        created_at: new Date(),
+        created_by: { connect: { id: User6.id } },
+        updated_at: new Date(),
+        updated_by: { connect: { id: User4.id } },
+        sensors: {
+          create: [
+            {
+              identifier: 'UV987654',
+              type: 'SensOcean',
+              nbr_measures: 3,
+              created_at: new Date(),
+              created_by: { connect: { id: User6.id } },
+              updated_at: new Date(),
+              updated_by: { connect: { id: User4.id } },
+              records: {
+                create: [
+                  {
+                    latitude: '52.5200',
+                    longitude: '13.4050',
+                    recorded_at: new Date(),
+                    battery_voltage: 3.5,
+                    battery_percentage: 88,
+                    pression_ext: 1010.98,
+                    temp_ext: 24.3,
+                    temp_int: 21.6,
+                    temp_sea: [19.8, 19.9, 19.7],
+                    temp_sea_mean: 19.8,
+                    ec_sea: [35.7, 35.8, 35.6],
+                    ec_sea_mean: 35.7,
+                    created_at: new Date(),
+                    created_by: { connect: { id: User6.id } },
+                    updated_at: new Date(),
+                    updated_by: { connect: { id: User4.id } },
+                  },
+                ],
+              },
+              files: {
+                create: [
+                  {
+                    name: 'File 6',
+                    status: 'Active',
+                    file_url: 'https://example.com/file6.csv',
+                    created_at: new Date(),
+                    created_by: { connect: { id: User6.id } },
+                    updated_at: new Date(),
+                    updated_by: { connect: { id: User4.id } },
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    })
+
+    const station_7 = await prisma.station.create({
+      data: {
+        name: 'Station n°7',
+        type: 'Fixed',
+        latitude: '52.5200',
+        longitude: '13.4050',
+        description: 'Fixed station in Berlin',
+        image_url: 'https://picsum.photos/200/300.jpg',
+        created_at: new Date(),
+        created_by: { connect: { id: User7.id } },
+        updated_at: new Date(),
+        updated_by: { connect: { id: User5.id } },
+        sensors: {
+          create: [
+            {
+              identifier: 'QR123456',
+              type: 'LittObs',
+              nbr_measures: 4,
+              created_at: new Date(),
+              created_by: { connect: { id: User7.id } },
+              updated_at: new Date(),
+              updated_by: { connect: { id: User5.id } },
+              records: {
+                create: [
+                  {
+                    latitude: '52.5200',
+                    longitude: '13.4050',
+                    recorded_at: new Date(),
+                    battery_voltage: 3.8,
+                    battery_percentage: 91,
+                    pression_ext: 1014.28,
+                    temp_ext: 23.5,
+                    temp_int: 20.1,
+                    temp_sea: [18.7, 18.9, 18.6, 18.7],
+                    temp_sea_mean: 18.7,
+                    ec_sea: [35.8, 35.9, 35.7, 35.8],
+                    ec_sea_mean: 35.8,
+                    created_at: new Date(),
+                    created_by: { connect: { id: User7.id } },
+                    updated_at: new Date(),
+                    updated_by: { connect: { id: User5.id } },
+                  },
+                ],
+              },
+              files: {
+                create: [
+                  {
+                    name: 'File 7',
+                    status: 'Inactive',
+                    file_url: 'https://example.com/file7.csv',
+                    created_at: new Date(),
+                    created_by: { connect: { id: User7.id } },
+                    updated_at: new Date(),
+                    updated_by: { connect: { id: User5.id } },
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    })
+
+    const station_8 = await prisma.station.create({
+      data: {
+        name: 'Station n°8',
+        type: 'Mobile',
+        description: 'Mobile station in Los Angeles',
+        image_url: 'https://picsum.photos/200/300.jpg',
+        created_at: new Date(),
+        created_by: { connect: { id: User8.id } },
+        updated_at: new Date(),
+        updated_by: { connect: { id: User6.id } },
+        sensors: {
+          create: [
+            {
+              identifier: 'AB123456',
+              type: 'LittObs',
+              nbr_measures: 5,
+              created_at: new Date(),
+              created_by: { connect: { id: User7.id } },
+              updated_at: new Date(),
+              updated_by: { connect: { id: User5.id } },
+              records: {
+                create: [
+                  {
+                    latitude: '41.8781',
+                    longitude: '-87.6298',
+                    recorded_at: new Date(),
+                    battery_voltage: 3.6,
+                    battery_percentage: 87,
+                    pression_ext: 1011.75,
+                    temp_ext: 26.8,
+                    temp_int: 23.2,
+                    temp_sea: [20.5, 20.7, 20.8, 20.6, 20.9],
+                    temp_sea_mean: 20.7,
+                    ec_sea: [36.2, 36.3, 36.1, 36.1, 36.3],
+                    ec_sea_mean: 36.2,
+                    created_at: new Date(),
+                    created_by: { connect: { id: User7.id } },
+                    updated_at: new Date(),
+                    updated_by: { connect: { id: User5.id } },
+                  },
+                ],
+              },
+              files: {
+                create: [
+                  {
+                    name: 'File 8',
+                    status: 'Inactive',
+                    file_url: 'https://example.com/file8.csv',
+                    created_at: new Date(),
+                    created_by: { connect: { id: User7.id } },
+                    updated_at: new Date(),
+                    updated_by: { connect: { id: User5.id } },
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    })
+
+    const station_9 = await prisma.station.create({
+      data: {
+        name: 'Station n°9',
+        type: 'Fixed',
+        latitude: '52.2297',
+        longitude: '21.0122',
+        description: 'Fixed station in Warsaw',
+        image_url: 'https://picsum.photos/200/300.jpg',
+        created_at: new Date(),
+        created_by: { connect: { id: User4.id } },
+        updated_at: new Date(),
+        updated_by: { connect: { id: User7.id } },
+        sensors: {
+          create: [
+            {
+              identifier: 'OP234567',
+              type: 'LittObs',
+              nbr_measures: 3,
+              created_at: new Date(),
+              created_by: { connect: { id: User4.id } },
+              updated_at: new Date(),
+              updated_by: { connect: { id: User7.id } },
+              records: {
+                create: [
+                  {
+                    latitude: '52.2297',
+                    longitude: '21.0122',
+                    recorded_at: new Date(),
+                    battery_voltage: 3.6,
+                    battery_percentage: 75,
+                    pression_ext: 1015.75,
+                    temp_ext: 28.2,
+                    temp_int: 22.8,
+                    temp_sea: [20.0, 20.2, 20.1],
+                    temp_sea_mean: 20.1,
+                    ec_sea: [36.1, 36.0, 36.2],
+                    ec_sea_mean: 36.1,
+                    created_at: new Date(),
+                    created_by: { connect: { id: User4.id } },
+                    updated_at: new Date(),
+                    updated_by: { connect: { id: User7.id } },
+                  },
+                ],
+              },
+              files: {
+                create: [
+                  {
+                    name: 'File 9',
+                    status: 'Inactive',
+                    file_url: 'https://example.com/file9.csv',
+                    created_at: new Date(),
+                    created_by: { connect: { id: User4.id } },
+                    updated_at: new Date(),
+                    updated_by: { connect: { id: User7.id } },
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    })
+
+    const station_10 = await prisma.station.create({
+      data: {
+        name: 'Station n°10',
+        type: 'Mobile',
+        description: 'Mobile station in Brest',
+        image_url: 'https://picsum.photos/200/300.jpg',
+        created_at: new Date(),
+        created_by: { connect: { id: User5.id } },
+        updated_at: new Date(),
+        updated_by: { connect: { id: User8.id } },
+        sensors: {
+          create: [
+            {
+              identifier: 'MN567890',
+              type: 'SensOcean',
+              nbr_measures: 3,
+              created_at: new Date(),
+              created_by: { connect: { id: User5.id } },
+              updated_at: new Date(),
+              updated_by: { connect: { id: User8.id } },
+              records: {
+                create: [
+                  {
+                    latitude: '40.7128',
+                    longitude: '-74.0060',
+                    recorded_at: new Date(),
+                    battery_voltage: 3.7,
+                    battery_percentage: 90,
+                    pression_ext: 1013.25,
+                    temp_ext: 25.5,
+                    temp_int: 21.3,
+                    temp_sea: [18.5, 19.0, 19.2],
+                    temp_sea_mean: 18.9,
+                    ec_sea: [35.5, 35.7, 35.9],
+                    ec_sea_mean: 35.7,
+                    created_at: new Date(),
+                    created_by: { connect: { id: User5.id } },
+                    updated_at: new Date(),
+                    updated_by: { connect: { id: User8.id } },
+                  },
+                ],
+              },
+              files: {
+                create: [
+                  {
+                    name: 'File 10',
+                    status: 'Inactive',
+                    file_url: 'https://example.com/file10.csv',
+                    created_at: new Date(), // Add created_at field
+                    created_at: new Date(),
+                    created_by: { connect: { id: User5.id } },
+                    updated_at: new Date(),
+                    updated_by: { connect: { id: User8.id } },
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    })
+
+    console.log(station_6, station_7, station_8, station_9, station_10)
   } catch (e) {
     console.error(e)
     process.exit(1)
