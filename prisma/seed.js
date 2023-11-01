@@ -474,7 +474,265 @@ const load = async () => {
       },
     })
 
-    console.log(station_6, station_7, station_8, station_9, station_10)
+    const station_11 = await prisma.station.create({
+      data: {
+        name: 'Station n°11',
+        type: 'Fixed',
+        latitude: '40.7128',
+        longitude: '-74.0060',
+        description: 'Fixed station in New York',
+        image_url: 'https://picsum.photos/200/300.jpg',
+        created_at: new Date('2023-11-05T10:00:00.000Z'),
+        created_by: { connect: { id: User5.id } },
+        updated_at: new Date('2023-11-05T11:30:00.000Z'),
+        updated_by: { connect: { id: User8.id } },
+        sensors: {
+          create: [
+            {
+              identifier: 'NY123456',
+              type: 'SensOcean',
+              nbr_measures: 2,
+              created_at: new Date('2023-11-05T10:00:00.000Z'),
+              created_by: { connect: { id: User5.id } },
+              updated_at: new Date('2023-11-05T11:30:00.000Z'),
+              updated_by: { connect: { id: User8.id } },
+              records: {
+                create: [
+                  {
+                    latitude: '40.7128',
+                    longitude: '-74.0060',
+                    recorded_at: new Date('2023-11-05T10:30:00.000Z'),
+                    battery_voltage: 3.6,
+                    battery_percentage: 90,
+                    pression_ext: 1013.25,
+                    temp_ext: 25.5,
+                    temp_int: 21.3,
+                    temp_sea: [18.5, 19.0, 19.2],
+                    temp_sea_mean: 18.9,
+                    ec_sea: [35.5, 35.7, 35.9],
+                    ec_sea_mean: 35.7,
+                    created_at: new Date('2023-11-05T10:30:00.000Z'),
+                    created_by: { connect: { id: User5.id } },
+                    updated_at: new Date('2023-11-05T11:30:00.000Z'),
+                    updated_by: { connect: { id: User8.id } },
+                  },
+                ],
+              },
+              files: {
+                create: [
+                  {
+                    name: 'File 11',
+                    status: 'Inactive',
+                    file_url: 'https://example.com/file11.csv',
+                    created_at: new Date('2023-11-05T10:30:00.000Z'),
+                    created_by: { connect: { id: User5.id } },
+                    updated_at: new Date('2023-11-05T11:30:00.000Z'),
+                    updated_by: { connect: { id: User8.id } },
+                  },
+                ],
+              },
+            },
+            {
+              identifier: 'NY789012',
+              type: 'LittObs',
+              nbr_measures: 3,
+              created_at: new Date('2023-11-05T10:15:00.000Z'),
+              created_by: { connect: { id: User5.id } },
+              updated_at: new Date('2023-11-05T11:45:00.000Z'),
+              updated_by: { connect: { id: User8.id } },
+              records: {
+                create: [
+                  {
+                    latitude: '40.7128',
+                    longitude: '-74.0060',
+                    recorded_at: new Date('2023-11-05T10:45:00.000Z'),
+                    battery_voltage: 3.7,
+                    battery_percentage: 91,
+                    pression_ext: 1014.28,
+                    temp_ext: 25.5,
+                    temp_int: 21.3,
+                    temp_sea: [18.5, 19.0, 19.2],
+                    temp_sea_mean: 18.9,
+                    ec_sea: [35.5, 35.7, 35.9],
+                    ec_sea_mean: 35.7,
+                    created_at: new Date('2023-11-05T10:45:00.000Z'),
+                    created_by: { connect: { id: User5.id } },
+                    updated_at: new Date('2023-11-05T11:45:00.000Z'),
+                    updated_by: { connect: { id: User8.id } },
+                  },
+                ],
+              },
+              files: {
+                create: [
+                  {
+                    name: 'File 12',
+                    status: 'Inactive',
+                    file_url: 'https://example.com/file12.csv',
+                    created_at: new Date('2023-11-05T10:45:00.000Z'),
+                    created_by: { connect: { id: User5.id } },
+                    updated_at: new Date('2023-11-05T11:45:00.000Z'),
+                    updated_by: { connect: { id: User8.id } },
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    })
+
+    const station_12 = await prisma.station.create({
+      data: {
+        name: 'Station n°12',
+        type: 'Fixed',
+        latitude: '48.390394',
+        longitude: '-4.486076',
+        description: 'Fixed station in Brest', 
+        image_url: 'https://picsum.photos/200/301.jpg',
+        created_at: new Date('2023-11-06T10:15:00.000Z'),
+        created_by: { connect: { id: User6.id } },
+        updated_at: new Date('2023-11-06T11:45:00.000Z'),
+        updated_by: { connect: { id: User8.id } },
+        sensors: {
+          create: [
+            {
+              identifier: 'NY654321',
+              type: 'SensOcean',
+              nbr_measures: 3,
+              created_at: new Date('2023-11-06T10:30:00.000Z'),
+              created_by: { connect: { id: User6.id } },
+              updated_at: new Date('2023-11-06T11:30:00.000Z'),
+              updated_by: { connect: { id: User8.id } },
+              records: {
+                create: [
+                  {
+                    latitude: '48.390394',
+                    longitude: '-4.486076',
+                    recorded_at: new Date('2023-11-06T10:45:00.000Z'),
+                    battery_voltage: 3.8,
+                    battery_percentage: 92,
+                    pression_ext: 1014.5,
+                    temp_ext: 26.0,
+                    temp_int: 22.0,
+                    temp_sea: [19.0, 19.5, 19.8],
+                    temp_sea_mean: 19.4,
+                    ec_sea: [36.0, 36.2, 36.4],
+                    ec_sea_mean: 36.2,
+                    created_at: new Date('2023-11-06T10:45:00.000Z'),
+                    created_by: { connect: { id: User6.id } },
+                    updated_at: new Date('2023-11-06T11:45:00.000Z'),
+                    updated_by: { connect: { id: User8.id } },
+                  },
+                ],
+              },
+              files: {
+                create: [
+                  {
+                    name: 'File 13',
+                    status: 'Active',
+                    file_url: 'https://example.com/file13.csv',
+                    created_at: new Date('2023-11-06T10:45:00.000Z'),
+                    created_by: { connect: { id: User6.id } },
+                    updated_at: new Date('2023-11-06T11:45:00.000Z'),
+                    updated_by: { connect: { id: User8.id } },
+                  },
+                ],
+              },
+            },
+            {
+              identifier: 'NY987654',
+              type: 'LittObs',
+              nbr_measures: 4,
+              created_at: new Date('2023-11-06T10:30:00.000Z'),
+              created_by: { connect: { id: User6.id } },
+              updated_at: new Date('2023-11-06T11:30:00.000Z'),
+              updated_by: { connect: { id: User8.id } },
+              records: {
+                create: [
+                  {
+                    latitude: '48.390394',
+                    longitude: '-4.486076',
+                    recorded_at: new Date('2023-11-06T10:45:00.000Z'),
+                    battery_voltage: 3.9,
+                    battery_percentage: 93,
+                    pression_ext: 1014.7,
+                    temp_ext: 26.5,
+                    temp_int: 22.5,
+                    temp_sea: [19.2, 19.7, 20.0],
+                    temp_sea_mean: 19.6,
+                    ec_sea: [36.2, 36.4, 36.6],
+                    ec_sea_mean: 36.4,
+                    created_at: new Date('2023-11-06T10:45:00.000Z'),
+                    created_by: { connect: { id: User6.id } },
+                    updated_at: new Date('2023-11-06T11:45:00.000Z'),
+                    updated_by: { connect: { id: User8.id } },
+                  },
+                ],
+              },
+              files: {
+                create: [
+                  {
+                    name: 'File 14',
+                    status: 'Active',
+                    file_url: 'https://example.com/file14.csv',
+                    created_at: new Date('2023-11-06T10:45:00.000Z'),
+                    created_by: { connect: { id: User6.id } },
+                    updated_at: new Date('2023-11-06T11:45:00.000Z'),
+                    updated_by: { connect: { id: User8.id } },
+                  },
+                ],
+              },
+            },
+            {
+              identifier: 'NY123678',
+              type: 'LittObs',
+              nbr_measures: 4,
+              created_at: new Date('2023-11-06T10:30:00.000Z'),
+              created_by: { connect: { id: User6.id } },
+              updated_at: new Date('2023-11-06T11:30:00.000Z'),
+              updated_by: { connect: { id: User8.id } },
+              records: {
+                create: [
+                  {
+                    latitude: '48.390394',
+                    longitude: '-4.486076',
+                    recorded_at: new Date('2023-11-06T10:45:00.000Z'),
+                    battery_voltage: 3.9,
+                    battery_percentage: 93,
+                    pression_ext: 1014.7,
+                    temp_ext: 26.5,
+                    temp_int: 22.5,
+                    temp_sea: [19.2, 19.7, 20.0],
+                    temp_sea_mean: 19.6,
+                    ec_sea: [36.2, 36.4, 36.6],
+                    ec_sea_mean: 36.4,
+                    created_at: new Date('2023-11-06T10:45:00.000Z'),
+                    created_by: { connect: { id: User6.id } },
+                    updated_at: new Date('2023-11-06T11:45:00.000Z'),
+                    updated_by: { connect: { id: User8.id } },
+                  },
+                ],
+              },
+              files: {
+                create: [
+                  {
+                    name: 'File 15',
+                    status: 'Active',
+                    file_url: 'https://example.com/file14.csv',
+                    created_at: new Date('2023-11-06T10:45:00.000Z'),
+                    created_by: { connect: { id: User6.id } },
+                    updated_at: new Date('2023-11-06T11:45:00.000Z'),
+                    updated_by: { connect: { id: User8.id } },
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    });
+    
+    console.log(station_6, station_7, station_8, station_9, station_10, station_11, station_12)
   } catch (e) {
     console.error(e)
     process.exit(1)
