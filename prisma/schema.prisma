@@ -42,14 +42,14 @@ enum SensorType {
 }
 
 model Sensor {
-  id            String        @id @default(auto()) @map("_id") @db.ObjectId
-  identifier    String        @unique
-  type          SensorType
-  nbr_measures  Int
-  station_id    String?       @db.ObjectId // Add a reference to the Station model
-  station       Station?      @relation(fields: [station_id], references: [id])
-  records       Record[]        // Add a one-to-many relationship to Record
-  files         File[]          // Add a one-to-many relationship to File
+  id              String      @id @default(auto()) @map("_id") @db.ObjectId
+  identifier      String      @unique
+  type            SensorType
+  nbr_measures    Int
+  station_id      String?     @db.ObjectId // Add a reference to the Station model
+  station         Station?    @relation(fields: [station_id], references: [id])
+  records         Record[]    // Add a one-to-many relationship to Record
+  files           File[]      // Add a one-to-many relationship to File
   created_at      DateTime?   @default(now())
   created_by_id   String?     @db.ObjectId
   created_by      User?       @relation("createdSensors", fields: [created_by_id], references: [id])
@@ -110,7 +110,7 @@ model Organisation {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
   description   String    
-  users         User[]   // Add a one-to-many relationship to User
+  users         User[]    // Add a one-to-many relationship to User
 }
 
 model Account {
