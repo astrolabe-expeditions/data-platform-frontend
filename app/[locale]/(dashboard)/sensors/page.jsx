@@ -5,7 +5,7 @@ import { authOptions } from '@/lib/auth'
 import { Page } from '@/components/Page/Page'
 import { PageHeader } from '@/components/Page/PageHeader'
 
-import StationTable from '@/components/Table/SensorTable'
+import SensorTable from '@/components/Table/SensorTable'
 import { Theme } from '@radix-ui/themes'
 
 import { db } from '@/lib/db'
@@ -16,9 +16,12 @@ const sensors = await db.sensor.findMany({
     id: true,
     identifier: true,
     type: true,
-    nbr_measures: true
+    nbr_measures: true,
+    created_at: true,
+    updated_at: true
   },
 })
+
 
 async function Home() {
   const session = await getServerSession(authOptions)
@@ -32,7 +35,7 @@ async function Home() {
       <PageHeader title="Sensors" />
       <Theme>
         <Link href={'/sensors/add'}>Add Sensor</Link>
-        <StationTable data={sensors} />
+        <SensorTable data={sensors} />
       </Theme>
     </Page>
   )

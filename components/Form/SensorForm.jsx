@@ -22,6 +22,16 @@ const SensorForm = ({ columns }) => {
           <Select label={'Number of measures'}></Select>
         </div>
       </div>
+      <div className="flex flex-wrap -mx-3 mb-6">
+        <div className="w-full px-3">
+          <Select label={'Created at'}></Select>
+        </div>
+      </div>
+      <div className="flex flex-wrap -mx-3 mb-6">
+        <div className="w-full px-3">
+          <Select label={'Updated at'}></Select>
+        </div>
+      </div>
       <Button label={'Add sensor'} />
     </form>
   )
