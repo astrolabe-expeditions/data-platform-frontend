@@ -5,7 +5,7 @@ import { authOptions } from '@/lib/auth'
 import { Page } from '@/components/Page/Page'
 import { PageHeader } from '@/components/Page/PageHeader'
 
-import SensorTable from '@/components/Table/SensorTable'
+import SensorSearchBar from '@/components/Searchbar/SensorSearchBar'
 import { Theme } from '@radix-ui/themes'
 
 import { db } from '@/lib/db'
@@ -35,7 +35,7 @@ async function Home() {
       <PageHeader title="Sensors" />
       <Theme>
         <Link href={'/sensors/add'}>Add Sensor</Link>
-        <SensorTable data={sensors} />
+        <SensorSearchBar data={sensors} />
       </Theme>
     </Page>
   )
