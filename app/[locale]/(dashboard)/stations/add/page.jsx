@@ -5,6 +5,7 @@ import { PageHeader } from '@/components/Page/PageHeader'
 import { StationForm } from '@/components/Form/StationForm'
 import { BackpageButton } from '@/components/ui/Button/BackpageButton'
 import { db } from '@/lib/db'
+import { StationType } from '@prisma/client'
 
 
 async function Home({ params }) {
@@ -21,12 +22,11 @@ async function Home({ params }) {
     },
   })
 
-
   return (
     <Page>
       <BackpageButton></BackpageButton>
       
-      <StationForm sensors = {sensors}/>
+      <StationForm stationtype={StationType} sensors={sensors}/>
     </Page>
   )
 }

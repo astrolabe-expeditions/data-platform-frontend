@@ -5,10 +5,11 @@ import { Select } from '../ui/Select/Select'
 import { Button } from '../ui/Button/Button'
 import { useTranslations as getTranslations } from 'next-intl'
 import { PageHeader } from '@/components/Page/PageHeader'
+import { StationType } from '@prisma/client'
 
 
 
-export default function StationForm({sensors}) {
+export default function StationForm({sensors, stationtype}) {
 
   const t = getTranslations('Station')
 
@@ -28,6 +29,14 @@ export default function StationForm({sensors}) {
       [inputName]: evt.target.value,
     })
   }
+
+  const handleSelectChange = (inputName) => (event) => {
+    const selectedValues = Array.from(event.target.selectedOptions, (option) => option.value);
+    setFormData({
+      ...formData,
+      [inputName]: selectedValues,
+    });
+  };
 
   const handleSubmit = (evt) => {
     evt.preventDefault()
@@ -61,19 +70,20 @@ export default function StationForm({sensors}) {
               value={formData.type}
               onChange={handleChange('type')}
             >
-              <option>-- Choisir type --</option>
-              <option value="fixe">Fixe</option>
-              <option value="mobile">Mobile</option>
+            {Object.keys(StationType).map((type) => (
+              <option value={type}>{type}</option>
+            ))}
             </Select>
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full px-3">
             <Select
+              multiple={true}
               name="sensors"
               label={t('labels.sensors')}
               value={formData.sensors}
-              onChange={handleChange('sensors')}
+              onChange={handleSelectChange('sensors')}
             >
               {sensors.map((s)=>(
                 <option value={s.id}>{s.identifier}</option>
