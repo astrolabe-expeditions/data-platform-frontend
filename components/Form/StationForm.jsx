@@ -23,7 +23,7 @@ const StationForm = ({ columns }) => {
         </div>
       </div>
       <Button label={'Add station'} />
-    </form>
+    </form> 
   )
 }
 
