@@ -30,5 +30,18 @@
     "login": "Login",
     "no_account": "Don't have an account yet?",
     "no_account_link": "Create an account"
+  },
+  "Station": {
+    "title": "Add Station",
+    "labels":{
+      "name": "Name",
+      "type": "Type",
+      "sensors": "Sensors",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "description": "Description",
+      "image_URL": "image_URL"
+    },
+    "addStation": "Add Station"
   }
 }

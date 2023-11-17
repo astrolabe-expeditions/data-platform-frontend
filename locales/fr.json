@@ -32,5 +32,18 @@
     "github": "Continuer avec Github",
     "no_account": "Vous n'avez pas encore de compte ?",
     "no_account_link": "Créer un compte"
+  },
+  "Station": {
+    "title": "Ajouter station",
+    "labels":{
+      "name": "Nom",
+      "type": "Type",
+      "sensors": "Capteurs",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "description": "Description",
+      "image_URL": "image_URL"
+    },
+    "addStation": "Ajouter Station"
   }
 }

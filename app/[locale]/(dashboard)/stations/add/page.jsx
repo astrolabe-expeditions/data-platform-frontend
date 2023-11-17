@@ -4,6 +4,10 @@ import { Page } from '@/components/Page/Page'
 import { PageHeader } from '@/components/Page/PageHeader'
 import { StationForm } from '@/components/Form/StationForm'
 import { BackpageButton } from '@/components/ui/Button/BackpageButton'
+import { db } from '@/lib/db'
+import { StationType } from '@prisma/client'
+
+
 async function Home({ params }) {
   const session = await getServerSession(authOptions)
 
@@ -11,11 +15,18 @@ async function Home({ params }) {
     redirect('/auth/login')
   }
 
+  const sensors = await db.sensor.findMany({
+    select: {
+      id: true,
+      identifier: true,
+    },
+  })
+
   return (
     <Page>
       <BackpageButton></BackpageButton>
-      <PageHeader title={`Add Station`} className={'inline-flex pl-5'} />
-      <StationForm />
+      
+      <StationForm stationtype={StationType} sensors={sensors}/>
     </Page>
   )
 }

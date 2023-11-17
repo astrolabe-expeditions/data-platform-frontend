@@ -160,6 +160,11 @@ const getUsers = async () => {
       email: 'felipelobato99@hotmail.com',
       avatar_url: 'https://picsum.photos/200/300.jpg',
     },
+    {
+      name: 'Arthur',
+      password: (await hash('16/07/2012deDE', 12)).toString(),
+      email: 'arthur.nerambourg64@gmail.com',
+    },
   ]
 }
 
