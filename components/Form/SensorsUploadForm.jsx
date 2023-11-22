@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/Button/Button'
 import { Typography } from '@/components/ui/Typography'
 import { PageHeader } from '@/components/Page/PageHeader'
 import { SensorCard } from '@/components/Card/SensorCard'
+import { uploadFile } from '@/lib/aws'
 
 export default function SensorsUploadForm({ sensor }) {
   const t = getTranslations('Sensors')
@@ -20,6 +21,7 @@ export default function SensorsUploadForm({ sensor }) {
     if (event.target.files && event.target.files[0]) {
       const i = event.target.files[0]
       setFormData({ ...formData, file: i })
+      uploadFile(i)
     }
   }
 
