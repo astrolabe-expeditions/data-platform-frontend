@@ -15,10 +15,7 @@ async function Home({ params }) {
 
   return (
     <Page>
-      <IconButton icon={Left} variant="secondary">
-        <Link href={'/sensors'}></Link>
-      </IconButton>
-      <PageHeader title={`Seeing id of sensors: ${params.id}`} />
+      <PageHeader title={`Seeing edit of id: ${params.id}`} showBack />
     </Page>
   )
 }

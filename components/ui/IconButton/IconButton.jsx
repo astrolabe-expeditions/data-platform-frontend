@@ -8,6 +8,7 @@ const IconButton = ({
   variant = 'primary',
   disabled = false,
   onClick,
+  className,
 }) => {
   const variants = {
     primary: [
@@ -49,6 +50,7 @@ const IconButton = ({
         'rounded-lg border shadow-xs font-semibold focus:outline-none',
         sizes[size],
         variants[variant],
+        className,
       )}
       aria-label={label}
       onClick={onClick}>

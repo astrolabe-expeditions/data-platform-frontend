@@ -32,11 +32,12 @@ async function Home() {
 
   return (
     <Page>
-      <PageHeader title="Sensors" />
-      <Theme>
-        <Link href={'/sensors/add'}>Add Sensor</Link>
-        <SensorSearchBar data={sensors} />
-      </Theme>
+      <PageHeader title={'Capteurs'} showBack />
+      <ul>
+        {sensors.map(({ id, identifier }) => (
+          <li key={id}>{identifier}</li>
+        ))}
+      </ul>
     </Page>
   )
 }

@@ -1,20 +1,22 @@
-import { getServerSession } from 'next-auth/next'
-import { authOptions } from '@/lib/auth'
 import { Page } from '@/components/Page/Page'
-import { PageHeader } from '@/components/Page/PageHeader'
+import { db } from '@/lib/db'
+import SensorsUploadForm from '@/components/Form/SensorsUploadForm'
 
-async function Home({ params }) {
-  const session = await getServerSession(authOptions)
-
-  if (!session) {
-    redirect('/auth/login')
-  }
+export default async function Home({ params }) {
+  const sensor = await db.sensor.findUnique({
+    where: {
+      id: params.id,
+    },
+    select: {
+      id: true,
+      identifier: true,
+      station: true,
+    },
+  })
 
   return (
     <Page>
-      <PageHeader title={`Seeing upload of id: ${params.id}`} />
+      <SensorsUploadForm sensor={sensor}></SensorsUploadForm>
     </Page>
   )
 }
-
-export default Home
