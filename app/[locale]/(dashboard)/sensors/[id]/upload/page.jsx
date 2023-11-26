@@ -11,8 +11,11 @@ export default async function Home({ params }) {
       id: true,
       identifier: true,
       station: true,
+      files: true,
     },
   })
+
+  console.log(sensor)
 
   return (
     <Page>

@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/Button/Button'
 import { Typography } from '@/components/ui/Typography'
 import { PageHeader } from '@/components/Page/PageHeader'
 import { SensorCard } from '@/components/Card/SensorCard'
-import { uploadFile } from '@/lib/aws'
+import { Alert, AlertTitle, AlertDescription } from '../ui/Alert'
 
 export default function SensorsUploadForm({ sensor }) {
   const t = getTranslations('Sensors')
@@ -17,11 +17,23 @@ export default function SensorsUploadForm({ sensor }) {
     file: null,
   })
 
-  const handleInputChange = (event) => {
+  const handleInputChange = async function (event) {
     if (event.target.files && event.target.files[0]) {
       const i = event.target.files[0]
       setFormData({ ...formData, file: i })
-      uploadFile(i)
+
+      var fd = new FormData()
+      fd.append('file', i)
+      fd.append('sensor_id', sensor.id)
+
+      try {
+        const res = await fetch('/api/sensors', {
+          method: 'POST',
+          body: fd,
+        })
+      } catch (error) {
+        console.error(error)
+      }
     }
   }
 
@@ -45,10 +57,12 @@ export default function SensorsUploadForm({ sensor }) {
         label={t('upload_screen.upload_file_for_sensor')}
       />
       {formData.file !== null && (
-        <div>
-          <Typography>{formData.file.name}</Typography>
-          <Typography>{formData.file.size}</Typography>
-        </div>
+        <>
+          <div>
+            <Typography>{formData.file.name}</Typography>
+            <Typography>{formData.file.size}</Typography>
+          </div>
+        </>
       )}
     </>
   )
