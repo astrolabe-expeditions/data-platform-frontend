@@ -17,14 +17,16 @@ export async function GET() {
 }
 
 export async function POST(request) {
-  // const { identifier, type, nbr_measures, station_id, records, files } =
-  const { identifier, type, station_id } = await request.json()
+  // const { identifier, type, nbr_measures, station_id, records, files } = await request.json()
+  // const { identifier, type,station_id } = await request.json()
+  // const { identifier, type, nbr_measures, station_id } = await request.json()
+  const { identifier, type } = await request.json()
   await db.sensor.create({
     data: {
       identifier,
       type,
       // nbr_measures,
-      station_id,
+      // station_id,
       // records,
       // files,
     },
