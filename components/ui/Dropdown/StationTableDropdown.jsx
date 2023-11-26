@@ -2,7 +2,26 @@ import { DropdownMenu, Button, IconButton, Dialog } from '@radix-ui/themes'
 import { EllipsisVertical } from '../Icons'
 import { Link } from '../Link'
 
+import { useRouter } from 'next/navigation'
+
 const StationTableDropdown = ({ obj, ...props }) => {
+  const router = useRouter()
+  const removeStation = async () => {
+    const confirmed = confirm('Are you sure you want to delete this Station?')
+
+    if (confirmed) {
+      const res = await fetch(
+        `http://localhost:3000/api/stations?id=${obj.id}`,
+        {
+          method: 'DELETE',
+        },
+      )
+      if (res.ok) {
+        router.refresh()
+      }
+    }
+  }
+
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger>
@@ -18,7 +37,9 @@ const StationTableDropdown = ({ obj, ...props }) => {
           <DropdownMenu.Item>Edit</DropdownMenu.Item>
         </Link>
         <DropdownMenu.Separator />
-        <DropdownMenu.Item color="red">Delete</DropdownMenu.Item>
+        <DropdownMenu.Item color="red" onClick={removeStation}>
+          Delete
+        </DropdownMenu.Item>
       </DropdownMenu.Content>
     </DropdownMenu.Root>
   )
