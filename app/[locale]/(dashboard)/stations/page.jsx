@@ -12,6 +12,9 @@ import { db } from '@/lib/db'
 import { Link } from '@/components/ui/Link'
 
 const stations = await db.station.findMany({
+  where: {
+    deleted: false,
+  },
   select: {
     sensors: true,
     name: true,
@@ -29,7 +32,7 @@ async function Home() {
 
   return (
     <Page>
-      <PageHeader title="Stations" />
+      <PageHeader title={'Station'} showBack />
       <Theme>
         <Link href={'/stations/add'}>Add Station</Link>
         <StationTable data={stations} />

@@ -12,7 +12,7 @@ async function Home({ params }) {
 
   return (
     <Page>
-      <PageHeader title={`Seeing add sensor`} />
+      <PageHeader title={`Seeing add sensor`} showBack />
     </Page>
   )
 }

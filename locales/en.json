@@ -30,5 +30,57 @@
     "login": "Login",
     "no_account": "Don't have an account yet?",
     "no_account_link": "Create an account"
+  },
+  "Station": {
+    "title": "Add Station",
+    "labels":{
+      "name": "Name",
+      "type": "Type",
+      "sensors": "Sensors",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "description": "Description",
+      "image_URL": "image_URL"
+    },
+    "addStation": "Add Station"
+  },
+  "EditStation": {
+    "title": "Edit Station",
+    "subtitle": "Edit the station details",
+    "labels":{
+      "name": "Name",
+      "type": "Type",
+      "sensors": "Sensors",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "description": "Description",
+      "image_url": "Image URL"
+    },
+    "edit_station": "Edit Station",
+    "select_sensors": "Select Sensors"
+  },
+  "EditSensor": {
+    "title": "Edit Sensor",
+    "subtitle": "Edit the sensor details",
+    "labels":{
+      "identifier": "Identifier",
+      "type": "Type",
+      "nbr_measures": "Number Of Measures",
+      "station_id": "Station ID",
+      "records": "Records",
+      "files": "Files",
+      "station_name": "Station Name"
+    },
+    "edit_sensor": "Edit Sensor"
+  },
+  "Sensors": {
+    "upload_screen": {
+      "upload_file": "Upload file",
+      "upload_file_for_sensor": "Upload file for the sensor",
+      "submit_form": "Submit file",
+      "type": "Type",
+      "nbr_measures": "Number of Mesures",
+      "station": "Name of the Station",
+      "active_file": "Active File"
+    }
   }
-}

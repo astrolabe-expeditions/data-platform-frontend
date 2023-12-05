@@ -15,15 +15,26 @@ enum StationType {
   Mobile
 }
 
+
 model Station {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
-  name          String
-  type          StationType
-  latitude      String
-  longitude     String
-  description   String
-  image_url     String
-  sensors       Sensor[]   // Define a relation to Sensor
+  id              String      @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  type            StationType
+  latitude        String?
+  longitude       String?
+  description     String?
+  image_url       String?
+  sensors         Sensor[]   // Define a relation to Sensor
+  created_at      DateTime?   @default(now())
+  created_by_id   String?     @db.ObjectId
+  created_by      User?       @relation("createdStations", fields: [created_by_id], references: [id])
+  updated_at      DateTime?   @updatedAt
+  updated_by_id   String?     @db.ObjectId
+  updated_by      User?       @relation("updatedStations", fields: [updated_by_id], references: [id])
+  deleted_at      DateTime?
+  deleted_by_id   String?     @db.ObjectId
+  deleted_by      User?       @relation("deletedStations", fields: [deleted_by_id], references: [id])
+  deleted         Boolean     @default(false)
 }
 
 enum SensorType {
@@ -32,48 +43,76 @@ enum SensorType {
 }
 
 model Sensor {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
-  identifier    String   @unique
-  type          SensorType
-  nbr_measures  Int
-  stationId     String?  @db.ObjectId // Add a reference to the Station model
-  station       Station? @relation(fields: [stationId], references: [id])
-  records       Record[]    // Add a one-to-many relationship to Record
-  files         File[]      // Add a one-to-many relationship to File
+  id              String      @id @default(auto()) @map("_id") @db.ObjectId
+  identifier      String      @unique
+  type            SensorType
+  nbr_measures    Int?
+  station_id      String?     @db.ObjectId // Add a reference to the Station model
+  station         Station?    @relation(fields: [station_id], references: [id])
+  records         Record[]    // Add a one-to-many relationship to Record
+  files           File[]      // Add a one-to-many relationship to File
+  created_at      DateTime?   @default(now())
+  created_by_id   String?     @db.ObjectId
+  created_by      User?       @relation("createdSensors", fields: [created_by_id], references: [id])
+  updated_at      DateTime?   @updatedAt
+  updated_by_id   String?     @db.ObjectId
+  updated_by      User?       @relation("updatedSensors", fields: [updated_by_id], references: [id])
+  deleted_at      DateTime?
+  deleted_by_id   String?     @db.ObjectId
+  deleted_by      User?       @relation("deletedSensors", fields: [deleted_by_id], references: [id])
+  deleted         Boolean     @default(false)
 }
 
 model Record {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
-  latitude      String
-  longitude     String
-  createdAt     DateTime @default(now())
-  bat           String
-  pression_ext  Float
-  temp_ext      Float
-  temp_int      Float
-  temp_sea      Float[]
-  temp_sea_mean Float
-  ec_sea        Float[]
-  ec_sea_mean   Float 
-  sensorId      String?  @db.ObjectId  // Reference to Sensor model
-  sensor        Sensor?  @relation(fields: [sensorId], references: [id])
+  id                  String      @id @default(auto()) @map("_id") @db.ObjectId
+  latitude            String
+  longitude           String
+  recorded_at         DateTime    @default(now())
+  battery_voltage     Float
+  battery_percentage  Float
+  pression_ext        Float
+  temp_ext            Float
+  temp_int            Float
+  temp_sea            Float[]
+  temp_sea_mean       Float
+  ec_sea              Float[]
+  ec_sea_mean         Float 
+  sensor_id           String?     @db.ObjectId  // Reference to Sensor model
+  sensor              Sensor?     @relation(fields: [sensor_id], references: [id])
+  created_at          DateTime?   @default(now())
+  created_by_id       String?     @db.ObjectId
+  created_by          User?       @relation("createdRecords", fields: [created_by_id], references: [id])
+  updated_at          DateTime?   @updatedAt
+  updated_by_id       String?     @db.ObjectId
+  updated_by          User?       @relation("updatedRecords", fields: [updated_by_id], references: [id])
+  deleted_at          DateTime?
+  deleted_by_id       String?     @db.ObjectId
+  deleted_by          User?       @relation("deletedRecords", fields: [deleted_by_id], references: [id])
 }
 
 model File {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
-  name          String?
-  update_date   DateTime
-  status        String?
-  file_url      String?
-  sensorId      String?  @db.ObjectId  // Reference to Sensor model
-  sensor        Sensor?  @relation(fields: [sensorId], references: [id])
+  id              String      @id @default(auto()) @map("_id") @db.ObjectId
+  name            String?
+  status          String?
+  file_url        String?
+  sensor_id       String?     @db.ObjectId  // Reference to Sensor model
+  sensor          Sensor?     @relation(fields: [sensor_id], references: [id])
+  created_at      DateTime?   @default(now())
+  created_by_id   String?     @db.ObjectId
+  created_by      User?       @relation("createdFiles", fields: [created_by_id], references: [id])
+  updated_at      DateTime?   @updatedAt
+  updated_by_id   String?     @db.ObjectId
+  updated_by      User?       @relation("updatedFiles", fields: [updated_by_id], references: [id])
+  deleted_at      DateTime?
+  deleted_by_id   String?     @db.ObjectId
+  deleted_by      User?       @relation("deletedFiles", fields: [deleted_by_id], references: [id])
 }
 
 model Organisation {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
   description   String    
-  users       User[]   // Add a one-to-many relationship to User
+  users         User[]    // Add a one-to-many relationship to User
 }
 
 model Account {
@@ -105,16 +144,28 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  name          String?
-  email         String    @unique
-  emailVerified DateTime? @map("email_verified")
-  password      String?
-  image_url     String?
-  accounts      Account[]
-  sessions      Session[]
-  organisationId String? @db.ObjectId
-  organisation  Organisation? @relation(fields: [organisationId], references: [id])
+  id                String          @id @default(auto()) @map("_id") @db.ObjectId
+  name              String?
+  email             String          @unique
+  emailVerified     DateTime?       @map("email_verified")
+  password          String?
+  avatar_url        String?
+  accounts          Account[]
+  sessions          Session[]
+  organisation_id   String?         @db.ObjectId
+  organisation      Organisation?   @relation(fields: [organisation_id], references: [id])
+  created_stations  Station[]       @relation("createdStations") // Stations created by this user
+  updated_stations  Station[]       @relation("updatedStations") // Stations updated by this user
+  deleted_stations  Station[]       @relation("deletedStations") // Stations deleted by this user
+  created_sensors   Sensor[]        @relation("createdSensors") // Sensors created by this user
+  updated_sensors   Sensor[]        @relation("updatedSensors") // Sensors updated by this user
+  deleted_sensors   Sensor[]        @relation("deletedSensors") // Sensors deleted by this user
+  created_records   Record[]        @relation("createdRecords") // Records created by this user
+  updated_records   Record[]        @relation("updatedRecords") // Records updated by this user
+  deleted_records   Record[]        @relation("deletedRecords") // Records deleted by this user
+  created_files     File[]          @relation("createdFiles") // Files created by this user
+  updated_files     File[]          @relation("updatedFiles") // Files updated by this user
+  deleted_files     File[]          @relation("deletedFiles") // Files deleted by this user
 }
 
 
