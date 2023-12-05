@@ -12,6 +12,9 @@ import { db } from '@/lib/db'
 import { Link } from '@/components/ui/Link'
 
 const sensors = await db.sensor.findMany({
+  where: {
+      deleted: false,
+  },
   select: {
     id: true,
     identifier: true,
@@ -29,7 +32,6 @@ async function Home() {
   if (!session) {
     redirect('/auth/login')
   }
-
   return (
     <Page>
       <PageHeader title={'Capteurs'} showBack />
