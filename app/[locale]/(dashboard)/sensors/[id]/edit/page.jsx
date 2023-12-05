@@ -33,7 +33,6 @@ export default async function EditSensor({ params }) {
 
   return (
     <Page>
-      <BackpageButton></BackpageButton>
       <EditSensorForm sensor={sensor} />
     </Page>
   )

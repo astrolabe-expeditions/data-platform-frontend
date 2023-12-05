@@ -32,7 +32,7 @@ async function Home() {
 
   return (
     <Page>
-      <PageHeader title="Stations" />
+      <PageHeader title={'Station'} showBack />
       <Theme>
         <Link href={'/stations/add'}>Add Station</Link>
         <StationTable data={stations} />

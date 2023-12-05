@@ -3,7 +3,6 @@ import { redirect } from 'next/navigation'
 import { authOptions } from '@/lib/auth'
 import { Page } from '@/components/Page/Page'
 import { PageHeader } from '@/components/Page/PageHeader'
-import { BackpageButton } from '@/components/ui/Button/BackpageButton'
 import EditStationForm from '@/components/Form/EditStationForm'
 import { Edit } from '@/components/ui/Icons'
 
@@ -33,7 +32,6 @@ export default async function EditStation({ params }) {
 
   return (
     <Page>
-      <BackpageButton></BackpageButton>
       <EditStationForm station={station} />
     </Page>
   )

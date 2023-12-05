@@ -12,7 +12,7 @@ export default function StationTable({ data }) {
           <Table.Row>
             <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell>Type</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell>Sensors</Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell>Associated sensors</Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell>Edit</Table.ColumnHeaderCell>
           </Table.Row>
         </Table.Header>

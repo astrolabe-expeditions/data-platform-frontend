@@ -74,5 +74,15 @@
       "station_name": "Nom de la Station"
     },
     "edit_sensor": "Modifier Capteur"
+  },
+  "Sensors": {
+    "upload_screen": {
+      "upload_file": "Télécharger le fichier",
+      "upload_file_for_sensor": "Télécharger le fichier pour le capteur",
+      "submit_form": "Soumettre le fichier",
+      "type": "Type",
+      "nbr_measures": "Nombre de Mesures",
+      "station": "Nóm de la Station",
+      "active_file": "Fichier Actif"
+    }
   }
-}
