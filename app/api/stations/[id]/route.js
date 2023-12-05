@@ -3,14 +3,8 @@ import { NextResponse } from 'next/server'
 
 export async function PUT(request, { params }) {
   const { id } = params
-  const {
-    newName: name,
-    newType: type,
-    newLatitude: latitude,
-    newLongitude: longitude,
-    newDescription: description,
-    newImage_url: image_url,
-  } = await request.json()
+  const { name, type, latitude, longitude, description, image_url, sensors } =
+    await request.json()
   await db.station.update({
     where: {
       id: id,
@@ -22,6 +16,7 @@ export async function PUT(request, { params }) {
       longitude,
       description,
       image_url,
+      sensors,
     },
   })
   return NextResponse.json(

@@ -4,12 +4,12 @@ import { NextResponse } from 'next/server'
 export async function PUT(request, { params }) {
   const { id } = params
   const {
-    newIdentifier: identifier,
-    newType: type,
-    // newNbr_measures: nbr_measures,
-    // newStation_id: station_id,
-    // newRecords: records,
-    // newFiles: files,
+    identifier,
+    type,
+    nbr_measures,
+    // station_id,
+    // records,
+    // files,
   } = await request.json()
   await db.sensor.update({
     where: {
@@ -18,7 +18,7 @@ export async function PUT(request, { params }) {
     data: {
       identifier,
       type,
-      // nbr_measures,
+      nbr_measures,
       // station_id,
       // records,
       // files,
@@ -40,10 +40,10 @@ export async function GET(request, { params }) {
       id: true,
       identifier: true,
       type: true,
-      // nbr_measures: true,
-      // station_id: true,
-      // records: true,
-      // files: true,
+      nbr_measures: true,
+      station_id: true,
+      records: true,
+      files: true,
     },
   })
   return NextResponse.json({ sensor }, { status: 200 })
