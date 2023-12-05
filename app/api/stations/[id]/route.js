@@ -16,9 +16,12 @@ export async function PUT(request, { params }) {
       longitude,
       description,
       image_url,
-      sensors,
+      sensors: {
+        connect: sensors.map((sensor) => ({ id: sensor })),
+      },
     },
   })
+
   return NextResponse.json(
     { message: 'Station Updated Successfully' },
     { status: 200 },

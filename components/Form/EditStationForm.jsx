@@ -2,10 +2,10 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
+import Select from 'react-select'
 
 import { Input } from '@/components/ui/Input/Input'
 import { Button } from '@/components/ui/Button/Button'
-// import { Select } from '@/components/ui/Select/Select'
 
 import { PageHeader } from '@/components/Page/PageHeader'
 import { Typography } from '@/components/ui/Typography'
@@ -14,18 +14,21 @@ import { useTranslations as getTranslations } from 'next-intl'
 
 import { editStation } from '@/lib/queries'
 import { useMutation } from '@tanstack/react-query'
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/Alert'
-
-import Select from 'react-select'
-
-import { DropdownMenu } from '@radix-ui/themes'
-
-import { Sensor } from '@prisma/client'
 
 export default function EditStationForm({ station }) {
+  console.log('station id', station.id)
+  const router = useRouter()
+
   const t = getTranslations('EditStation')
 
-  const { mutate, isError, error } = useMutation({ mutationFn: editStation })
+  const { mutate, isError, error } = useMutation({
+    mutationFn: editStation,
+    onSuccess: () => {
+      console.log('Station edited successfully')
+      router.refresh()
+      router.push('/stations')
+    },
+  })
 
   const [formData, setFormData] = useState({
     name: station.name || '',
@@ -36,6 +39,9 @@ export default function EditStationForm({ station }) {
     image_url: station.image_url || '',
     sensors: station.sensors || [],
   })
+  const [allSensors, setAllSensors] = useState([]) // State to store all sensors
+  const [sensorStatus, setSensorStatus] = useState('idle') // State to manage the status of the sensor fetch request
+  const [selectedSensors, setSelectedSensors] = useState([]) // React state to manage selected sensors
 
   const handleChange = (inputName) => (evt) => {
     setFormData({
@@ -44,49 +50,19 @@ export default function EditStationForm({ station }) {
     })
   }
 
-  console.log('station id', station.id)
-
-  const router = useRouter()
-
-  // const handleSubmit = async (evt) => {
-  //   evt.preventDefault()
-  //   mutate(station.id, formData)
-  // }
-
   const handleSubmit = async (e) => {
     e.preventDefault()
-    try {
-      const res = await fetch(
-        `http://localhost:3000/api/stations/${station.id}`,
-        {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: formData.name,
-            type: formData.type,
-            longitude: formData.longitude,
-            // logitude: parseFloat(formData.longitude),
-            latitude: formData.latitude,
-            // latitude: parseFloat(formData.latitude),
-            description: formData.description,
-            image_url: formData.image_url,
-            // sensors: formData.sensors,
-          }),
-        },
-      )
-      if (!res.ok) throw new Error('Failed to update station')
-      router.refresh()
-      router.push('/stations')
-    } catch (error) {
-      console.log(error)
-    }
+    mutate({
+      id: station.id,
+      ...formData,
+      sensors: selectedSensors.map((sensor) => sensor.value.id),
+    })
   }
 
   const isStationTypeFixed = formData.type === StationType.Fixed // Check if the station type is "Fixed"
 
-  const [allSensors, setAllSensors] = useState([]) // State to store all sensors
-
   const fetchAllSensors = useCallback(async () => {
+    setSensorStatus('loading')
     try {
       const response = await fetch('http://localhost:3000/api/sensors')
       if (!response.ok) {
@@ -94,20 +70,22 @@ export default function EditStationForm({ station }) {
       }
       const data = await response.json()
       setAllSensors(data) // Store all sensors in the state
+      const linkedSensorsList = formData.sensors.map((sensor) => ({
+        value: sensor,
+        label: sensor.identifier,
+      }))
+      setSelectedSensors(linkedSensorsList)
       console.log('All Sensors: ', data)
+      setSensorStatus('loaded')
     } catch (error) {
+      setSensorStatus('error')
       console.error('Error fetching all sensors:', error)
     }
-  }, [setAllSensors])
+  }, [formData.sensors])
 
   useEffect(() => {
     fetchAllSensors()
   }, [fetchAllSensors]) // Fetch all sensors when the component mounts
-
-  // Above works fine
-
-  // React state to manage selected sensors
-  const [selectedSensors, setSelectedSensors] = useState()
 
   // Array of all sensors
   const sensorsList = allSensors.map((sensor) => ({
@@ -115,27 +93,10 @@ export default function EditStationForm({ station }) {
     label: sensor.identifier,
   }))
 
-  console.log('Sensors List: ', sensorsList)
-
-  // Array of linked sensors
-  const linkedSensorsList = formData.sensors.map((sensor) => ({
-    value: sensor,
-    label: sensor.identifier,
-  }))
-
-  console.log('Linked Sensors List: ', linkedSensorsList)
-
   // Function triggered on selection
   function handleSelect(data) {
     setSelectedSensors(data)
-    console.log('data: ', data)
   }
-  console.log('Selected Sensors: ', selectedSensors)
-
-  // function handleSelect(data) {
-  //   setNewSensors(data)
-  //   console.log('Selected Sensors: ', newSensors)
-  // }
 
   return (
     <>
@@ -174,9 +135,10 @@ export default function EditStationForm({ station }) {
               options={sensorsList}
               placeholder={t('select_sensors')}
               value={selectedSensors}
-              // value={linkedSensorsList} // Pre-populate with linked sensors
               onChange={handleSelect}
               isSearchable={true}
+              isDisabled={sensorStatus !== 'loaded'}
+              isLoading={sensorStatus === 'loading'}
               isMulti
             />
           </div>
