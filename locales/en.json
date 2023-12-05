@@ -35,7 +35,11 @@
     "upload_screen": {
       "upload_file": "Upload file",
       "upload_file_for_sensor": "Upload file for the sensor",
-      "submit_form": "Submit file"
+      "submit_form": "Submit file",
+      "type": "Type",
+      "nbr_measures": "Number of Mesures",
+      "station": "Name of the Station",
+      "active_file": "Active File"
     }
   }
 }

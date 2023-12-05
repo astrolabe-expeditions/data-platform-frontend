@@ -12,11 +12,11 @@ export default async function Home({ params }) {
       identifier: true,
       station: true,
       files: true,
+      type: true,
+      nbr_measures: true,
+      records: true,
     },
   })
-
-  console.log(sensor)
-
   return (
     <Page>
       <SensorsUploadForm sensor={sensor}></SensorsUploadForm>
