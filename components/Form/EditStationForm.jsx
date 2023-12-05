@@ -139,13 +139,7 @@ export default function EditStationForm({ station }) {
 
   return (
     <>
-      <PageHeader title={t('title')} className={'inline-flex pl-5'} />
-      <Typography variant="title" alignCenter className="mb-3">
-        {t('title')}
-      </Typography>
-      <Typography variant="subtitle" alignCenter className="mb-8">
-        {t('subtitle')}
-      </Typography>
+      <PageHeader title={t('title')} className={'inline-flex pl-5'} showBack />
       <form onSubmit={handleSubmit} className="flex flex-col gap-3 max-w-xl">
         <Input
           label={t('labels.name')}

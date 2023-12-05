@@ -33,6 +33,20 @@
     "no_account": "Vous n'avez pas encore de compte ?",
     "no_account_link": "Créer un compte"
   },
+  "SensorForm": {
+    "title": "Ajouter un nouveau capteur",
+    "subtitle": "Sous-titre",
+    "name": "Nom",
+    "identifier": "Identifiant",
+    "type": "Type",
+    "create": "Créer",
+    "error_alert": {
+      "title": "Erreur",
+      "errors": {
+        "field_missing": "Un des champs est vide"
+      }
+    }
+  },
   "Station": {
     "title": "Ajouter station",
     "labels": {
@@ -86,3 +100,4 @@
       "active_file": "Fichier Actif"
     }
   }
+}

@@ -7,10 +7,7 @@ import { useTranslations as getTranslations } from 'next-intl'
 import { PageHeader } from '@/components/Page/PageHeader'
 import { StationType } from '@prisma/client'
 
-
-
-export default function StationForm({sensors, stationtype}) {
-
+export default function StationForm({ sensors, stationtype }) {
   const t = getTranslations('Station')
 
   const [formData, setFormData] = useState({
@@ -31,12 +28,15 @@ export default function StationForm({sensors, stationtype}) {
   }
 
   const handleSelectChange = (inputName) => (event) => {
-    const selectedValues = Array.from(event.target.selectedOptions, (option) => option.value);
+    const selectedValues = Array.from(
+      event.target.selectedOptions,
+      (option) => option.value,
+    )
     setFormData({
       ...formData,
       [inputName]: selectedValues,
-    });
-  };
+    })
+  }
 
   const handleSubmit = (evt) => {
     evt.preventDefault()
@@ -48,14 +48,13 @@ export default function StationForm({sensors, stationtype}) {
 
   return (
     <>
+      <PageHeader title={t('title')} className={'inline-flex pl-5'} showBack />
 
-      <PageHeader title={t('title')} className={'inline-flex pl-5'} />
-      
       <form className="w-full max-w-lg" onSubmit={handleSubmit}>
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full px-3">
-            <Input 
-              name = "name"
+            <Input
+              name="name"
               label={t('labels.name')}
               value={formData.name}
               onChange={handleChange('name')}
@@ -68,11 +67,10 @@ export default function StationForm({sensors, stationtype}) {
               name="type"
               label={t('labels.type')}
               value={formData.type}
-              onChange={handleChange('type')}
-            >
-            {Object.keys(StationType).map((type) => (
-              <option value={type}>{type}</option>
-            ))}
+              onChange={handleChange('type')}>
+              {Object.keys(StationType).map((type) => (
+                <option value={type}>{type}</option>
+              ))}
             </Select>
           </div>
         </div>
@@ -83,9 +81,8 @@ export default function StationForm({sensors, stationtype}) {
               name="sensors"
               label={t('labels.sensors')}
               value={formData.sensors}
-              onChange={handleSelectChange('sensors')}
-            >
-              {sensors.map((s)=>(
+              onChange={handleSelectChange('sensors')}>
+              {sensors.map((s) => (
                 <option value={s.id}>{s.identifier}</option>
               ))}
             </Select>
@@ -131,10 +128,9 @@ export default function StationForm({sensors, stationtype}) {
             />
           </div>
         </div>
-        <Button type='submit' label={t('addStation')} />
+        <Button type="submit" label={t('addStation')} />
       </form>
     </>
-
   )
 }
 
