@@ -63,16 +63,4 @@ export default function SensorForm() {
 
         </>
     )
-} 
-
-
-
-
-
-
-
-
-
-
-
-   
+}

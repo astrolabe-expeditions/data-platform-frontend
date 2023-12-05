@@ -33,7 +33,6 @@
     "no_account": "Vous n'avez pas encore de compte ?",
     "no_account_link": "Créer un compte"
   },
-
   "SensorForm": {
     "title" : "Ajouter un nouveau capteur",
     "subtitle" : "Sous-titre",
@@ -45,7 +44,58 @@
       "title": "Erreur",
       "errors":{
         "field_missing" : "Un des champs est vide"
-      }
+      },
+  "Station": {
+    "title": "Ajouter station",
+    "labels": {
+      "name": "Nom",
+      "type": "Type",
+      "sensors": "Capteurs",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "description": "Description",
+      "image_URL": "image_URL"
+    },
+    "addStation": "Ajouter Station"
+  },
+  "EditStation": {
+    "title": "Modifier Station",
+    "subtitle": "Modifier les informations de la station",
+    "labels": {
+      "name": "Nom",
+      "type": "Type",
+      "sensors": "Capteurs",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "description": "Description",
+      "image_url": "Image URL"
+    },
+    "edit_station": "Modifier Station",
+    "select_sensors": "Sélectionner des Capteurs"
+  },
+  "EditSensor": {
+    "title": "Modifier Capteur",
+    "subtitle": "Modifier les informations du capteur",
+    "labels": {
+      "identifier": "Identifiant",
+      "type": "Type",
+      "nbr_measures": "Nombre de Mesures",
+      "station_id": "Identifiant de la station",
+      "records": "Enregistrements",
+      "files": "Fichiers",
+      "station_name": "Nom de la Station"
+    },
+    "edit_sensor": "Modifier Capteur"
+  },
+  "Sensors": {
+    "upload_screen": {
+      "upload_file": "Télécharger le fichier",
+      "upload_file_for_sensor": "Télécharger le fichier pour le capteur",
+      "submit_form": "Soumettre le fichier",
+      "type": "Type",
+      "nbr_measures": "Nombre de Mesures",
+      "station": "Nóm de la Station",
+      "active_file": "Fichier Actif"
     }
   }
 }

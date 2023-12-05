@@ -13,7 +13,7 @@ async function Home({ params }) {
 
   return (
     <Page>
-      <PageHeader title={`Add a new sensor`} className={'inline-flex pl-5'} />
+      <PageHeader title={`Seeing add sensor`} showBack />
       <SensorForm></SensorForm>
     </Page>
   )
