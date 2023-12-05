@@ -34,17 +34,19 @@
     "no_account_link": "Créer un compte"
   },
   "SensorForm": {
-    "title" : "Ajouter un nouveau capteur",
-    "subtitle" : "Sous-titre",
-    "name" : "Nom",
-    "identifier" : "Identifiant",
-    "type" : "Type",
-    "create" : "Créer",
-    "error_alert" : {
+    "title": "Ajouter un nouveau capteur",
+    "subtitle": "Sous-titre",
+    "name": "Nom",
+    "identifier": "Identifiant",
+    "type": "Type",
+    "create": "Créer",
+    "error_alert": {
       "title": "Erreur",
-      "errors":{
-        "field_missing" : "Un des champs est vide"
-      },
+      "errors": {
+        "field_missing": "Un des champs est vide"
+      }
+    }
+  },
   "Station": {
     "title": "Ajouter station",
     "labels": {

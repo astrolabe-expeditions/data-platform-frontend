@@ -22,8 +22,7 @@ async function Home({ params }) {
 
   return (
     <Page>
-      <PageHeader title={`Add station`} showBack />
-      <StationForm stationtype={StationType} sensors={sensors}/>
+      <StationForm stationtype={StationType} sensors={sensors} />
     </Page>
   )
 }

@@ -32,17 +32,19 @@
     "no_account_link": "Create an account"
   },
   "SensorForm": {
-    "title" : "Add sensor",
-    "subtitle" : "Sub Title",
-    "name" : "Name",
-    "identifier" : "Identifier",
-    "type" : "Type",
-    "create" : "Create",
-    "error_alert" : {
+    "title": "Add sensor",
+    "subtitle": "Sub Title",
+    "name": "Name",
+    "identifier": "Identifier",
+    "type": "Type",
+    "create": "Create",
+    "error_alert": {
       "title": "Error",
-      "errors":{
-        "field_missing" : "At least one field is empty"
-      },
+      "errors": {
+        "field_missing": "At least one field is empty"
+      }
+    }
+  },
   "Station": {
     "title": "Add Station",
     "labels": {
