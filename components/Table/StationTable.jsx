@@ -1,10 +1,26 @@
 'use client'
 
 import { Table } from '@radix-ui/themes'
+import { useState } from 'react'
 import Link from 'next/link'
+import ReactPaginate from 'react-paginate';
 import { StationTableDropdown } from '../ui/Dropdown/StationTableDropdown'
+import '../ui/SearchBar/pagination-style.css';
+
+const itemsPerPage = 6;
 
 export default function StationTable({ data }) {
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const offset = currentPage * itemsPerPage;
+  const currentPageData = data.slice(offset, offset + itemsPerPage);
+
+  const pageCount = Math.ceil(data.length / itemsPerPage);
+
+  const handlePageClick = selectedPage => {
+    setCurrentPage(selectedPage.selected);
+  };
+
   return (
     <div>
       <Table.Root variant="surface">
@@ -18,7 +34,7 @@ export default function StationTable({ data }) {
         </Table.Header>
 
         <Table.Body>
-          {data.map((row) => (
+          {currentPageData.map((row) => (
             <Table.Row key={row.id}>
               <Table.RowHeaderCell>{row.name}</Table.RowHeaderCell>
               <Table.Cell>{row.type}</Table.Cell>
@@ -38,6 +54,17 @@ export default function StationTable({ data }) {
           ))}
         </Table.Body>
       </Table.Root>
+      <ReactPaginate
+          previousLabel={'Previous'}
+          nextLabel={'Next'}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          containerClassName={'pagination'}
+          subContainerClassName={'pages pagination'}
+          activeClassName={'active'}
+      />
     </div>
   )
 }
