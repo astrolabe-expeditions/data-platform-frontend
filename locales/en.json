@@ -33,7 +33,7 @@
   },
   "Station": {
     "title": "Add Station",
-    "labels":{
+    "labels": {
       "name": "Name",
       "type": "Type",
       "sensors": "Sensors",
@@ -47,7 +47,7 @@
   "EditStation": {
     "title": "Edit Station",
     "subtitle": "Edit the station details",
-    "labels":{
+    "labels": {
       "name": "Name",
       "type": "Type",
       "sensors": "Sensors",
@@ -62,7 +62,7 @@
   "EditSensor": {
     "title": "Edit Sensor",
     "subtitle": "Edit the sensor details",
-    "labels":{
+    "labels": {
       "identifier": "Identifier",
       "type": "Type",
       "nbr_measures": "Number Of Measures",
@@ -84,3 +84,4 @@
       "active_file": "Active File"
     }
   }
+}
