@@ -1,10 +1,9 @@
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth'
 import { Page } from '@/components/Page/Page'
-import { PageHeader } from '@/components/Page/PageHeader'
 import { BackpageButton } from '@/components/ui/Button/BackpageButton'
 import EditSensorForm from '@/components/Form/EditSensorForm'
-import { Edit } from '@/components/ui/Icons'
+import { redirect } from 'next/navigation'
 
 const getSensorById = async (id) => {
   try {
@@ -21,12 +20,12 @@ const getSensorById = async (id) => {
 
 export default async function EditSensor({ params }) {
   const session = await getServerSession(authOptions)
+
   const { id } = params
+
   const { sensor } = await getSensorById(id)
-  // const { identifier, type, nbr_measures, station_id, records, files } = sensor
-  // const { identifier, type, station_id } = sensor
-  const { identifier, type } = sensor
   console.log('id: ', id)
+  console.log('sensor identifier : ', sensor.identifier)
 
   if (!session) {
     redirect('/auth/login')
@@ -35,15 +34,7 @@ export default async function EditSensor({ params }) {
   return (
     <Page>
       <BackpageButton></BackpageButton>
-      <EditSensorForm
-        id={id}
-        identifier={identifier}
-        type={type}
-        // nbr_measures={nbr_measures}
-        // station_id={station_id}
-        // records={records}
-        // files={files}
-      />
+      <EditSensorForm sensor={sensor} />
     </Page>
   )
 }

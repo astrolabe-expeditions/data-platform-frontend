@@ -5,6 +5,7 @@ import { PageHeader } from '@/components/Page/PageHeader'
 import { IconButton } from '@/components/ui/IconButton/IconButton'
 import { Left } from '@/components/ui/Icons'
 import { Link } from '@/components/ui/Link'
+import { redirect } from 'next/navigation'
 
 async function Home({ params }) {
   const session = await getServerSession(authOptions)

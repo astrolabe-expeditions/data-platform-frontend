@@ -14,6 +14,9 @@ export default async function Sensors() {
   }
 
   const sensors = await db.sensor.findMany({
+    where: {
+      deleted: false,
+    },
     select: {
       id: true,
       identifier: true,

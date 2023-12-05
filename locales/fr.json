@@ -35,7 +35,7 @@
   },
   "Station": {
     "title": "Ajouter station",
-    "labels":{
+    "labels": {
       "name": "Nom",
       "type": "Type",
       "sensors": "Capteurs",
@@ -45,5 +45,34 @@
       "image_URL": "image_URL"
     },
     "addStation": "Ajouter Station"
+  },
+  "EditStation": {
+    "title": "Modifier Station",
+    "subtitle": "Modifier les informations de la station",
+    "labels": {
+      "name": "Nom",
+      "type": "Type",
+      "sensors": "Capteurs",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "description": "Description",
+      "image_url": "Image URL"
+    },
+    "edit_station": "Modifier Station",
+    "select_sensors": "Sélectionner des Capteurs"
+  },
+  "EditSensor": {
+    "title": "Modifier Capteur",
+    "subtitle": "Modifier les informations du capteur",
+    "labels": {
+      "identifier": "Identifiant",
+      "type": "Type",
+      "nbr_measures": "Nombre de Mesures",
+      "station_id": "Identifiant de la station",
+      "records": "Enregistrements",
+      "files": "Fichiers",
+      "station_name": "Nom de la Station"
+    },
+    "edit_sensor": "Modifier Capteur"
   }
 }

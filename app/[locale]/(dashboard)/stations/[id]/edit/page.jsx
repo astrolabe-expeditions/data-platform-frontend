@@ -24,8 +24,7 @@ export default async function EditStation({ params }) {
   const session = await getServerSession(authOptions)
   const { id } = params
   const { station } = await getStationById(id)
-  const { name, type, sensors, longitude, latitude, description, image_url } =
-    station
+
   console.log('id: ', id)
 
   if (!session) {
@@ -35,16 +34,7 @@ export default async function EditStation({ params }) {
   return (
     <Page>
       <BackpageButton></BackpageButton>
-      <EditStationForm
-        id={id}
-        name={name}
-        type={type}
-        sensors={sensors}
-        longitude={longitude}
-        latitude={latitude}
-        description={description}
-        image_url={image_url}
-      />
+      <EditStationForm station={station} />
     </Page>
   )
 }
