@@ -1,32 +1,54 @@
 'use client'
-
 import { useTranslations as getTranslations } from 'next-intl'
 import { useState } from 'react'
 import { useRef } from 'react'
 import { Button } from '@/components/ui/Button/Button'
-import { Typography } from '@/components/ui/Typography'
 import { PageHeader } from '@/components/Page/PageHeader'
-import { SensorCard } from '@/components/Card/SensorCard'
-import { uploadFile } from '@/lib/aws'
+import { SensorCard } from '../Card/SensorCard'
+import { useRouter } from 'next/navigation'
 
 export default function SensorsUploadForm({ sensor }) {
   const t = getTranslations('Sensors')
+  const router = useRouter()
 
   const hiddenFileInput = useRef(null)
   const [formData, setFormData] = useState({
     file: null,
   })
 
-  const handleInputChange = (event) => {
+  const handleInputChange = function (event) {
     if (event.target.files && event.target.files[0]) {
       const i = event.target.files[0]
-      setFormData({ ...formData, file: i })
-      uploadFile(i)
+
+      if (i.type !== 'text/csv') {
+        console.log('Wrong format')
+      } else {
+        setFormData({ ...formData, file: i })
+        sendData(i, sensor.id)
+      }
     }
   }
 
   const handleClick = (event) => {
     hiddenFileInput.current.click()
+  }
+
+  const sendData = function (i, sensor_id) {
+    var fd = new FormData()
+    fd.append('file', i)
+    fd.append('sensor_id', sensor.id)
+
+    try {
+      const res = fetch(`/api/sensors/${sensor_id}`, {
+        method: 'POST',
+        body: fd,
+      }).then((_res) => {
+        console.log(_res)
+        router.refresh()
+      })
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
@@ -44,12 +66,6 @@ export default function SensorsUploadForm({ sensor }) {
         onClick={handleClick}
         label={t('upload_screen.upload_file_for_sensor')}
       />
-      {formData.file !== null && (
-        <div>
-          <Typography>{formData.file.name}</Typography>
-          <Typography>{formData.file.size}</Typography>
-        </div>
-      )}
     </>
   )
 }
