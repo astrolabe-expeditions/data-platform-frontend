@@ -33,8 +33,24 @@
     "no_account": "Vous n'avez pas encore de compte ?",
     "no_account_link": "Créer un compte"
   },
-  "Station": {
+  "AddSensor": {
+    "title": "Ajouter Capteur",
+    "subtitle": "Ajouter les informations du capteur",
+    "labels": {
+      "identifier": "Identifiant",
+      "type": "Type",
+      "nbr_measures": "Nombre de Mesures",
+      "station_id": "Identifiant de la station",
+      "records": "Enregistrements",
+      "files": "Fichiers",
+      "station_name": "Nom de la Station"
+    },
+    "add_sensor": "Ajouter Capteur",
+    "select_type": "Sélectionner le type du capteur"
+  },
+  "AddStation": {
     "title": "Ajouter station",
+    "subtitle": "Ajouter les informations de la station",
     "labels": {
       "name": "Nom",
       "type": "Type",
@@ -42,9 +58,11 @@
       "latitude": "Latitude",
       "longitude": "Longitude",
       "description": "Description",
-      "image_URL": "image_URL"
+      "image_url": "Image URL"
     },
-    "addStation": "Ajouter Station"
+    "add_station": "Ajouter Station",
+    "select_type": "Sélectionner le type de la station",
+    "select_sensors": "Sélectionner des Capteurs"
   },
   "EditStation": {
     "title": "Modifier Station",
@@ -82,7 +100,8 @@
       "submit_form": "Soumettre le fichier",
       "type": "Type",
       "nbr_measures": "Nombre de Mesures",
-      "station": "Nóm de la Station",
+      "station": "Nom de la Station",
       "active_file": "Fichier Actif"
     }
   }
+}
