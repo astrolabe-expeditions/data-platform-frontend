@@ -1,10 +1,11 @@
 import { getServerSession } from 'next-auth/next'
+import { redirect } from 'next/navigation'
 import { authOptions } from '@/lib/auth'
 import { Page } from '@/components/Page/Page'
-import { PageHeader } from '@/components/Page/PageHeader'
-import SensorForm from '@/components/Form/SensorForm'
+import AddSensorForm from '@/components/Form/AddSensorForm'
 
-async function Home({ params }) {
+
+export default async function AddSensor() {
   const session = await getServerSession(authOptions)
 
   if (!session) {
@@ -13,10 +14,7 @@ async function Home({ params }) {
 
   return (
     <Page>
-      <PageHeader title={`Seeing add sensor`} showBack />
-      <SensorForm></SensorForm>
+      <AddSensorForm />
     </Page>
   )
 }
-
-export default Home

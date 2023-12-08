@@ -31,22 +31,24 @@
     "no_account": "Don't have an account yet?",
     "no_account_link": "Create an account"
   },
-  "SensorForm": {
-    "title": "Add sensor",
-    "subtitle": "Sub Title",
-    "name": "Name",
-    "identifier": "Identifier",
-    "type": "Type",
-    "create": "Create",
-    "error_alert": {
-      "title": "Error",
-      "errors": {
-        "field_missing": "At least one field is empty"
-      }
-    }
+  "AddSensor": {
+    "title": "Add Sensor",
+    "subtitle": "Add the sensor details",
+    "labels": {
+      "identifier": "Identifier",
+      "type": "Type",
+      "nbr_measures": "Number Of Measures",
+      "station_id": "Station ID",
+      "records": "Records",
+      "files": "Files",
+      "station_name": "Station Name"
+    },
+    "add_sensor": "Add Sensor",
+    "select_type": "Select Sensor Type"
   },
-  "Station": {
+  "AddStation": {
     "title": "Add Station",
+    "subtitle": "Add the station details",
     "labels": {
       "name": "Name",
       "type": "Type",
@@ -54,9 +56,11 @@
       "latitude": "Latitude",
       "longitude": "Longitude",
       "description": "Description",
-      "image_URL": "image_URL"
+      "image_url": "image URL"
     },
-    "addStation": "Add Station"
+    "add_station": "Add Station",
+    "select_type": "Select Station Type",
+    "select_sensors": "Select Sensors"
   },
   "EditStation": {
     "title": "Edit Station",
