@@ -75,7 +75,13 @@
       "image_url": "Image URL"
     },
     "edit_station": "Edit Station",
-    "select_sensors": "Select Sensors"
+    "select_sensors": "Select Sensors",
+    "error_alert": {
+      "title": "Error",
+      "errors": {
+        "value_error": "Verify the values entered"
+      }
+    }
   },
   "EditSensor": {
     "title": "Edit Sensor",
@@ -89,7 +95,13 @@
       "files": "Files",
       "station_name": "Station Name"
     },
-    "edit_sensor": "Edit Sensor"
+    "edit_sensor": "Edit Sensor",
+    "error_alert": {
+      "title": "Error",
+      "errors": {
+        "value_error": "Verify the values entered"
+      }
+    }
   },
   "Sensors": {
     "upload_screen": {

@@ -19,20 +19,32 @@ const getSensorById = async (id) => {
 
 export default async function EditSensor({ params }) {
   const session = await getServerSession(authOptions)
-
   const { id } = params
 
-  const { sensor } = await getSensorById(id)
-  console.log('id: ', id)
-  console.log('sensor identifier : ', sensor.identifier)
+  try {
+    const { sensor } = await getSensorById(id)
 
-  if (!session) {
-    redirect('/auth/login')
+    if (!session) {
+      redirect('/auth/login')
+    }
+
+    return (
+      <Page>
+        <EditSensorForm sensor={sensor} />
+      </Page>
+    )
+  } catch (error) {
+    if (error.message === 'Sensor not found') {
+      // Redirect to 404 page
+      redirect('/404')
+    } else {
+      // Handle other errors
+      console.error(error)
+      return (
+        <Page>
+          <p>Error loading sensor data</p>
+        </Page>
+      )
+    }
   }
-
-  return (
-    <Page>
-      <EditSensorForm sensor={sensor} />
-    </Page>
-  )
 }

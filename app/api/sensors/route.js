@@ -1,7 +1,6 @@
 import { db } from '@/lib/db'
 import { NextResponse } from 'next/server'
 
-// GET with soft delete (deleted: false)
 export async function GET() {
   const sensors = await db.sensor.findMany({
     where: {
@@ -18,29 +17,30 @@ export async function GET() {
     },
   })
 
+  // Check if sensors exist, if not, redirect to a 404 page
+  if (!sensors || sensors.length === 0) {
+    return NextResponse.redirect('/404') // Adjust the path to your actual 404 page
+  }
+
   return NextResponse.json(sensors, { status: 200 })
 }
 
-export async function POST(request) {
-  const { identifier, type, nbr_measures } = await request.json()
-  await db.sensor.create({
-    data: {
-      identifier,
-      type,
-      nbr_measures,
-    },
-  })
-  return NextResponse.json(
-    { message: 'Sensor Created Successfully' },
-    { status: 201 },
-  )
-}
-
-// soft DELETE (deleted: true) with deleted_at and deleted_by_id
 export async function DELETE(request) {
   const id = request.nextUrl.searchParams.get('id')
-  // const deleted_by_id = getUserIdFromRequest(request); // Implement a function to get the user ID from the request.
 
+  // Check if the sensor with the given id exists
+  const existingSensor = await db.sensor.findUnique({
+    where: {
+      id,
+    },
+  })
+
+  // If the sensor doesn't exist, redirect to a 404 page
+  if (!existingSensor) {
+    return NextResponse.redirect('/404') // Adjust the path to your actual 404 page
+  }
+
+  // Perform the soft delete
   await db.sensor.update({
     where: {
       id,

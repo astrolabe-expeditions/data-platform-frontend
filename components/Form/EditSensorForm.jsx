@@ -5,10 +5,8 @@ import { useRouter } from 'next/navigation'
 
 import { Input } from '@/components/ui/Input/Input'
 import { Button } from '@/components/ui/Button/Button'
-import { Select } from '@/components/ui/Select/Select'
 
 import { PageHeader } from '@/components/Page/PageHeader'
-import { Typography } from '@/components/ui/Typography'
 import { useTranslations as getTranslations } from 'next-intl'
 
 import { editSensor } from '@/lib/queries'
@@ -16,9 +14,16 @@ import { useMutation } from '@tanstack/react-query'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/Alert'
 
 export default function EditSensorForm({ sensor }) {
+  const router = useRouter()
   const t = getTranslations('EditSensor')
 
-  const { mutate, isError, error } = useMutation({ mutationFn: editSensor })
+  const { mutate, isError, error } = useMutation({
+    mutationFn: editSensor,
+    onSuccess: () => {
+      router.refresh()
+      router.push('/sensors')
+    },
+  })
 
   const [formData, setFormData] = useState({
     identifier: sensor.identifier || '',
@@ -38,10 +43,6 @@ export default function EditSensorForm({ sensor }) {
     })
   }
 
-  console.log('sensor id', sensor.id)
-
-  const router = useRouter()
-
   useEffect(() => {
     // Fetch station information based on station_id
     const fetchStationName = async () => {
@@ -50,9 +51,7 @@ export default function EditSensorForm({ sensor }) {
           `http://localhost:3000/api/stations/${formData.station_id}`,
         )
         const stationData = await stationResponse.json()
-        console.log('stationData', stationData)
         setStationName(stationData.station.name) // set station name
-        console.log('stationName', stationData.station.name)
       } catch (error) {
         console.error('Failed to fetch station information', error)
       }
@@ -63,40 +62,26 @@ export default function EditSensorForm({ sensor }) {
     }
   }, [formData.station_id])
 
-  // const handleSubmit = async (evt) => {
-  //   evt.preventDefault()
-  //   mutate(sensor.id, formData)
-  // }
-
   const handleSubmit = async (e) => {
     e.preventDefault()
-    try {
-      const res = await fetch(
-        `http://localhost:3000/api/sensors/${sensor.id}`,
-        {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            identifier: formData.identifier,
-            type: formData.type,
-            nbr_measures: parseInt(formData.nbr_measures),
-            // station_id: formData.station_id,
-            // records: formData.records,
-            // files: formData.files,
-          }),
-        },
-      )
-      if (!res.ok) throw new Error('Failed to update sensor')
-      router.refresh()
-      router.push('/sensors')
-    } catch (error) {
-      console.log(error)
-    }
+    mutate({
+      id: sensor.id,
+      ...formData,
+    })
   }
+
   return (
     <>
       <PageHeader title={t('title')} className={'inline-flex pl-5'} showBack />
       <form onSubmit={handleSubmit} className="flex flex-col gap-3 max-w-xl ">
+        {isError ? (
+          <Alert variant="destructive">
+            <AlertTitle>{t('error_alert.title')}</AlertTitle>
+            <AlertDescription>
+              {t(`error_alert.errors.${error}`)}
+            </AlertDescription>
+          </Alert>
+        ) : null}
         <Input
           label={t('labels.identifier')}
           value={formData.identifier}
@@ -106,7 +91,6 @@ export default function EditSensorForm({ sensor }) {
           placeholder={t('labels.identifier')}
           name="Identifier"
           style={{ backgroundColor: '#C0C0C0' }}
-          // style={{ backgroundColor: '#F3F3F3' }}
         />
         <Input
           label={t('labels.type')}
@@ -126,14 +110,6 @@ export default function EditSensorForm({ sensor }) {
           placeholder={t('labels.nbr_measures')}
           name="Nbr_measures"
         />
-        {/* <Input
-          label={t('labels.station_id')}
-          value={formData.station_id}
-          onChange={handleChange('station_id')}
-          type="text"
-          placeholder="Station ID"
-          name="Station ID"
-        /> */}
         <Input
           label={t('labels.station_name')}
           value={stationName}
@@ -143,22 +119,6 @@ export default function EditSensorForm({ sensor }) {
           name="Station Name"
           style={{ backgroundColor: '#C0C0C0' }}
         />
-        {/* <Input
-          label={t('labels.records')}
-          value={formData.records}
-          onChange={handleChange('records')}
-          type="text"
-          placeholder={t('labels.records')}
-          name="Records"
-        />
-        <Input
-          label={t('labels.files')}
-          value={formData.files}
-          onChange={handleChange('files')}
-          type="text"
-          placeholder={t('labels.files')}
-          name="Files"
-        /> */}
         <Button type="submit" label={t('edit_sensor')} className="w-fit mt-4" />
       </form>
     </>
