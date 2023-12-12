@@ -17,9 +17,9 @@ export async function GET() {
     },
   })
 
-  // Check if sensors exist, if not, redirect to a 404 page
+  // If the sensor doesn't exist, return a 404 response
   if (!sensors || sensors.length === 0) {
-    return NextResponse.redirect('/404') // Adjust the path to your actual 404 page
+    return NextResponse.json({ error: 'Sensors not found' }, { status: 404 })
   }
 
   return NextResponse.json(sensors, { status: 200 })
@@ -35,9 +35,9 @@ export async function DELETE(request) {
     },
   })
 
-  // If the sensor doesn't exist, redirect to a 404 page
+  // If the sensor doesn't exist, return a 404 response
   if (!existingSensor) {
-    return NextResponse.redirect('/404') // Adjust the path to your actual 404 page
+    return NextResponse.json({ error: 'Sensor not found' }, { status: 404 })
   }
 
   // Perform the soft delete
