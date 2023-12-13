@@ -5,7 +5,7 @@ import { authOptions } from '@/lib/auth'
 import { Page } from '@/components/Page/Page'
 import { PageHeader } from '@/components/Page/PageHeader'
 
-import StationTable from '@/components/Table/StationTable'
+import StationSearchBar from '@/components/Searchbar/StationSearchBar'
 import { Theme } from '@radix-ui/themes'
 
 import { db } from '@/lib/db'
@@ -35,7 +35,7 @@ async function Home() {
       <PageHeader title={'Station'} showBack />
       <Theme>
         <Link href={'/stations/add'}>Add Station</Link>
-        <StationTable data={stations} />
+        <StationSearchBar data={stations} />
       </Theme>
     </Page>
   )
