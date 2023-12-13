@@ -116,6 +116,19 @@
       "edit": "Editer"
     }
   },
+  "SensorsTable": {
+    "title": "Tableau des capteurs",
+    "labels": {
+      "add_sensor": "Ajouter un capteur",
+      "search": "Rechercher",
+      "identifier": "Identificateur",
+      "type": "Type de capteur",
+      "edit": "Editer",
+      "nbr_measures": "Nombre de Mesures",
+      "created_at": "Créée à",
+      "last_update": "Dernière mise à jour"
+    }
+  },
   "Sensors": {
     "upload_screen": {
       "upload_file": "Télécharger le fichier",

@@ -114,6 +114,19 @@
       "edit": "Edit"
     }
   },
+  "SensorsTable": {
+    "title": "Sensor Table",
+    "labels": {
+      "add_sensor": "Add Sensor",
+      "search": "Search",
+      "identifier": "Identifier",
+      "type": "Type",
+      "edit": "Edit",
+      "nbr_measures": "Number Of Measures",
+      "created_at": "Created at",
+      "last_update": "Last update"
+    }
+  },
   "Sensors": {
     "upload_screen": {
       "upload_file": "Upload file",

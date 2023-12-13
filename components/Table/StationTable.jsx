@@ -41,7 +41,9 @@ export default function StationTable({ data }) {
         <Table.Body>
           {currentPageData.map((row) => (
             <Table.Row key={row.id}>
-              <Table.RowHeaderCell>{row.name}</Table.RowHeaderCell>
+              <Table.RowHeaderCell>
+                <Link href={`stations/${row.id}`}>{row.name}</Link>
+              </Table.RowHeaderCell>
               <Table.Cell>{row.type}</Table.Cell>
               <Table.Cell>
                 {row.sensors.map((sensor) => (
