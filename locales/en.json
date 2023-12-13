@@ -103,6 +103,17 @@
       }
     }
   },
+  "StationTable": {
+    "title": "Station Table",
+    "labels": {
+      "add_station": "Add Station",
+      "search": "Search",
+      "name": "Name",
+      "type": "Type",
+      "associated_sensors": "Associated sensors",
+      "edit": "Edit"
+    }
+  },
   "Sensors": {
     "upload_screen": {
       "upload_file": "Upload file",

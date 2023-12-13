@@ -9,7 +9,6 @@ import StationSearchBar from '@/components/Searchbar/StationSearchBar'
 import { Theme } from '@radix-ui/themes'
 
 import { db } from '@/lib/db'
-import { Link } from '@/components/ui/Link'
 
 const stations = await db.station.findMany({
   where: {
@@ -32,9 +31,7 @@ async function Home() {
 
   return (
     <Page>
-      <PageHeader title={'Station'} showBack />
       <Theme>
-        <Link href={'/stations/add'}>Add Station</Link>
         <StationSearchBar data={stations} />
       </Theme>
     </Page>

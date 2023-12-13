@@ -105,6 +105,17 @@
       }
     }
   },
+  "StationTable": {
+    "title": "Tableau des stations",
+    "labels": {
+      "add_station": "Ajouter une station",
+      "search": "Rechercher",
+      "name": "Nóm",
+      "type": "Type",
+      "associated_sensors": "Capteurs associés",
+      "edit": "Editer"
+    }
+  },
   "Sensors": {
     "upload_screen": {
       "upload_file": "Télécharger le fichier",

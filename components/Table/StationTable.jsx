@@ -3,33 +3,38 @@
 import { Table } from '@radix-ui/themes'
 import { useState } from 'react'
 import Link from 'next/link'
-import ReactPaginate from 'react-paginate';
+import ReactPaginate from 'react-paginate'
 import { StationTableDropdown } from '../ui/Dropdown/StationTableDropdown'
-import '../ui/SearchBar/pagination-style.css';
+import '../ui/SearchBar/pagination-style.css'
+import { useTranslations as getTranslations } from 'next-intl'
 
-const itemsPerPage = 6;
+const itemsPerPage = 6
 
 export default function StationTable({ data }) {
-  const [currentPage, setCurrentPage] = useState(0);
+  const t = getTranslations('StationTable')
 
-  const offset = currentPage * itemsPerPage;
-  const currentPageData = data.slice(offset, offset + itemsPerPage);
+  const [currentPage, setCurrentPage] = useState(0)
 
-  const pageCount = Math.ceil(data.length / itemsPerPage);
+  const offset = currentPage * itemsPerPage
+  const currentPageData = data.slice(offset, offset + itemsPerPage)
 
-  const handlePageClick = selectedPage => {
-    setCurrentPage(selectedPage.selected);
-  };
+  const pageCount = Math.ceil(data.length / itemsPerPage)
+
+  const handlePageClick = (selectedPage) => {
+    setCurrentPage(selectedPage.selected)
+  }
 
   return (
     <div>
       <Table.Root variant="surface">
         <Table.Header>
           <Table.Row>
-            <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell>Type</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell>Associated sensors</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell>Edit</Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell>{t('labels.name')}</Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell>{t('labels.type')}</Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell>
+              {t('labels.associated_sensors')}
+            </Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell>{t('labels.edit')}</Table.ColumnHeaderCell>
           </Table.Row>
         </Table.Header>
 
@@ -55,15 +60,15 @@ export default function StationTable({ data }) {
         </Table.Body>
       </Table.Root>
       <ReactPaginate
-          previousLabel={'Previous'}
-          nextLabel={'Next'}
-          pageCount={pageCount}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={5}
-          onPageChange={handlePageClick}
-          containerClassName={'pagination'}
-          subContainerClassName={'pages pagination'}
-          activeClassName={'active'}
+        previousLabel={'Previous'}
+        nextLabel={'Next'}
+        pageCount={pageCount}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={5}
+        onPageChange={handlePageClick}
+        containerClassName={'pagination'}
+        subContainerClassName={'pages pagination'}
+        activeClassName={'active'}
       />
     </div>
   )
