@@ -19,6 +19,7 @@
     "@prisma/client": "^5.0.0",
     "@radix-ui/themes": "^2.0.0",
     "@tanstack/react-query": "^4.36.1",
+    "@tanstack/react-query-devtools": "^5.13.5",
     "@tanstack/react-table": "^8.10.0",
     "bcrypt": "5.1.0",
     "clsx": "2.0.0",
@@ -34,6 +35,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-paginate": "^8.2.0",
+    "react-query": "^3.39.3",
+    "react-query-devtools": "^2.6.3",
     "react-select": "^5.8.0",
     "sharp": "^0.32.6"
   },

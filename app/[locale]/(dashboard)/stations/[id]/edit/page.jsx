@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 import { authOptions } from '@/lib/auth'
 import { Page } from '@/components/Page/Page'
 import EditStationForm from '@/components/Form/EditStationForm'
+import NotFound from '@/Pages/404'
 
 const getStationById = async (id) => {
   try {
@@ -40,8 +41,11 @@ export default async function EditStation({ params }) {
       // Handle other errors
       console.error(error)
       return (
+        // <Page>
+        //   <p>Error loading station data</p>
+        // </Page>
         <Page>
-          <p>Error loading station data</p>
+          <NotFound errorMessage={'Station Not Found'} />
         </Page>
       )
     }

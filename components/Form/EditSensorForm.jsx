@@ -10,20 +10,38 @@ import { PageHeader } from '@/components/Page/PageHeader'
 import { useTranslations as getTranslations } from 'next-intl'
 
 import { editSensor } from '@/lib/queries'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/Alert'
 
 export default function EditSensorForm({ sensor }) {
   const router = useRouter()
   const t = getTranslations('EditSensor')
+  // Define getSensorById function within the component
+  const getSensorById = async (id) => {
+    try {
+      const res = await fetch(`http://localhost:3000/api/sensors/${id}`, {
+        cache: 'no-store',
+      })
+      if (!res.ok) throw new Error('Failed to fetch sensor')
+      const json = await res.json()
+      return json
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
-  const { mutate, isError, error } = useMutation({
-    mutationFn: editSensor,
+  const { data, status } = useQuery(['sensor', sensor.id], () =>
+    getSensorById(sensor.id),
+  )
+
+ 
+
+  const { mutate } = useMutation(editSensor, {
     onSuccess: () => {
-      router.refresh()
-      router.push('/sensors')
+      //queryClient.invalidateQueries('sensor')
     },
   })
+  console.log('data sensor  ', data)
 
   const [formData, setFormData] = useState({
     identifier: sensor.identifier || '',
@@ -33,6 +51,23 @@ export default function EditSensorForm({ sensor }) {
     records: sensor.records || [],
     files: sensor.files || [],
   })
+
+  // const { mutate, isError, error } = useMutation({
+  //   mutationFn: editSensor,
+  //   onSuccess: () => {
+  //     router.refresh()
+  //     router.push('/sensors')
+  //   },
+  // })
+
+  // const [formData, setFormData] = useState({
+  //   identifier: sensor.identifier || '',
+  //   type: sensor.type || '',
+  //   nbr_measures: sensor.nbr_measures || '',
+  //   station_id: sensor.station_id || '',
+  //   records: sensor.records || [],
+  //   files: sensor.files || [],
+  // })
 
   const [stationName, setStationName] = useState('')
 
@@ -70,18 +105,21 @@ export default function EditSensorForm({ sensor }) {
     })
   }
 
+  if (status === 'loading') return <p>Loading...</p>
+  if (status === 'error') return <p>Error</p>
+
   return (
     <>
       <PageHeader title={t('title')} className={'inline-flex pl-5'} showBack />
       <form onSubmit={handleSubmit} className="flex flex-col gap-3 max-w-xl ">
-        {isError ? (
+        {/* {isError ? (
           <Alert variant="destructive">
             <AlertTitle>{t('error_alert.title')}</AlertTitle>
             <AlertDescription>
               {t(`error_alert.errors.${error}`)}
             </AlertDescription>
           </Alert>
-        ) : null}
+        ) : null} */}
         <Input
           label={t('labels.identifier')}
           value={formData.identifier}
