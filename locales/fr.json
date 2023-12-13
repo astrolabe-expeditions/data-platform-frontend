@@ -77,7 +77,13 @@
       "image_url": "Image URL"
     },
     "edit_station": "Modifier Station",
-    "select_sensors": "Sélectionner des Capteurs"
+    "select_sensors": "Sélectionner des Capteurs",
+    "error_alert": {
+      "title": "Erreur",
+      "errors": {
+        "value_error": "Verifier les valeurs"
+      }
+    }
   },
   "EditSensor": {
     "title": "Modifier Capteur",
@@ -91,7 +97,13 @@
       "files": "Fichiers",
       "station_name": "Nom de la Station"
     },
-    "edit_sensor": "Modifier Capteur"
+    "edit_sensor": "Modifier Capteur",
+    "error_alert": {
+      "title": "Erreur",
+      "errors": {
+        "value_error": "Verifier les valeurs"
+      }
+    }
   },
   "Sensors": {
     "upload_screen": {
