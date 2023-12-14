@@ -1,10 +1,17 @@
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth'
 import { Page } from '@/components/Page/Page'
-import { PageHeader } from '@/components/Page/PageHeader'
+import { db } from '@/lib/db'
+import { StationView } from '@/components/View/ViewStation'
 
 async function Home({ params }) {
   const session = await getServerSession(authOptions)
+
+  const station = await db.station.findUnique({
+    where: {
+      id: params.id,
+    },
+  })
 
   if (!session) {
     redirect('/auth/login')
@@ -12,7 +19,7 @@ async function Home({ params }) {
 
   return (
     <Page>
-      <PageHeader title={`Seeing id of station: ${params.id}`} showBack />
+      <StationView station={station}></StationView>
     </Page>
   )
 }

@@ -105,13 +105,17 @@
   },
   "StationTable": {
     "title": "Station Table",
+    "station_view_title": "Station View",
     "labels": {
       "add_station": "Add Station",
       "search": "Search",
       "name": "Name",
       "type": "Type",
       "associated_sensors": "Associated sensors",
-      "edit": "Edit"
+      "edit": "Edit",
+      "description": "Description",
+      "latitude": "Latitude",
+      "longitude": "Longitude"
     }
   },
   "SensorsTable": {
@@ -136,6 +140,9 @@
       "nbr_measures": "Number of Mesures",
       "station": "Name of the Station",
       "active_file": "Active File"
+    },
+    "view_screen": {
+      "title": "View Sensor"
     }
   }
 }
