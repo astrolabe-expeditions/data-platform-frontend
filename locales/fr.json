@@ -110,7 +110,7 @@
     "labels": {
       "add_station": "Ajouter une station",
       "search": "Rechercher",
-      "name": "Nóm",
+      "name": "Nom",
       "type": "Type",
       "associated_sensors": "Capteurs associés",
       "edit": "Editer"

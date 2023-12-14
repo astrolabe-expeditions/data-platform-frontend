@@ -2,7 +2,7 @@
 
 import { Table } from '@radix-ui/themes'
 import Link from 'next/link'
-import { StationTableDropdown } from '../ui/Dropdown/StationTableDropdown'
+import { SensorTableDropdown } from '../ui/Dropdown/SensorTableDropdown'
 import ReactPaginate from 'react-paginate'
 import { useState, useEffect } from 'react'
 import '../ui/SearchBar/pagination-style.css'
@@ -22,7 +22,7 @@ function formatDate(date) {
 
 const itemsPerPage = 6
 
-export default function StationTable({ data }) {
+export default function SensorTable({ data }) {
   const [currentPage, setCurrentPage] = useState(0)
   const t = getTranslations('SensorsTable')
 
@@ -68,7 +68,7 @@ export default function StationTable({ data }) {
               <Table.Cell>{formatDate(row.created_at)}</Table.Cell>
               <Table.Cell>{formatDate(row.updated_at)}</Table.Cell>
               <Table.Cell>
-                <StationTableDropdown obj={row}></StationTableDropdown>
+                <SensorTableDropdown obj={row}></SensorTableDropdown>
               </Table.Cell>
             </Table.Row>
           ))}
