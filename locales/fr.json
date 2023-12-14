@@ -33,22 +33,24 @@
     "no_account": "Vous n'avez pas encore de compte ?",
     "no_account_link": "Créer un compte"
   },
-  "SensorForm": {
-    "title": "Ajouter un nouveau capteur",
-    "subtitle": "Sous-titre",
-    "name": "Nom",
-    "identifier": "Identifiant",
-    "type": "Type",
-    "create": "Créer",
-    "error_alert": {
-      "title": "Erreur",
-      "errors": {
-        "field_missing": "Un des champs est vide"
-      }
-    }
+  "AddSensor": {
+    "title": "Ajouter Capteur",
+    "subtitle": "Ajouter les informations du capteur",
+    "labels": {
+      "identifier": "Identifiant",
+      "type": "Type",
+      "nbr_measures": "Nombre de Mesures",
+      "station_id": "Identifiant de la station",
+      "records": "Enregistrements",
+      "files": "Fichiers",
+      "station_name": "Nom de la Station"
+    },
+    "add_sensor": "Ajouter Capteur",
+    "select_type": "Sélectionner le type du capteur"
   },
-  "Station": {
+  "AddStation": {
     "title": "Ajouter station",
+    "subtitle": "Ajouter les informations de la station",
     "labels": {
       "name": "Nom",
       "type": "Type",
@@ -56,9 +58,11 @@
       "latitude": "Latitude",
       "longitude": "Longitude",
       "description": "Description",
-      "image_URL": "image_URL"
+      "image_url": "Image URL"
     },
-    "addStation": "Ajouter Station"
+    "add_station": "Ajouter Station",
+    "select_type": "Sélectionner le type de la station",
+    "select_sensors": "Sélectionner des Capteurs"
   },
   "EditStation": {
     "title": "Modifier Station",
@@ -73,7 +77,13 @@
       "image_url": "Image URL"
     },
     "edit_station": "Modifier Station",
-    "select_sensors": "Sélectionner des Capteurs"
+    "select_sensors": "Sélectionner des Capteurs",
+    "error_alert": {
+      "title": "Erreur",
+      "errors": {
+        "value_error": "Verifier les valeurs"
+      }
+    }
   },
   "EditSensor": {
     "title": "Modifier Capteur",
@@ -87,7 +97,37 @@
       "files": "Fichiers",
       "station_name": "Nom de la Station"
     },
-    "edit_sensor": "Modifier Capteur"
+    "edit_sensor": "Modifier Capteur",
+    "error_alert": {
+      "title": "Erreur",
+      "errors": {
+        "value_error": "Verifier les valeurs"
+      }
+    }
+  },
+  "StationTable": {
+    "title": "Tableau des stations",
+    "labels": {
+      "add_station": "Ajouter une station",
+      "search": "Rechercher",
+      "name": "Nóm",
+      "type": "Type",
+      "associated_sensors": "Capteurs associés",
+      "edit": "Editer"
+    }
+  },
+  "SensorsTable": {
+    "title": "Tableau des capteurs",
+    "labels": {
+      "add_sensor": "Ajouter un capteur",
+      "search": "Rechercher",
+      "identifier": "Identificateur",
+      "type": "Type de capteur",
+      "edit": "Editer",
+      "nbr_measures": "Nombre de Mesures",
+      "created_at": "Créée à",
+      "last_update": "Dernière mise à jour"
+    }
   },
   "Sensors": {
     "upload_screen": {
@@ -96,7 +136,7 @@
       "submit_form": "Soumettre le fichier",
       "type": "Type",
       "nbr_measures": "Nombre de Mesures",
-      "station": "Nóm de la Station",
+      "station": "Nom de la Station",
       "active_file": "Fichier Actif"
     }
   }

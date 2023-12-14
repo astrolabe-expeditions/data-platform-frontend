@@ -1,16 +1,17 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import SensorTable from '@/components/Table/SensorTable'
+import StationTable from '@/components/Table/StationTable'
+import { Button } from '../ui/Button/Button'
 import { useTranslations as getTranslations } from 'next-intl'
 import { PageHeader } from '../Page/PageHeader'
-import Link from 'next/link'
+import { Link } from '../ui/Link'
 
-export default function SensorSearchbar({ data }) {
+export default function StationSearchbar({ data }) {
   const [searchTerm, setSearchTerm] = useState('')
-  const [filteredSensors, setFilteredSensors] = useState([])
-
-  const t = getTranslations('SensorsTable')
+  const [filteredStations, setFilteredStations] = useState([])
+  const [associatedSensors, setAssociatedSensors] = useState([])
+  const t = getTranslations('StationTable')
 
   const handleSearch = (event) => {
     const term = event.target.value.toLowerCase()
@@ -19,29 +20,34 @@ export default function SensorSearchbar({ data }) {
 
   useEffect(() => {
     if (searchTerm !== '') {
-      const filteredData = data.filter((sensor) => {
-        const { id, ...rest } = sensor
+      const filteredData = data.filter((station) => {
+        const { id, ...rest } = station
         return Object.values(rest).some((value) => {
+          console.log(rest.sensors)
           if (typeof value === 'string') {
             return value.toLowerCase().includes(searchTerm)
+          } else if (typeof value === 'object') {
+            console.log(value.sensors)
           }
+
           return false
         })
       })
-      setFilteredSensors(filteredData)
+      setFilteredStations(filteredData)
     } else {
-      setFilteredSensors(data)
+      setFilteredStations(data)
     }
   }, [searchTerm, data])
 
   return (
     <div>
-      <PageHeader title={t('title')} showBack />
-      <br />
-      <Link href={'/sensors/add'} passHref>
-        {t('labels.add_sensor')}
-      </Link>
-
+      <div>
+        <PageHeader title={t('title')} showBack />
+        <br />
+        <Link href={'/stations/add'} passHref>
+          {t('labels.add_station')}
+        </Link>
+      </div>
       <form>
         <input
           className="search"
@@ -53,12 +59,12 @@ export default function SensorSearchbar({ data }) {
           placeholder={t('labels.search')}></input>
         <button className="search-btn">{t('labels.search')}</button>
 
-        {filteredSensors && filteredSensors.length > 0 && (
-          <SensorTable data={filteredSensors} />
+        {filteredStations && filteredStations.length > 0 && (
+          <StationTable data={filteredStations} />
         )}
       </form>
     </div>
   )
 }
 
-export { SensorSearchbar }
+export { StationSearchbar }

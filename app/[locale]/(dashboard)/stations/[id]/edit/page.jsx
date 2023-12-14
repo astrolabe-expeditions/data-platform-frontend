@@ -2,9 +2,7 @@ import { getServerSession } from 'next-auth/next'
 import { redirect } from 'next/navigation'
 import { authOptions } from '@/lib/auth'
 import { Page } from '@/components/Page/Page'
-import { PageHeader } from '@/components/Page/PageHeader'
 import EditStationForm from '@/components/Form/EditStationForm'
-import { Edit } from '@/components/ui/Icons'
 
 const getStationById = async (id) => {
   try {
@@ -22,17 +20,30 @@ const getStationById = async (id) => {
 export default async function EditStation({ params }) {
   const session = await getServerSession(authOptions)
   const { id } = params
-  const { station } = await getStationById(id)
+  try {
+    const { station } = await getStationById(id)
 
-  console.log('id: ', id)
+    if (!session) {
+      redirect('/auth/login')
+    }
 
-  if (!session) {
-    redirect('/auth/login')
+    return (
+      <Page>
+        <EditStationForm station={station} />
+      </Page>
+    )
+  } catch (error) {
+    if (error.message === 'Station not found') {
+      // Redirect to 404 page
+      redirect('/404')
+    } else {
+      // Handle other errors
+      console.error(error)
+      return (
+        <Page>
+          <p>Error loading station data</p>
+        </Page>
+      )
+    }
   }
-
-  return (
-    <Page>
-      <EditStationForm station={station} />
-    </Page>
-  )
 }

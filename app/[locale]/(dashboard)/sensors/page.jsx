@@ -12,19 +12,15 @@ import { db } from '@/lib/db'
 import { Link } from '@/components/ui/Link'
 
 const sensors = await db.sensor.findMany({
-  where: {
-      deleted: false,
-  },
   select: {
     id: true,
     identifier: true,
     type: true,
     nbr_measures: true,
     created_at: true,
-    updated_at: true
+    updated_at: true,
   },
 })
-
 
 async function Home() {
   const session = await getServerSession(authOptions)
@@ -32,14 +28,12 @@ async function Home() {
   if (!session) {
     redirect('/auth/login')
   }
+
   return (
     <Page>
-      <PageHeader title={'Capteurs'} showBack />
-      <ul>
-        {sensors.map(({ id, identifier }) => (
-          <li key={id}>{identifier}</li>
-        ))}
-      </ul>
+      <Theme>
+        <SensorSearchBar data={sensors} />
+      </Theme>
     </Page>
   )
 }

@@ -1,30 +1,19 @@
 import { getServerSession } from 'next-auth/next'
+import { redirect } from 'next/navigation'
 import { authOptions } from '@/lib/auth'
 import { Page } from '@/components/Page/Page'
-import { PageHeader } from '@/components/Page/PageHeader'
-import { StationForm } from '@/components/Form/StationForm'
-import { db } from '@/lib/db'
-import { StationType } from '@prisma/client'
+import AddStationForm from '@/components/Form/AddStationForm'
 
-async function Home({ params }) {
+export default async function AddStation() {
   const session = await getServerSession(authOptions)
 
   if (!session) {
     redirect('/auth/login')
   }
 
-  const sensors = await db.sensor.findMany({
-    select: {
-      id: true,
-      identifier: true,
-    },
-  })
-
   return (
     <Page>
-      <StationForm stationtype={StationType} sensors={sensors} />
+      <AddStationForm />
     </Page>
   )
 }
-
-export default Home
