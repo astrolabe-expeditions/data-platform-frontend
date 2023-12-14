@@ -14,5 +14,6 @@ export default async function AddStation() {
   return (
     <Page>
       <AddStationForm />
+    </Page>
   )
 }
