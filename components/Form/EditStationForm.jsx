@@ -61,7 +61,9 @@ export default function EditStationForm({ station }) {
   const fetchAllSensors = useCallback(async () => {
     setSensorStatus('loading')
     try {
-      const response = await fetch('http://localhost:3000/api/sensors')
+      const response = await fetch(
+        'http://localhost:3000/api/sensors?station_id=null',
+      )
       if (!response.ok) {
         throw new Error('Failed to fetch sensors')
       }
@@ -85,10 +87,12 @@ export default function EditStationForm({ station }) {
   }, [fetchAllSensors]) // Fetch all sensors when the component mounts
 
   // Array of all sensors
-  const sensorsList = allSensors.map((sensor) => ({
-    value: sensor,
-    label: sensor.identifier,
-  }))
+  const sensorsList = allSensors
+    .filter((sensor) => sensor.station_id === null)
+    .map((sensor) => ({
+      value: sensor,
+      label: sensor.identifier,
+    }))
 
   // Function triggered on selection
   function handleSelect(data) {
