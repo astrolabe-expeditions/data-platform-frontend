@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Select from 'react-select'
 
@@ -12,15 +12,13 @@ import { StationType } from '@prisma/client'
 import { useTranslations as getTranslations } from 'next-intl'
 
 import { editStation } from '@/lib/queries'
-import { useMutation } from '@tanstack/react-query'
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/Alert'
+import { useMutation, useQuery } from '@tanstack/react-query'
 
 export default function EditStationForm({ station }) {
   const router = useRouter()
   const t = getTranslations('EditStation')
 
-  const { mutate, isError, error } = useMutation({
-    mutationFn: editStation,
+  const { mutate } = useMutation(editStation, {
     onSuccess: () => {
       router.refresh()
       router.push('/stations')
@@ -58,55 +56,58 @@ export default function EditStationForm({ station }) {
 
   const isStationTypeFixed = formData.type === StationType.Fixed // Check if the station type is "Fixed"
 
-  const fetchAllSensors = useCallback(async () => {
-    setSensorStatus('loading')
-    try {
-      const response = await fetch('http://localhost:3000/api/sensors')
-      if (!response.ok) {
-        throw new Error('Failed to fetch sensors')
+  // Use an inline function for the query
+  const { data: allSensorsList, status: sensorStatusQuery } = useQuery(
+    ['fetchAllSensors'],
+    async () => {
+      setSensorStatus('loading')
+      try {
+        const res = await fetch('http://localhost:3000/api/sensors')
+        if (!res.ok) {
+          throw new Error('Failed to fetch sensors')
+        }
+        const json = await res.json()
+        setAllSensors(json) // Store all sensors in the state
+        const linkedSensorsList = formData.sensors.map((sensor) => ({
+          value: sensor,
+          label: sensor.identifier,
+        }))
+        setSelectedSensors(linkedSensorsList)
+        console.log('All Sensors: ', json)
+        setSensorStatus('loaded')
+        return json
+      } catch (error) {
+        setSensorStatus('error')
+        console.error('Error fetching all sensors:', error)
       }
-      const data = await response.json()
-      setAllSensors(data) // Store all sensors in the state
-      const linkedSensorsList = formData.sensors.map((sensor) => ({
-        value: sensor,
-        label: sensor.identifier,
-      }))
-      setSelectedSensors(linkedSensorsList)
-      console.log('All Sensors: ', data)
-      setSensorStatus('loaded')
-    } catch (error) {
-      setSensorStatus('error')
-      console.error('Error fetching all sensors:', error)
-    }
-  }, [formData.sensors])
+    },
+  )
 
-  useEffect(() => {
-    fetchAllSensors()
-  }, [fetchAllSensors]) // Fetch all sensors when the component mounts
-
-  // Array of all sensors
-  const sensorsList = allSensors.map((sensor) => ({
-    value: sensor,
-    label: sensor.identifier,
-  }))
+  // Array of all sensors that are not linked to a station
+  const sensorsList = allSensors
+    .filter((sensor) => sensor.station_id === null)
+    .map((sensor) => ({
+      value: sensor,
+      label: sensor.identifier,
+    }))
 
   // Function triggered on selection
   function handleSelect(data) {
     setSelectedSensors(data)
   }
 
+  if (sensorStatusQuery === 'loading') {
+    return <p>Loading...</p>
+  }
+
+  if (sensorStatusQuery === 'error') {
+    return <p>Error loading sensor data</p>
+  }
+
   return (
     <>
       <PageHeader title={t('title')} className={'inline-flex pl-5'} />
       <form onSubmit={handleSubmit} className="flex flex-col gap-3 max-w-xl">
-        {isError ? (
-          <Alert variant="destructive">
-            <AlertTitle>{t('error_alert.title')}</AlertTitle>
-            <AlertDescription>
-              {t(`error_alert.errors.${error}`)}
-            </AlertDescription>
-          </Alert>
-        ) : null}
         <Input
           label={t('labels.name')}
           value={formData.name}

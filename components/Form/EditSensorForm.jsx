@@ -10,15 +10,30 @@ import { PageHeader } from '@/components/Page/PageHeader'
 import { useTranslations as getTranslations } from 'next-intl'
 
 import { editSensor } from '@/lib/queries'
-import { useMutation } from '@tanstack/react-query'
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/Alert'
+import { useMutation, useQuery } from '@tanstack/react-query'
 
 export default function EditSensorForm({ sensor }) {
   const router = useRouter()
   const t = getTranslations('EditSensor')
 
-  const { mutate, isError, error } = useMutation({
-    mutationFn: editSensor,
+  const getSensorById = async (id) => {
+    try {
+      const res = await fetch(`http://localhost:3000/api/sensors/${id}`, {
+        cache: 'no-store',
+      })
+      if (!res.ok) throw new Error('Failed to fetch sensor')
+      const json = await res.json()
+      return json
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const { data, status } = useQuery(['sensor', sensor.id], () =>
+    getSensorById(sensor.id),
+  )
+
+  const { mutate } = useMutation(editSensor, {
     onSuccess: () => {
       router.refresh()
       router.push('/sensors')
@@ -70,18 +85,18 @@ export default function EditSensorForm({ sensor }) {
     })
   }
 
+  if (status === 'loading') {
+    return <p>Loading...</p>
+  }
+
+  if (status === 'error') {
+    return <p>Error loading sensor data</p>
+  }
+
   return (
     <>
       <PageHeader title={t('title')} className={'inline-flex pl-5'} showBack />
       <form onSubmit={handleSubmit} className="flex flex-col gap-3 max-w-xl ">
-        {isError ? (
-          <Alert variant="destructive">
-            <AlertTitle>{t('error_alert.title')}</AlertTitle>
-            <AlertDescription>
-              {t(`error_alert.errors.${error}`)}
-            </AlertDescription>
-          </Alert>
-        ) : null}
         <Input
           label={t('labels.identifier')}
           value={formData.identifier}
