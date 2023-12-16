@@ -22,8 +22,8 @@ model Station {
   type            StationType
   latitude        String?
   longitude       String?
-  description     String
-  image_url       String
+  description     String?
+  image_url       String?
   sensors         Sensor[]   // Define a relation to Sensor
   created_at      DateTime?   @default(now())
   created_by_id   String?     @db.ObjectId
@@ -34,6 +34,7 @@ model Station {
   deleted_at      DateTime?
   deleted_by_id   String?     @db.ObjectId
   deleted_by      User?       @relation("deletedStations", fields: [deleted_by_id], references: [id])
+  deleted         Boolean     @default(false)
 }
 
 enum SensorType {
@@ -45,7 +46,7 @@ model Sensor {
   id              String      @id @default(auto()) @map("_id") @db.ObjectId
   identifier      String      @unique
   type            SensorType
-  nbr_measures    Int
+  nbr_measures    Int?
   station_id      String?     @db.ObjectId // Add a reference to the Station model
   station         Station?    @relation(fields: [station_id], references: [id])
   records         Record[]    // Add a one-to-many relationship to Record
@@ -59,6 +60,7 @@ model Sensor {
   deleted_at      DateTime?
   deleted_by_id   String?     @db.ObjectId
   deleted_by      User?       @relation("deletedSensors", fields: [deleted_by_id], references: [id])
+  deleted         Boolean     @default(false)
 }
 
 model Record {

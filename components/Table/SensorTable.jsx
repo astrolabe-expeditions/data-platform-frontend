@@ -1,19 +1,30 @@
 'use client'
 
 import { Table } from '@radix-ui/themes'
-import { useState } from 'react'
 import Link from 'next/link'
+import { SensorTableDropdown } from '../ui/Dropdown/SensorTableDropdown'
 import ReactPaginate from 'react-paginate'
-import { StationTableDropdown } from '../ui/Dropdown/StationTableDropdown'
+import { useState, useEffect } from 'react'
 import '../ui/SearchBar/pagination-style.css'
 import { useTranslations as getTranslations } from 'next-intl'
 
+function formatDate(date) {
+  const formattedDate = new Date(date)
+  const year = formattedDate.getFullYear()
+  const month = `0${formattedDate.getMonth() + 1}`.slice(-2)
+  const day = `0${formattedDate.getDate()}`.slice(-2)
+  const hours = `0${formattedDate.getHours()}`.slice(-2)
+  const minutes = `0${formattedDate.getMinutes()}`.slice(-2)
+  const seconds = `0${formattedDate.getSeconds()}`.slice(-2)
+
+  return `${year}-${month}-${day} at ${hours}:${minutes}:${seconds}`
+}
+
 const itemsPerPage = 6
 
-export default function StationTable({ data }) {
-  const t = getTranslations('StationTable')
-
+export default function SensorTable({ data }) {
   const [currentPage, setCurrentPage] = useState(0)
+  const t = getTranslations('SensorsTable')
 
   const offset = currentPage * itemsPerPage
   const currentPageData = data.slice(offset, offset + itemsPerPage)
@@ -29,10 +40,18 @@ export default function StationTable({ data }) {
       <Table.Root variant="surface">
         <Table.Header>
           <Table.Row>
-            <Table.ColumnHeaderCell>{t('labels.name')}</Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell>
+              {t('labels.identifier')}
+            </Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell>{t('labels.type')}</Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell>
-              {t('labels.associated_sensors')}
+              {t('labels.nbr_measures')}
+            </Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell>
+              {t('labels.created_at')}
+            </Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell>
+              {t('labels.last_update')}
             </Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell>{t('labels.edit')}</Table.ColumnHeaderCell>
           </Table.Row>
@@ -42,20 +61,14 @@ export default function StationTable({ data }) {
           {currentPageData.map((row) => (
             <Table.Row key={row.id}>
               <Table.RowHeaderCell>
-                <Link href={`stations/${row.id}`}>{row.name}</Link>
+                <Link href={`sensors/${row.id}`}>{row.identifier}</Link>
               </Table.RowHeaderCell>
               <Table.Cell>{row.type}</Table.Cell>
+              <Table.Cell>{row.nbr_measures}</Table.Cell>
+              <Table.Cell>{formatDate(row.created_at)}</Table.Cell>
+              <Table.Cell>{formatDate(row.updated_at)}</Table.Cell>
               <Table.Cell>
-                {row.sensors.map((sensor) => (
-                  <div key={sensor.id}>
-                    <Link href={`/sensors/${sensor.id}`}>
-                      {sensor.identifier}
-                    </Link>
-                  </div>
-                ))}
-              </Table.Cell>
-              <Table.Cell>
-                <StationTableDropdown obj={row}></StationTableDropdown>
+                <SensorTableDropdown obj={row}></SensorTableDropdown>
               </Table.Cell>
             </Table.Row>
           ))}

@@ -30,5 +30,119 @@
     "login": "Login",
     "no_account": "Don't have an account yet?",
     "no_account_link": "Create an account"
+  },
+  "AddSensor": {
+    "title": "Add Sensor",
+    "subtitle": "Add the sensor details",
+    "labels": {
+      "identifier": "Identifier",
+      "type": "Type",
+      "nbr_measures": "Number Of Measures",
+      "station_id": "Station ID",
+      "records": "Records",
+      "files": "Files",
+      "station_name": "Station Name"
+    },
+    "add_sensor": "Add Sensor",
+    "select_type": "Select Sensor Type"
+  },
+  "AddStation": {
+    "title": "Add Station",
+    "subtitle": "Add the station details",
+    "labels": {
+      "name": "Name",
+      "type": "Type",
+      "sensors": "Sensors",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "description": "Description",
+      "image_url": "image URL"
+    },
+    "add_station": "Add Station",
+    "select_type": "Select Station Type",
+    "select_sensors": "Select Sensors"
+  },
+  "EditStation": {
+    "title": "Edit Station",
+    "subtitle": "Edit the station details",
+    "labels": {
+      "name": "Name",
+      "type": "Type",
+      "sensors": "Sensors",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "description": "Description",
+      "image_url": "Image URL"
+    },
+    "edit_station": "Edit Station",
+    "select_sensors": "Select Sensors",
+    "error_alert": {
+      "title": "Error",
+      "errors": {
+        "value_error": "Verify the values entered"
+      }
+    }
+  },
+  "EditSensor": {
+    "title": "Edit Sensor",
+    "subtitle": "Edit the sensor details",
+    "labels": {
+      "identifier": "Identifier",
+      "type": "Type",
+      "nbr_measures": "Number Of Measures",
+      "station_id": "Station ID",
+      "records": "Records",
+      "files": "Files",
+      "station_name": "Station Name"
+    },
+    "edit_sensor": "Edit Sensor",
+    "error_alert": {
+      "title": "Error",
+      "errors": {
+        "value_error": "Verify the values entered"
+      }
+    }
+  },
+  "StationTable": {
+    "title": "Station Table",
+    "station_view_title": "Station View",
+    "labels": {
+      "add_station": "Add Station",
+      "search": "Search",
+      "name": "Name",
+      "type": "Type",
+      "associated_sensors": "Associated sensors",
+      "edit": "Edit",
+      "description": "Description",
+      "latitude": "Latitude",
+      "longitude": "Longitude"
+    }
+  },
+  "SensorsTable": {
+    "title": "Sensor Table",
+    "labels": {
+      "add_sensor": "Add Sensor",
+      "search": "Search",
+      "identifier": "Identifier",
+      "type": "Type",
+      "edit": "Edit",
+      "nbr_measures": "Number Of Measures",
+      "created_at": "Created at",
+      "last_update": "Last update"
+    }
+  },
+  "Sensors": {
+    "upload_screen": {
+      "upload_file": "Upload file",
+      "upload_file_for_sensor": "Upload file for the sensor",
+      "submit_form": "Submit file",
+      "type": "Type",
+      "nbr_measures": "Number of Mesures",
+      "station": "Name of the Station",
+      "active_file": "Active File"
+    },
+    "view_screen": {
+      "title": "View Sensor"
+    }
   }
 }

@@ -4,14 +4,14 @@ import { Link } from '../Link'
 
 import { useRouter } from 'next/navigation'
 
-const StationTableDropdown = ({ obj, ...props }) => {
+const SensorTableDropdown = ({ obj, ...props }) => {
   const router = useRouter()
-  const removeStation = async () => {
-    const confirmed = confirm('Are you sure you want to delete this Station?')
+  const removeSensor = async () => {
+    const confirmed = confirm('Are you sure you want to delete this Sensor?')
 
     if (confirmed) {
       const res = await fetch(
-        `http://localhost:3000/api/stations?id=${obj.id}`,
+        `http://localhost:3000/api/sensors?id=${obj.id}`,
         {
           method: 'DELETE',
         },
@@ -33,11 +33,11 @@ const StationTableDropdown = ({ obj, ...props }) => {
         </IconButton>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content>
-        <Link href={`/stations/${obj.id}/edit`}>
+        <Link href={`/sensors/${obj.id}/edit`}>
           <DropdownMenu.Item>Edit</DropdownMenu.Item>
         </Link>
         <DropdownMenu.Separator />
-        <DropdownMenu.Item color="red" onClick={removeStation}>
+        <DropdownMenu.Item color="red" onClick={removeSensor}>
           Delete
         </DropdownMenu.Item>
       </DropdownMenu.Content>
@@ -45,4 +45,4 @@ const StationTableDropdown = ({ obj, ...props }) => {
   )
 }
 
-export { StationTableDropdown }
+export { SensorTableDropdown }
