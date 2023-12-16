@@ -4,7 +4,6 @@ import { authOptions } from '@/lib/auth'
 import { Page } from '@/components/Page/Page'
 import AddSensorForm from '@/components/Form/AddSensorForm'
 
-
 export default async function AddSensor() {
   const session = await getServerSession(authOptions)
 

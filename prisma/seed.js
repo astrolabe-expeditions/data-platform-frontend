@@ -587,7 +587,7 @@ const load = async () => {
         type: 'Fixed',
         latitude: '48.390394',
         longitude: '-4.486076',
-        description: 'Fixed station in Brest', 
+        description: 'Fixed station in Brest',
         image_url: 'https://picsum.photos/200/301.jpg',
         created_at: new Date('2023-11-06T10:15:00.000Z'),
         created_by: { connect: { id: User6.id } },
@@ -730,9 +730,17 @@ const load = async () => {
           ],
         },
       },
-    });
-    
-    console.log(station_6, station_7, station_8, station_9, station_10, station_11, station_12)
+    })
+
+    console.log(
+      station_6,
+      station_7,
+      station_8,
+      station_9,
+      station_10,
+      station_11,
+      station_12,
+    )
   } catch (e) {
     console.error(e)
     process.exit(1)
