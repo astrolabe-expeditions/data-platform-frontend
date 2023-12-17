@@ -1,8 +1,6 @@
 import clsx from 'clsx'
 import { Typography } from '../Typography'
 
-
-
 const Link = ({
   children,
   variant = 'body1',

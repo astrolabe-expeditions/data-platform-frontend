@@ -5,7 +5,7 @@ const SensorCard = ({ sensor }) => {
   const t = getTranslations('Sensors')
 
   return (
-    <Card className="mb-10">
+    <Card className="mb-2">
       <a href={`/sensors/${sensor.id}`}>
         <Flex gap="3" align="center">
           <Avatar
@@ -27,10 +27,12 @@ const SensorCard = ({ sensor }) => {
               <strong>{t('upload_screen.nbr_measures')}: </strong>
               {sensor.nbr_measures}
             </Text>
-            <Text as="div" size="2" color="gray">
-              <strong>{t('upload_screen.station')}:</strong>{' '}
-              {sensor.station.name}
-            </Text>
+            {sensor.station ? (
+              <Text as="div" size="2" color="gray">
+                <strong>{t('upload_screen.station')}:</strong>{' '}
+                {sensor.station.name}
+              </Text>
+            ) : null}
             {sensor.files.flatMap((file) =>
               file.status === 'Active' ? (
                 <Text as="div" size="2" color="gray" key={file.id}>
