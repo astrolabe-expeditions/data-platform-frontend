@@ -35,6 +35,8 @@ model Station {
   deleted_by_id   String?     @db.ObjectId
   deleted_by      User?       @relation("deletedStations", fields: [deleted_by_id], references: [id])
   deleted         Boolean     @default(false)
+
+  @@map("stations")
 }
 
 enum SensorType {
@@ -61,6 +63,8 @@ model Sensor {
   deleted_by_id   String?     @db.ObjectId
   deleted_by      User?       @relation("deletedSensors", fields: [deleted_by_id], references: [id])
   deleted         Boolean     @default(false)
+
+  @@map("sensors")
 }
 
 model Record {
@@ -88,6 +92,8 @@ model Record {
   deleted_at          DateTime?
   deleted_by_id       String?     @db.ObjectId
   deleted_by          User?       @relation("deletedRecords", fields: [deleted_by_id], references: [id])
+
+  @@map("records")
 }
 
 model File {
@@ -106,13 +112,17 @@ model File {
   deleted_at      DateTime?
   deleted_by_id   String?     @db.ObjectId
   deleted_by      User?       @relation("deletedFiles", fields: [deleted_by_id], references: [id])
+
+  @@map("files")
 }
 
 model Organisation {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
-  description   String    
+  description   String
   users         User[]    // Add a one-to-many relationship to User
+
+  @@map("organisations")
 }
 
 model Account {
@@ -141,6 +151,8 @@ model Session {
   userId       String   @map("user_id") @db.ObjectId
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
 }
 
 model User {
@@ -166,6 +178,8 @@ model User {
   created_files     File[]          @relation("createdFiles") // Files created by this user
   updated_files     File[]          @relation("updatedFiles") // Files updated by this user
   deleted_files     File[]          @relation("deletedFiles") // Files deleted by this user
+
+  @@map("users")
 }
 
 
