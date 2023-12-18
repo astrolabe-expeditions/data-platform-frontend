@@ -78,6 +78,7 @@
     },
     "edit_station": "Modifier Station",
     "select_sensors": "Sélectionner des Capteurs",
+    "name_required": "Nom de la station est requis.",
     "error_alert": {
       "title": "Erreur",
       "errors": {
@@ -98,6 +99,7 @@
       "station_name": "Nom de la Station"
     },
     "edit_sensor": "Modifier Capteur",
+    "nbr_measures_required": "Nombre de mesures est requis.",
     "error_alert": {
       "title": "Erreur",
       "errors": {

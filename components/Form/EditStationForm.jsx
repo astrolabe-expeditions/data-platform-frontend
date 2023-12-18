@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Select from 'react-select'
 
@@ -12,15 +12,25 @@ import { StationType } from '@prisma/client'
 import { useTranslations as getTranslations } from 'next-intl'
 
 import { editStation } from '@/lib/queries'
-import { useMutation } from '@tanstack/react-query'
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/Alert'
+import { useMutation, useQuery } from '@tanstack/react-query'
+
+import { useForm, Controller } from 'react-hook-form'
+import { DevTool } from '@hookform/devtools'
 
 export default function EditStationForm({ station }) {
   const router = useRouter()
   const t = getTranslations('EditStation')
 
-  const { mutate, isError, error } = useMutation({
-    mutationFn: editStation,
+  const form = useForm()
+  const {
+    register,
+    control,
+    watch,
+    handleSubmit,
+    formState: { errors },
+  } = form
+
+  const { mutate } = useMutation(editStation, {
     onSuccess: () => {
       router.refresh()
       router.push('/stations')
@@ -40,6 +50,7 @@ export default function EditStationForm({ station }) {
   const [sensorStatus, setSensorStatus] = useState('idle') // State to manage the status of the sensor fetch request
   const [selectedSensors, setSelectedSensors] = useState([]) // React state to manage selected sensors
 
+  // Function to handle the form input changes
   const handleChange = (inputName) => (evt) => {
     setFormData({
       ...formData,
@@ -47,8 +58,8 @@ export default function EditStationForm({ station }) {
     })
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  // Function to handle the form submission
+  const onSubmit = async (formData) => {
     mutate({
       id: station.id,
       ...formData,
@@ -56,37 +67,36 @@ export default function EditStationForm({ station }) {
     })
   }
 
-  const isStationTypeFixed = formData.type === StationType.Fixed // Check if the station type is "Fixed"
+  // Watch the station type
+  const stationType = watch('type', formData.type)
 
-  const fetchAllSensors = useCallback(async () => {
-    setSensorStatus('loading')
-    try {
-      const response = await fetch(
-        'http://localhost:3000/api/sensors?station_id=null',
-      )
-      if (!response.ok) {
-        throw new Error('Failed to fetch sensors')
+  // Fetch all sensors from the API
+  const { data: allSensorsList, status: sensorStatusQuery } = useQuery(
+    ['fetchAllSensors'],
+    async () => {
+      setSensorStatus('loading')
+      try {
+        const res = await fetch('http://localhost:3000/api/sensors')
+        if (!res.ok) {
+          throw new Error('Failed to fetch sensors')
+        }
+        const json = await res.json()
+        setAllSensors(json) // Store all sensors in the state
+        const linkedSensorsList = formData.sensors.map((sensor) => ({
+          value: sensor,
+          label: sensor.identifier,
+        }))
+        setSelectedSensors(linkedSensorsList)
+        setSensorStatus('loaded')
+        return json
+      } catch (error) {
+        setSensorStatus('error')
+        console.error('Error fetching all sensors:', error)
       }
-      const data = await response.json()
-      setAllSensors(data) // Store all sensors in the state
-      const linkedSensorsList = formData.sensors.map((sensor) => ({
-        value: sensor,
-        label: sensor.identifier,
-      }))
-      setSelectedSensors(linkedSensorsList)
-      console.log('All Sensors: ', data)
-      setSensorStatus('loaded')
-    } catch (error) {
-      setSensorStatus('error')
-      console.error('Error fetching all sensors:', error)
-    }
-  }, [formData.sensors])
+    },
+  )
 
-  useEffect(() => {
-    fetchAllSensors()
-  }, [fetchAllSensors]) // Fetch all sensors when the component mounts
-
-  // Array of all sensors
+  // Array of all sensors that are not linked to a station
   const sensorsList = allSensors
     .filter((sensor) => sensor.station_id === null)
     .map((sensor) => ({
@@ -99,92 +109,168 @@ export default function EditStationForm({ station }) {
     setSelectedSensors(data)
   }
 
+  if (sensorStatusQuery === 'loading') {
+    return <p>Loading...</p>
+  }
+
+  if (sensorStatusQuery === 'error') {
+    return <p>Error loading sensor data</p>
+  }
+
   return (
     <>
       <PageHeader title={t('title')} className={'inline-flex pl-5'} />
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3 max-w-xl">
-        {isError ? (
-          <Alert variant="destructive">
-            <AlertTitle>{t('error_alert.title')}</AlertTitle>
-            <AlertDescription>
-              {t(`error_alert.errors.${error}`)}
-            </AlertDescription>
-          </Alert>
-        ) : null}
-        <Input
-          label={t('labels.name')}
-          value={formData.name}
-          onChange={handleChange('name')}
-          type="text"
-          placeholder={t('labels.name')}
-          name="Name"
-        />
-
-        <Input
-          label={t('labels.type')}
-          value={formData.type}
-          onChange={handleChange('type')}
-          readOnly
-          type="text"
-          placeholder={t('labels.type')}
-          name="Type"
-          style={{ backgroundColor: '#C0C0C0' }}
-        />
-
-        <div className="app">
-          <h2>{t('select_sensors')}</h2>
-          <div className="dropdown-container">
-            <Select
-              options={sensorsList}
-              placeholder={t('select_sensors')}
-              value={selectedSensors}
-              onChange={handleSelect}
-              isSearchable={true}
-              isDisabled={sensorStatus !== 'loaded'}
-              isLoading={sensorStatus === 'loading'}
-              isMulti
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col gap-3 max-w-xl">
+        <Controller
+          name="name"
+          control={control}
+          defaultValue={formData.name}
+          render={({ field }) => (
+            <Input
+              {...register('name', { required: true })}
+              label={t('labels.name')}
+              value={field.value}
+              onChange={(e) => {
+                handleChange('name')(e)
+                field.onChange(e)
+              }}
+              type="text"
+              placeholder={t('labels.name')}
+              name="Name"
             />
-          </div>
-        </div>
+          )}
+        />
+        {errors.name && <p className="error">{t('name_required')}</p>}
+        <Controller
+          name="type"
+          control={control}
+          defaultValue={formData.type}
+          render={({ field }) => (
+            <Input
+              label={t('labels.type')}
+              value={field.value}
+              onChange={(e) => {
+                handleChange('type')(e)
+                field.onChange(e)
+              }}
+              readOnly
+              type="text"
+              placeholder={t('labels.type')}
+              name="Type"
+              style={{ backgroundColor: '#C0C0C0' }}
+            />
+          )}
+        />
+        <Controller
+          name="sensors"
+          control={control}
+          defaultValue={[]}
+          render={({ field }) => (
+            <div className="app">
+              <h2>{t('select_sensors')}</h2>
+              <div className="dropdown-container">
+                <Select
+                  options={sensorsList}
+                  placeholder={t('select_sensors')}
+                  value={selectedSensors}
+                  onChange={(selectedOptions) => {
+                    handleSelect(selectedOptions)
+                    field.onChange(selectedOptions)
+                  }}
+                  isSearchable={true}
+                  isDisabled={sensorStatus !== 'loaded'}
+                  isLoading={sensorStatus === 'loading'}
+                  isMulti
+                />
+              </div>
+            </div>
+          )}
+        />
 
-        {isStationTypeFixed && (
+        {stationType === StationType.Fixed && (
           <>
-            <Input
-              label={t('labels.longitude')}
-              value={formData.longitude}
-              onChange={handleChange('longitude')}
-              type="text"
-              placeholder={t('labels.longitude')}
-              name="Longitude"
+            <Controller
+              name="longitude"
+              control={control}
+              defaultValue={formData.longitude}
+              render={({ field }) => (
+                <Input
+                  label={t('labels.longitude')}
+                  value={field.value}
+                  onChange={(e) => {
+                    handleChange('longitude')(e)
+                    field.onChange(e)
+                  }}
+                  type="text"
+                  placeholder={t('labels.longitude')}
+                  name="Longitude"
+                />
+              )}
             />
-            <Input
-              label={t('labels.latitude')}
-              value={formData.latitude}
-              onChange={handleChange('latitude')}
-              type="text"
-              placeholder={t('labels.latitude')}
-              name="Latitude"
+
+            <Controller
+              name="latitude"
+              control={control}
+              defaultValue={formData.latitude}
+              render={({ field }) => (
+                <Input
+                  label={t('labels.latitude')}
+                  value={field.value}
+                  onChange={(e) => {
+                    handleChange('latitude')(e)
+                    field.onChange(e)
+                  }}
+                  type="text"
+                  placeholder={t('labels.latitude')}
+                  name="Latitude"
+                />
+              )}
             />
           </>
         )}
-        <Input
-          label={t('labels.description')}
-          value={formData.description}
-          onChange={handleChange('description')}
-          type="text"
-          placeholder={t('labels.description')}
-          name="Description"
+
+        <Controller
+          name="description"
+          control={control}
+          defaultValue={formData.description}
+          render={({ field }) => (
+            <Input
+              label={t('labels.description')}
+              value={field.value}
+              onChange={(e) => {
+                handleChange('description')(e)
+                field.onChange(e)
+              }}
+              type="text"
+              placeholder={t('labels.description')}
+              name="Description"
+            />
+          )}
         />
-        <Input
-          label={t('labels.image_url')}
-          value={formData.image_url}
-          onChange={handleChange('image_url')}
-          type="text"
-          placeholder={t('labels.image_url')}
-          name="Image_url"
+
+        <Controller
+          name="image_url"
+          control={control}
+          defaultValue={formData.image_url}
+          render={({ field }) => (
+            <Input
+              label={t('labels.image_url')}
+              value={field.value}
+              onChange={(e) => {
+                handleChange('image_url')(e)
+                field.onChange(e)
+              }}
+              type="text"
+              placeholder={t('labels.image_url')}
+              name="Image_url"
+            />
+          )}
         />
         <Button type="submit" label={t('edit_station')} className="mt-4" />
       </form>
+      <DevTool control={control} />
     </>
   )
 }
