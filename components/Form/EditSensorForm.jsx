@@ -12,9 +12,19 @@ import { useTranslations as getTranslations } from 'next-intl'
 import { editSensor } from '@/lib/queries'
 import { useMutation, useQuery } from '@tanstack/react-query'
 
+import { useForm, Controller } from 'react-hook-form'
+import { DevTool } from '@hookform/devtools'
+
 export default function EditSensorForm({ sensor }) {
   const router = useRouter()
   const t = getTranslations('EditSensor')
+
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
 
   const getSensorById = async (id) => {
     try {
@@ -77,8 +87,7 @@ export default function EditSensorForm({ sensor }) {
     }
   }, [formData.station_id])
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  const onSubmit = async (formData) => {
     mutate({
       id: sensor.id,
       ...formData,
@@ -96,7 +105,9 @@ export default function EditSensorForm({ sensor }) {
   return (
     <>
       <PageHeader title={t('title')} className={'inline-flex pl-5'} showBack />
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3 max-w-xl ">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col gap-3 max-w-xl ">
         <Input
           label={t('labels.identifier')}
           value={formData.identifier}
@@ -117,14 +128,25 @@ export default function EditSensorForm({ sensor }) {
           name="Type"
           style={{ backgroundColor: '#C0C0C0' }}
         />
-        <Input
-          label={t('labels.nbr_measures')}
-          value={formData.nbr_measures}
-          onChange={handleChange('nbr_measures')}
-          type="text"
-          placeholder={t('labels.nbr_measures')}
-          name="Nbr_measures"
+        <Controller
+          name="nbr_measures"
+          control={control}
+          defaultValue={formData.nbr_measures}
+          render={({ field }) => (
+            <Input
+              {...register('nbr_measures', { required: true })}
+              label={t('labels.nbr_measures')}
+              value={field.value}
+              onChange={(e) => field.onChange(e.target.value)}
+              type="text"
+              placeholder={t('labels.nbr_measures')}
+              name="Nbr_measures"
+            />
+          )}
         />
+        {errors.nbr_measures && (
+          <p className="error">{t('nbr_measures_required')}</p>
+        )}
         <Input
           label={t('labels.station_name')}
           value={stationName}
@@ -136,6 +158,7 @@ export default function EditSensorForm({ sensor }) {
         />
         <Button type="submit" label={t('edit_sensor')} className="w-fit mt-4" />
       </form>
+      <DevTool control={control} />
     </>
   )
 }
