@@ -17,6 +17,8 @@ import { useMutation, useQuery } from '@tanstack/react-query'
 import { useForm, Controller } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools'
 
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/Alert'
+
 export default function EditStationForm({ station }) {
   const router = useRouter()
   const t = getTranslations('EditStation')
@@ -30,7 +32,7 @@ export default function EditStationForm({ station }) {
     formState: { errors },
   } = form
 
-  const { mutate } = useMutation(editStation, {
+  const { mutate, isError, error } = useMutation(editStation, {
     onSuccess: () => {
       router.refresh()
       router.push('/stations')
@@ -123,6 +125,14 @@ export default function EditStationForm({ station }) {
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-3 max-w-xl">
+        {isError ? (
+          <Alert variant="destructive">
+            <AlertTitle>{t('error_alert.title')}</AlertTitle>
+            <AlertDescription>
+              {t(`error_alert.errors.${error}`)}
+            </AlertDescription>
+          </Alert>
+        ) : null}
         <Controller
           name="name"
           control={control}
