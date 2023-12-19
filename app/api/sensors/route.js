@@ -57,3 +57,18 @@ export async function DELETE(request) {
     { status: 200 },
   )
 }
+
+export async function POST(request) {
+  const { identifier, type, nbr_measures } = await request.json()
+  await db.sensor.create({
+    data: {
+      identifier,
+      type,
+      nbr_measures,
+    },
+  })
+  return NextResponse.json(
+    { message: 'Sensor Created Successfully' },
+    { status: 201 },
+  )
+}
