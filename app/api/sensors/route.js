@@ -25,6 +25,21 @@ export async function GET() {
   return NextResponse.json(sensors, { status: 200 })
 }
 
+export async function POST(request) {
+  const { identifier, type, nbr_measures } = await request.json()
+  await db.sensor.create({
+    data: {
+      identifier,
+      type,
+      nbr_measures,
+    },
+  })
+  return NextResponse.json(
+    { message: 'Sensor Created Successfully' },
+    { status: 201 },
+  )
+}
+
 export async function DELETE(request) {
   const id = request.nextUrl.searchParams.get('id')
 
