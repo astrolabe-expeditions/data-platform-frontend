@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation'
 import { authOptions } from '@/lib/auth'
 import { Page } from '@/components/Page/Page'
 import EditStationForm from '@/components/Form/EditStationForm'
-import NotFound from '@/Pages/404'
+import NotFound from '@components/404'
 
 const getStationById = async (id) => {
   try {

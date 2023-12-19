@@ -12,6 +12,9 @@ import { db } from '@/lib/db'
 import { Link } from '@/components/ui/Link'
 
 const sensors = await db.sensor.findMany({
+  where: {
+    deleted: false,
+  },
   select: {
     id: true,
     identifier: true,
