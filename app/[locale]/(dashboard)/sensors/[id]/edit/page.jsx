@@ -3,6 +3,7 @@ import { authOptions } from '@/lib/auth'
 import { Page } from '@/components/Page/Page'
 import EditSensorForm from '@/components/Form/EditSensorForm'
 import { redirect } from 'next/navigation'
+import NotFound from '@components/404'
 
 const getSensorById = async (id) => {
   try {
@@ -42,7 +43,7 @@ export default async function EditSensor({ params }) {
       console.error(error)
       return (
         <Page>
-          <p>Error loading sensor data</p>
+          <NotFound errorMessage={'Sensor Not Found'} />
         </Page>
       )
     }

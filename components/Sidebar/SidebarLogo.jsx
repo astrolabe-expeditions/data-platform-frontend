@@ -9,6 +9,7 @@ const SidebarLogo = () => {
         width={256}
         height={110}
         alt="Picture of the author"
+        priority={true}
       />
     </>
   )

@@ -121,11 +121,13 @@ export default function AddStation() {
     })
   }
 
-  // Array of all sensors
-  const sensorsList = allSensors.map((sensor) => ({
-    value: sensor,
-    label: sensor.identifier,
-  }))
+  // Array of all sensors that are not linked to any station
+  const sensorsList = allSensors
+    .filter((sensor) => sensor.station_id === null)
+    .map((sensor) => ({
+      value: sensor,
+      label: sensor.identifier,
+    }))
 
   // Function triggered on sensor selection
   function handleSensorSelect(data) {

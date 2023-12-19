@@ -10,15 +10,42 @@ import { PageHeader } from '@/components/Page/PageHeader'
 import { useTranslations as getTranslations } from 'next-intl'
 
 import { editSensor } from '@/lib/queries'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
+
+import { useForm, Controller } from 'react-hook-form'
+import { DevTool } from '@hookform/devtools'
+
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/Alert'
 
 export default function EditSensorForm({ sensor }) {
   const router = useRouter()
   const t = getTranslations('EditSensor')
 
-  const { mutate, isError, error } = useMutation({
-    mutationFn: editSensor,
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+
+  const getSensorById = async (id) => {
+    try {
+      const res = await fetch(`http://localhost:3000/api/sensors/${id}`, {
+        cache: 'no-store',
+      })
+      if (!res.ok) throw new Error('Failed to fetch sensor')
+      const json = await res.json()
+      return json
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const { data, status } = useQuery(['sensor', sensor.id], () =>
+    getSensorById(sensor.id),
+  )
+
+  const { mutate, isError, error } = useMutation(editSensor, {
     onSuccess: () => {
       router.refresh()
       router.push('/sensors')
@@ -62,18 +89,27 @@ export default function EditSensorForm({ sensor }) {
     }
   }, [formData.station_id])
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  const onSubmit = async (formData) => {
     mutate({
       id: sensor.id,
       ...formData,
     })
   }
 
+  if (status === 'loading') {
+    return <p>Loading...</p>
+  }
+
+  if (status === 'error') {
+    return <p>Error loading sensor data</p>
+  }
+
   return (
     <>
       <PageHeader title={t('title')} className={'inline-flex pl-5'} showBack />
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3 max-w-xl ">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col gap-3 max-w-xl ">
         {isError ? (
           <Alert variant="destructive">
             <AlertTitle>{t('error_alert.title')}</AlertTitle>
@@ -102,14 +138,25 @@ export default function EditSensorForm({ sensor }) {
           name="Type"
           style={{ backgroundColor: '#C0C0C0' }}
         />
-        <Input
-          label={t('labels.nbr_measures')}
-          value={formData.nbr_measures}
-          onChange={handleChange('nbr_measures')}
-          type="text"
-          placeholder={t('labels.nbr_measures')}
-          name="Nbr_measures"
+        <Controller
+          name="nbr_measures"
+          control={control}
+          defaultValue={formData.nbr_measures}
+          render={({ field }) => (
+            <Input
+              {...register('nbr_measures', { required: true })}
+              label={t('labels.nbr_measures')}
+              value={field.value}
+              onChange={(e) => field.onChange(e.target.value)}
+              type="text"
+              placeholder={t('labels.nbr_measures')}
+              name="Nbr_measures"
+            />
+          )}
         />
+        {errors.nbr_measures && (
+          <p className="error">{t('nbr_measures_required')}</p>
+        )}
         <Input
           label={t('labels.station_name')}
           value={stationName}
@@ -121,6 +168,7 @@ export default function EditSensorForm({ sensor }) {
         />
         <Button type="submit" label={t('edit_sensor')} className="w-fit mt-4" />
       </form>
+      <DevTool control={control} />
     </>
   )
 }

@@ -76,6 +76,7 @@
     },
     "edit_station": "Edit Station",
     "select_sensors": "Select Sensors",
+    "name_required": "Station Name is required.",
     "error_alert": {
       "title": "Error",
       "errors": {
@@ -96,6 +97,7 @@
       "station_name": "Station Name"
     },
     "edit_sensor": "Edit Sensor",
+    "nbr_measures_required": "Number of measures is required.",
     "error_alert": {
       "title": "Error",
       "errors": {
