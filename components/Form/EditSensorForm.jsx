@@ -15,6 +15,8 @@ import { useMutation, useQuery } from '@tanstack/react-query'
 import { useForm, Controller } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools'
 
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/Alert'
+
 export default function EditSensorForm({ sensor }) {
   const router = useRouter()
   const t = getTranslations('EditSensor')
@@ -43,7 +45,7 @@ export default function EditSensorForm({ sensor }) {
     getSensorById(sensor.id),
   )
 
-  const { mutate } = useMutation(editSensor, {
+  const { mutate, isError, error } = useMutation(editSensor, {
     onSuccess: () => {
       router.refresh()
       router.push('/sensors')
@@ -108,6 +110,14 @@ export default function EditSensorForm({ sensor }) {
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-3 max-w-xl ">
+        {isError ? (
+          <Alert variant="destructive">
+            <AlertTitle>{t('error_alert.title')}</AlertTitle>
+            <AlertDescription>
+              {t(`error_alert.errors.${error}`)}
+            </AlertDescription>
+          </Alert>
+        ) : null}
         <Input
           label={t('labels.identifier')}
           value={formData.identifier}
