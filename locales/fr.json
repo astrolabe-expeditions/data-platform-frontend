@@ -145,6 +145,9 @@
       "station": "Nom de la Station",
       "active_file": "Fichier Actif"
     },
+    "labels": {
+      "upload_file": "Upload file"
+    },
     "view_screen": {
       "title": "Vue du Capteur"
     }
