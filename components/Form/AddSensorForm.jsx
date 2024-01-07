@@ -78,7 +78,7 @@ export default function AddSensor() {
 
   return (
     <>
-      <PageHeader title={t('title')} className={'inline-flex pl-5'} showBack />
+      <PageHeader title={t('title')} showBack />
       <form onSubmit={handleSubmit} className="flex flex-col gap-3 max-w-xl">
         <Input
           label={t('labels.identifier')}

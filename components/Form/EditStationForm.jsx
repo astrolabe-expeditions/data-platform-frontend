@@ -3,25 +3,21 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Select from 'react-select'
-
-import { Input } from '@/components/ui/Input/Input'
-import { Button } from '@/components/ui/Button/Button'
-
-import { PageHeader } from '@/components/Page/PageHeader'
 import { StationType } from '@prisma/client'
-import { useTranslations as getTranslations } from 'next-intl'
-
-import { editStation } from '@/lib/queries'
+import { useTranslations } from 'next-intl'
 import { useMutation, useQuery } from '@tanstack/react-query'
-
 import { useForm, Controller } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools'
 
+import { Input } from '@/components/ui/Input/Input'
+import { Button } from '@/components/ui/Button/Button'
+import { PageHeader } from '@/components/Page/PageHeader'
+import { editStation } from '@/lib/queries'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/Alert'
 
 export default function EditStationForm({ station }) {
   const router = useRouter()
-  const t = getTranslations('EditStation')
+  const t = useTranslations('EditStation')
 
   const form = useForm()
   const {

@@ -2,18 +2,16 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
+import { StationType } from '@prisma/client'
+import { useTranslations } from 'next-intl'
+import Select from 'react-select'
 
 import { Input } from '@/components/ui/Input/Input'
 import { Button } from '@/components/ui/Button/Button'
-
 import { PageHeader } from '@/components/Page/PageHeader'
-import { StationType } from '@prisma/client'
-import { useTranslations as getTranslations } from 'next-intl'
-
-import Select from 'react-select'
 
 export default function AddStation() {
-  const t = getTranslations('AddStation')
+  const t = useTranslations('AddStation')
 
   const router = useRouter()
 
@@ -145,7 +143,7 @@ export default function AddStation() {
 
   return (
     <>
-      <PageHeader title={t('title')} className={'inline-flex pl-5'} showBack />
+      <PageHeader title={t('title')} showBack />
       <form onSubmit={handleSubmit} className="flex flex-col gap-3 max-w-xl">
         <Input
           label={t('labels.name')}
