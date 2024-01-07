@@ -3,13 +3,10 @@ import { redirect } from 'next/navigation'
 
 import { authOptions } from '@/lib/auth'
 import { Page } from '@/components/Page/Page'
-import { PageHeader } from '@/components/Page/PageHeader'
 
 import SensorSearchBar from '@/components/Searchbar/SensorSearchBar'
-import { Theme } from '@radix-ui/themes'
 
 import { db } from '@/lib/db'
-import { Link } from '@/components/ui/Link'
 
 const sensors = await db.sensor.findMany({
   where: {
@@ -34,9 +31,7 @@ async function Home() {
 
   return (
     <Page>
-      <Theme>
-        <SensorSearchBar data={sensors} />
-      </Theme>
+      <SensorSearchBar data={sensors} />
     </Page>
   )
 }
