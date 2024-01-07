@@ -2,18 +2,15 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { useTranslations as getTranslations } from 'next-intl'
+import { useMutation, useQuery } from '@tanstack/react-query'
+import { useForm, Controller } from 'react-hook-form'
+import { DevTool } from '@hookform/devtools'
 
 import { Input } from '@/components/ui/Input/Input'
 import { Button } from '@/components/ui/Button/Button'
-
 import { PageHeader } from '@/components/Page/PageHeader'
-import { useTranslations as getTranslations } from 'next-intl'
-
 import { editSensor } from '@/lib/queries'
-import { useMutation, useQuery } from '@tanstack/react-query'
-
-import { useForm, Controller } from 'react-hook-form'
-import { DevTool } from '@hookform/devtools'
 
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/Alert'
 
@@ -106,7 +103,7 @@ export default function EditSensorForm({ sensor }) {
 
   return (
     <>
-      <PageHeader title={t('title')} className={'inline-flex pl-5'} showBack />
+      <PageHeader title={t('title')} showBack />
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-3 max-w-xl ">
