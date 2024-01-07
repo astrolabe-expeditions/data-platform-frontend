@@ -1,16 +1,18 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
+import Link from 'next/link'
+
 import SensorTable from '@/components/Table/SensorTable'
-import { useTranslations as getTranslations } from 'next-intl'
-import { PageHeader } from '../Page/PageHeader'
-import { Link } from '../ui/Link'
+import { Button } from '@/components/ui/Button'
+import { PageHeader } from '@/components/Page/PageHeader'
 
 export default function SensorSearchbar({ data }) {
   const [searchTerm, setSearchTerm] = useState('')
   const [filteredSensors, setFilteredSensors] = useState([])
 
-  const t = getTranslations('SensorsTable')
+  const t = useTranslations('SensorsTable')
 
   const handleSearch = (event) => {
     const term = event.target.value.toLowerCase()
@@ -36,13 +38,17 @@ export default function SensorSearchbar({ data }) {
 
   return (
     <div>
-      <div>
-        <PageHeader title={t('title')} showBack />
-        <br />
-        <Link href={'/sensors/add'} passHref>
-          {t('labels.add_sensor')}
-        </Link>
-      </div>
+      <PageHeader
+        title={t('title')}
+        showBack
+        actions={
+          <Button
+            href="/sensors/add"
+            component={Link}
+            label={t('labels.add_sensor')}
+          />
+        }
+      />
       <form>
         <input
           className="search"

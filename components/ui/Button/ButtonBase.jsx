@@ -7,6 +7,7 @@ const ButtonBase = ({
   disabled = false,
   fullWidth,
   className,
+  component,
   ...props
 }) => {
   const variants = {
@@ -63,8 +64,10 @@ const ButtonBase = ({
     ],
   }
 
+  const Component = component || 'button'
+
   return (
-    <button
+    <Component
       className={clsx(
         className,
         variant !== 'ghost' && variant !== 'link' ? 'border shadow-xs' : null,
@@ -76,7 +79,7 @@ const ButtonBase = ({
       disabled={disabled}
       {...props}>
       {children}
-    </button>
+    </Component>
   )
 }
 
