@@ -1,17 +1,17 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
+import Link from 'next/link'
+
 import StationTable from '@/components/Table/StationTable'
 import { Button } from '../ui/Button/Button'
-import { useTranslations as getTranslations } from 'next-intl'
 import { PageHeader } from '../Page/PageHeader'
-import { Link } from '../ui/Link'
 
 export default function StationSearchbar({ data }) {
   const [searchTerm, setSearchTerm] = useState('')
   const [filteredStations, setFilteredStations] = useState([])
-  const [associatedSensors, setAssociatedSensors] = useState([])
-  const t = getTranslations('StationTable')
+  const t = useTranslations('StationTable')
 
   const handleSearch = (event) => {
     const term = event.target.value.toLowerCase()
@@ -41,13 +41,18 @@ export default function StationSearchbar({ data }) {
 
   return (
     <div>
-      <div>
-        <PageHeader title={t('title')} showBack />
-        <br />
-        <Link href={'/stations/add'} passHref>
-          {t('labels.add_station')}
-        </Link>
-      </div>
+      <PageHeader
+        title={t('title')}
+        showBack
+        actions={
+          <Button
+            href="/stations/add"
+            component={Link}
+            label={t('labels.add_station')}
+          />
+        }
+      />
+
       <form>
         <input
           className="search"

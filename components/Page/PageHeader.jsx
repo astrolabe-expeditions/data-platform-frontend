@@ -8,7 +8,7 @@ import { Typography } from '../ui/Typography'
 import { Left } from '../ui/Icons'
 import { Button } from '../ui/Button'
 
-const PageHeader = ({ title, className, showBack }) => {
+const PageHeader = ({ title, className, showBack, actions }) => {
   const t = useTranslations('PageHeader')
   const router = useRouter()
 
@@ -24,7 +24,10 @@ const PageHeader = ({ title, className, showBack }) => {
           className="mb-5"
         />
       ) : null}
-      <Typography variant="title">{title}</Typography>
+      <div className="flex">
+        <Typography variant="title">{title}</Typography>
+        {actions ? <div className="ml-auto">{actions}</div> : null}
+      </div>
     </header>
   )
 }
