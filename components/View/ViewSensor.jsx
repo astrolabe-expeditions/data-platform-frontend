@@ -1,19 +1,30 @@
 'use client'
+
 import { useTranslations as getTranslations } from 'next-intl'
-import { SensorCard } from '../Card/SensorCard'
-import { PageHeader } from '../Page/PageHeader'
-import { Link } from '../ui/Link'
+import Link from 'next/link'
+
+import { SensorCard } from '@/components/Card/SensorCard'
+import { PageHeader } from '@/components/Page/PageHeader'
+import { Button } from '@/components/ui/Button/Button'
 
 const SensorView = ({ sensor }) => {
   const t = getTranslations('Sensors')
 
   return (
-    <div>
-      <PageHeader title={t('view_screen.title')} showBack />
-      <br />
-      <Link href={`${sensor.id}/upload`}>Upload file</Link>
+    <>
+      <PageHeader
+        title={t('view_screen.title')}
+        actions={
+          <Button
+            href={`${sensor.id}/upload`}
+            component={Link}
+            label={t('labels.upload_file')}
+          />
+        }
+        showBack
+      />
       <SensorCard sensor={sensor}></SensorCard>
-    </div>
+    </>
   )
 }
 
