@@ -60,7 +60,7 @@ export default function AddStation() {
     }
 
     try {
-      const res = await fetch('http://localhost:3000/api/stations', {
+      const res = await fetch('/api/stations', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -87,7 +87,7 @@ export default function AddStation() {
 
   const fetchAllSensors = useCallback(async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/sensors')
+      const response = await fetch('/api/sensors')
       if (!response.ok) {
         throw new Error('Failed to fetch sensors')
       }

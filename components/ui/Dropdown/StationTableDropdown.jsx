@@ -10,12 +10,9 @@ const StationTableDropdown = ({ obj, ...props }) => {
     const confirmed = confirm('Are you sure you want to delete this Station?')
 
     if (confirmed) {
-      const res = await fetch(
-        `http://localhost:3000/api/stations?id=${obj.id}`,
-        {
-          method: 'DELETE',
-        },
-      )
+      const res = await fetch(`/api/stations?id=${obj.id}`, {
+        method: 'DELETE',
+      })
       if (res.ok) {
         router.refresh()
       }

@@ -74,7 +74,7 @@ export default function EditStationForm({ station }) {
     async () => {
       setSensorStatus('loading')
       try {
-        const res = await fetch('http://localhost:3000/api/sensors')
+        const res = await fetch('/api/sensors')
         if (!res.ok) {
           throw new Error('Failed to fetch sensors')
         }
@@ -117,7 +117,6 @@ export default function EditStationForm({ station }) {
 
   return (
     <>
-      <PageHeader title={t('title')} className={'inline-flex pl-5'} />
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-3 max-w-xl">
