@@ -60,7 +60,22 @@ export async function POST(request) {
   }
 
   const file_id = await createKeyInDatabase(file, sensor_id)
-  uploadFile(file, file_id, sensor_id)
+  await uploadFile(file, file_id, sensor_id)
 
-  return NextResponse.json({ success: true, file_id: file_id })
+  const sensor = await db.sensor.findUnique({
+    where: {
+      id: sensor_id,
+    },
+    select: {
+      id: true,
+      identifier: true,
+      type: true,
+      nbr_measures: true,
+      station_id: true,
+      records: true,
+      files: true,
+    },
+  })
+
+  return NextResponse.json({ success: true, data: sensor }, { status: 201 })
 }

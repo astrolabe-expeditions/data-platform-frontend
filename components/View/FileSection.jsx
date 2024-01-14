@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { useTranslations } from 'next-intl'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import { FileListItem } from '@/components/Card/FileListItem'
 import { Button } from '@/components/ui/Button/Button'
@@ -8,9 +8,16 @@ import { Typography } from '@/components/ui/Typography'
 import { uploadFile } from '@/lib/queries'
 
 const FilesSection = ({ sensorId, files }) => {
+  const queryClient = useQueryClient()
   const t = useTranslations('FileSection')
   const hiddenFileInput = useRef(null)
-  const { mutate, isError, error } = useMutation({ mutationFn: uploadFile })
+
+  const { mutate, isError, error } = useMutation({
+    mutationFn: uploadFile,
+    onSuccess: (data) => {
+      queryClient.setQueryData(['sensors', sensorId], data)
+    },
+  })
 
   const handleClick = () => {
     hiddenFileInput.current.click()

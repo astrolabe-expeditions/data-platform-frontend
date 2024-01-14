@@ -13,7 +13,7 @@ const FileListItem = ({ file, className }) => {
         <Typography>
           {t(
             'uploaded_at',
-            { uploadedAt: file.created_at },
+            { uploadedAt: new Date(file.created_at) },
             {
               dateTime: {
                 short: {
