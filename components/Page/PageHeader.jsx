@@ -24,9 +24,11 @@ const PageHeader = ({ title, className, showBack, actions }) => {
           className="mb-5"
         />
       ) : null}
-      <div className="flex">
+      <div className="flex flex-col items-start md:flex-row md:items-center">
         <Typography variant="title">{title}</Typography>
-        {actions ? <div className="ml-auto">{actions}</div> : null}
+        {actions ? (
+          <div className="md:ml-auto md:mt-0 mt-4">{actions}</div>
+        ) : null}
       </div>
     </header>
   )
