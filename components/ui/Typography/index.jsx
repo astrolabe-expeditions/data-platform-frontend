@@ -12,6 +12,7 @@ const Typography = ({
   const variants = {
     title: 'text-3xl font-semibold text-gray-900',
     subtitle: 'text-base font-normal text-gray-600',
+    sectionTitle: 'text-xl font-semibold text-gray-900',
     body1: 'text-base',
     body2: 'text-sm',
   }
@@ -19,6 +20,7 @@ const Typography = ({
   const variantMapping = {
     title: 'h2',
     subtitle: 'h2',
+    sectionTitle: 'h3',
     body1: 'p',
     body2: 'p',
   }
