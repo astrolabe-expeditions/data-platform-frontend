@@ -157,5 +157,10 @@
   },
   "FileListItem": {
     "uploaded_at": "Mise en ligne le {uploadedAt, date, medium}"
+  },
+  "FileSection": {
+    "title": "Fichiers",
+    "upload": "Mettre en ligne",
+    "noFile": "Aucun fichier"
   }
 }
