@@ -1,17 +1,14 @@
 import Image from 'next/image'
 
-const SidebarLogo = () => {
+const SidebarLogo = ({ className, height }) => {
   return (
-    <>
-      <Image
-        className="px-3 pb-6"
-        src="/logo-white.png"
-        width={256}
-        height={110}
-        alt="Picture of the author"
-        priority={true}
-      />
-    </>
+    <Image
+      className={className}
+      src="/logo-white.png"
+      width={height * 2.32727272727}
+      height={height}
+      alt="Astrolabe expedition logo"
+    />
   )
 }
 
