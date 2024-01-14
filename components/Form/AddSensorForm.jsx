@@ -40,7 +40,7 @@ export default function AddSensor() {
     }
 
     try {
-      const res = await fetch('http://localhost:3000/api/sensors', {
+      const res = await fetch('/api/sensors', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

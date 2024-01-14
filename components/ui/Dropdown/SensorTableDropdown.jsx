@@ -10,12 +10,9 @@ const SensorTableDropdown = ({ obj, ...props }) => {
     const confirmed = confirm('Are you sure you want to delete this Sensor?')
 
     if (confirmed) {
-      const res = await fetch(
-        `http://localhost:3000/api/sensors?id=${obj.id}`,
-        {
-          method: 'DELETE',
-        },
-      )
+      const res = await fetch(`/api/sensors?id=${obj.id}`, {
+        method: 'DELETE',
+      })
       if (res.ok) {
         router.refresh()
       }

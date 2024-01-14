@@ -1,50 +1,32 @@
-import { getServerSession } from 'next-auth/next'
-import { redirect } from 'next/navigation'
-import { authOptions } from '@/lib/auth'
+'use client'
+
+import { useParams } from 'next/navigation'
+import { useQuery } from '@tanstack/react-query'
+import { useTranslations } from 'next-intl'
+
 import { Page } from '@/components/Page/Page'
 import EditStationForm from '@/components/Form/EditStationForm'
 import NotFound from '@/components/404'
+import { PageHeader } from '@/components/Page/PageHeader'
+import { findStationById } from '@/lib/queries'
 
-const getStationById = async (id) => {
-  try {
-    const res = await fetch(`http://localhost:3000/api/stations/${id}`, {
-      cache: 'no-store',
-    })
-    if (!res.ok) throw new Error('Failed to fetch station')
-    const json = await res.json()
-    return json
-  } catch (error) {
-    console.log(error)
-  }
-}
+export default function EditStation() {
+  const { id } = useParams()
+  const t = useTranslations('EditStation')
 
-export default async function EditStation({ params }) {
-  const session = await getServerSession(authOptions)
-  const { id } = params
-  try {
-    const { station } = await getStationById(id)
+  const { data, isLoading } = useQuery({
+    queryKey: ['stations', id],
+    queryFn: () => findStationById(id),
+  })
 
-    if (!session) {
-      redirect('/auth/login')
-    }
+  console.log(data)
 
-    return (
-      <Page>
-        <EditStationForm station={station} />
-      </Page>
-    )
-  } catch (error) {
-    if (error.message === 'Station not found') {
-      // Redirect to 404 page
-      redirect('/404')
-    } else {
-      // Handle other errors
-      console.error(error)
-      return (
-        <Page>
-          <NotFound errorMessage={'Station Not Found'} />
-        </Page>
-      )
-    }
-  }
+  return (
+    <Page>
+      <PageHeader title={t('title')} showBack />
+      {isLoading && <p>Loading...</p>}
+      {!isLoading && !data && <NotFound errorMessage={'Station Not Found'} />}
+      {!isLoading && data && <EditStationForm station={data} />}
+    </Page>
+  )
 }

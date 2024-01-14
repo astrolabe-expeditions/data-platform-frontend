@@ -9,7 +9,7 @@ import { DevTool } from '@hookform/devtools'
 
 import { Input } from '@/components/ui/Input/Input'
 import { Button } from '@/components/ui/Button/Button'
-import { PageHeader } from '@/components/Page/PageHeader'
+
 import { editSensor } from '@/lib/queries'
 
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/Alert'
@@ -24,23 +24,6 @@ export default function EditSensorForm({ sensor }) {
     handleSubmit,
     formState: { errors },
   } = useForm()
-
-  const getSensorById = async (id) => {
-    try {
-      const res = await fetch(`http://localhost:3000/api/sensors/${id}`, {
-        cache: 'no-store',
-      })
-      if (!res.ok) throw new Error('Failed to fetch sensor')
-      const json = await res.json()
-      return json
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const { data, status } = useQuery(['sensor', sensor.id], () =>
-    getSensorById(sensor.id),
-  )
 
   const { mutate, isError, error } = useMutation(editSensor, {
     onSuccess: () => {
@@ -72,7 +55,7 @@ export default function EditSensorForm({ sensor }) {
     const fetchStationName = async () => {
       try {
         const stationResponse = await fetch(
-          `http://localhost:3000/api/stations/${formData.station_id}`,
+          `/api/stations/${formData.station_id}`,
         )
         const stationData = await stationResponse.json()
         setStationName(stationData.station.name) // set station name
@@ -93,17 +76,8 @@ export default function EditSensorForm({ sensor }) {
     })
   }
 
-  if (status === 'loading') {
-    return <p>Loading...</p>
-  }
-
-  if (status === 'error') {
-    return <p>Error loading sensor data</p>
-  }
-
   return (
     <>
-      <PageHeader title={t('title')} showBack />
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-3 max-w-xl ">
