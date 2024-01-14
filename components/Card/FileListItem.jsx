@@ -1,12 +1,13 @@
 import { useTranslations } from 'next-intl'
+import clsx from 'clsx'
 
 import { Typography } from '@/components/ui/Typography'
 
-const FileListItem = ({ file }) => {
+const FileListItem = ({ file, className }) => {
   const t = useTranslations('FileListItem')
 
   return (
-    <div className="flex">
+    <div className={clsx('flex', className)}>
       <div className="flex flex-col">
         <Typography className="font-bold">{file.name}</Typography>
         <Typography>

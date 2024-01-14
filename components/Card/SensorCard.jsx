@@ -8,11 +8,6 @@ const SensorCard = ({ sensor }) => {
     <Card className="mb-2">
       <a href={`/sensors/${sensor.id}`}>
         <Flex gap="3" align="center">
-          <Avatar
-            size="3"
-            radius="full"
-            fallback={sensor.identifier.slice(0, 2)}
-          />
           <Box>
             <Text as="div" size="2" weight="bold">
               {sensor.identifier}
@@ -33,13 +28,6 @@ const SensorCard = ({ sensor }) => {
                 {sensor.station.name}
               </Text>
             ) : null}
-            {sensor.files.flatMap((file) =>
-              file.status === 'Active' ? (
-                <Text as="div" size="2" color="gray" key={file.id}>
-                  <strong>{t('upload_screen.active_file')}:</strong> {file.name}
-                </Text>
-              ) : null,
-            )}
           </Box>
         </Flex>
       </a>

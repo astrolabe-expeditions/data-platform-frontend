@@ -9,7 +9,6 @@ import { FilesSection } from '@/components/View/FileSection'
 const SensorView = ({ sensor }) => {
   const t = getTranslations('Sensors')
 
-  console.log(sensor)
   return (
     <>
       <PageHeader title={t('view_screen.title')} showBack />
