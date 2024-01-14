@@ -1,36 +1,32 @@
-import { getServerSession } from 'next-auth/next'
-import { authOptions } from '@/lib/auth'
+'use client'
+
+import { useParams } from 'next/navigation'
+import { useQuery } from '@tanstack/react-query'
+import { useTranslations } from 'next-intl'
+
 import { Page } from '@/components/Page/Page'
+import { PageHeader } from '@/components/Page/PageHeader'
 import { SensorView } from '@/components/View/ViewSensor'
-import { redirect } from 'next/navigation'
-import { db } from '@/lib/db'
+import { findSensorById } from '@/lib/queries'
+import NotFound from '@/components/404'
 
-async function Home({ params }) {
-  const session = await getServerSession(authOptions)
-  const sensor = await db.sensor.findUnique({
-    where: {
-      id: params.id,
-    },
-    select: {
-      id: true,
-      identifier: true,
-      station: true,
-      files: true,
-      type: true,
-      nbr_measures: true,
-      records: true,
-    },
+function SensorDetail({ params }) {
+  const t = useTranslations('Sensors')
+  const { id } = useParams()
+
+  const { data, isLoading } = useQuery({
+    queryKey: ['sensors', id],
+    queryFn: () => findSensorById(id),
   })
-
-  if (!session) {
-    redirect('/auth/login')
-  }
 
   return (
     <Page>
-      <SensorView sensor={sensor}></SensorView>
+      <PageHeader title={t('view_screen.title')} showBack />
+      {isLoading && <p>Loading...</p>}
+      {!isLoading && !data && <NotFound />}
+      {!isLoading && data && <SensorView sensor={data} />}
     </Page>
   )
 }
 
-export default Home
+export default SensorDetail
