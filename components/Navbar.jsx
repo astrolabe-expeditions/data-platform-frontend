@@ -1,22 +1,15 @@
-import Image from 'next/image'
-import { Account } from './Account'
+'use client'
 
-const Navbar = () => {
+import { IconButton } from '@/components/ui/Button'
+import { Bar } from '@/components/ui/Icons'
+import { SidebarLogo } from './Sidebar/SidebarLogo'
+
+const Navbar = ({ onToogle }) => {
   return (
-    <nav className="">
-      <div className="">
-        <Image
-          src="/logo.png"
-          width={64}
-          height={64}
-          alt="Picture of the author"
-        />
-        <h1 className="text-2xl font-bold">Astrolabe Expeditions</h1>
-      </div>
-      <div className="ml-auto">
-        <Account />
-      </div>
-    </nav>
+    <div className="sticky top-0 bg-primary-700 lg:hidden flex items-center px-4 py-3">
+      <IconButton icon={Bar} onClick={onToogle} />
+      <SidebarLogo className="ml-4" height={48} />
+    </div>
   )
 }
 

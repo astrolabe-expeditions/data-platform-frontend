@@ -1,21 +1,9 @@
-import { SidebarItem } from './SidebarItem'
-import { SidebarLogo } from './SidebarLogo'
-import { SidebarLogout } from './SidebarLogout'
+'use client'
 
-const Sidebar = () => {
+const Sidebar = ({ children }) => {
   return (
-    <div className="w-72 h-screen bg-primary-700 px-4 py-8 flex flex-col">
-      <SidebarLogo />
-      <nav>
-        <ul className="flex flex-col gap-1">
-          <SidebarItem name="Dashboard" to="/" />
-          <SidebarItem name="Stations" to="/stations" />
-          <SidebarItem name="Sensors" to="/sensors" />
-        </ul>
-      </nav>
-      <div className="mt-auto">
-        <SidebarLogout />
-      </div>
+    <div className="fixed top-0 start-0 bottom-0 w-72 bg-primary-700 px-4 py-8 lg:block hidden">
+      {children}
     </div>
   )
 }
