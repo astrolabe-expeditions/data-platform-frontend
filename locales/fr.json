@@ -154,5 +154,8 @@
   },
   "PageHeader": {
     "back": "Retour"
+  },
+  "FileListItem": {
+    "uploaded_at": "Mise en ligne le {uploadedAt, date, medium}"
   }
 }
