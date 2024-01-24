@@ -1,6 +1,10 @@
 import { db } from '@/lib/db'
 import { NextResponse } from 'next/server'
-import { createKeyInDatabase, uploadFile } from '@/lib/aws'
+import {
+  createKeyInDatabase,
+  uploadFile,
+  sendMessageToProcessingQueue,
+} from '@/lib/aws'
 
 export async function PUT(request, { params }) {
   const { id } = params
@@ -61,6 +65,8 @@ export async function POST(request) {
 
   const file_id = await createKeyInDatabase(file, sensor_id)
   await uploadFile(file, file_id, sensor_id)
+
+  sendMessageToProcessingQueue(file_id)
 
   const sensor = await db.sensor.findUnique({
     where: {
