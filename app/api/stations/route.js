@@ -1,7 +1,15 @@
 import { db } from '@/lib/db'
 import { NextResponse } from 'next/server'
 
-// GET with soft delete (deleted: false)
+/**
+ * @swagger
+ * /api/stations:
+ *   get:
+ *     description: Returns the hello world
+ *     responses:
+ *       200:
+ *         description: hello world
+ */
 export async function GET() {
   const stations = await db.station.findMany({
     where: {
