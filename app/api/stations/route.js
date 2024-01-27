@@ -5,15 +5,24 @@ import { NextResponse } from 'next/server'
  * @swagger
  * /api/stations:
  *   get:
- *     description: Returns the hello world
+ *     description: Returns all stations
+ *     parameters:
+ *      - in: query
+ *        name: type
+ *        schema:
+ *          type: string
+ *        description: Filter by type of station (e.g. 'Mobile', 'Fixed')
  *     responses:
  *       200:
- *         description: hello world
+ *        description: Success
  */
-export async function GET() {
+export async function GET(request) {
+  const type = request.nextUrl.searchParams.get('type')
+
   const stations = await db.station.findMany({
     where: {
       deleted: false,
+      type: type ? type : undefined,
     },
     select: {
       id: true,
@@ -27,7 +36,7 @@ export async function GET() {
     },
   })
 
-  return NextResponse.json(stations, { status: 200 })
+  return NextResponse.json({ data: stations }, { status: 200 })
 }
 
 export async function POST(request) {
