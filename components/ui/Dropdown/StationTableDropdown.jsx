@@ -10,7 +10,7 @@ const StationTableDropdown = ({ obj, ...props }) => {
     const confirmed = confirm('Are you sure you want to delete this Station?')
 
     if (confirmed) {
-      const res = await fetch(`/api/stations?id=${obj.id}`, {
+      const res = await fetch(`/api/stations/${obj.id}`, {
         method: 'DELETE',
       })
       if (res.ok) {

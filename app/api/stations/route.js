@@ -69,25 +69,3 @@ export async function POST(request) {
     { status: 201 },
   )
 }
-
-// soft DELETE (deleted: true) with deleted_at and deleted_by_id
-export async function DELETE(request) {
-  const id = request.nextUrl.searchParams.get('id')
-  // const deleted_by_id = getUserIdFromRequest(request); // Implement a function to get the user ID from the request.
-
-  await db.station.update({
-    where: {
-      id,
-    },
-    data: {
-      deleted: true,
-      deleted_at: new Date(),
-      // deleted_by_id,
-    },
-  })
-
-  return NextResponse.json(
-    { message: 'Station Soft Deleted Successfully' },
-    { status: 200 },
-  )
-}

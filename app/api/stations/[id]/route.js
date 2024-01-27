@@ -44,3 +44,36 @@ export async function GET(request, { params }) {
   })
   return NextResponse.json({ station }, { status: 200 })
 }
+
+/**
+ * @swagger
+ * /api/stations/{stationId}:
+ *   delete:
+ *    description: Delete a station
+ *    parameters:
+ *     - in: path
+ *       name: stationId
+ *       schema:
+ *         type: string
+ *    responses:
+ *      200:
+ *        description: Success
+ */
+export async function DELETE(request, { params }) {
+  const { id } = params
+
+  await db.station.update({
+    where: {
+      id,
+    },
+    data: {
+      deleted: true,
+      deleted_at: new Date(),
+    },
+  })
+
+  return NextResponse.json(
+    { message: 'Station Soft Deleted Successfully' },
+    { status: 200 },
+  )
+}
