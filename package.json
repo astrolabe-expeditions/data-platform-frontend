@@ -36,13 +36,15 @@
     "next": "^13.4.12",
     "next-auth": "4.22.3",
     "next-intl": "3.0.0-beta.12",
+    "next-swagger-doc": "^0.4.0",
     "prop-types": "15.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.49.2",
     "react-paginate": "^8.2.0",
     "react-select": "^5.8.0",
-    "sharp": "^0.32.6"
+    "sharp": "^0.32.6",
+    "swagger-ui-react": "^5.11.1"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "7.2.1",
