@@ -39,6 +39,17 @@ export async function GET(request) {
   return NextResponse.json({ data: stations }, { status: 200 })
 }
 
+/**
+ * @swagger
+ * /api/stations:
+ *   post:
+ *    description: Create a new station
+ *    requestBody:
+ *      description: Optional description in *Markdown*
+ *    responses:
+ *      200:
+ *        description: Success
+ */
 export async function POST(request) {
   const { name, type, latitude, longitude, description, image_url, sensors } =
     await request.json()
