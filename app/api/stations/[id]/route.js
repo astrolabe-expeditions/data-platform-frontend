@@ -6,6 +6,8 @@ import { NextResponse } from 'next/server'
  * /api/stations/{stationId}:
  *  get:
  *    description: Get a station
+ *    tags:
+ *      - stations
  *    parameters:
  *      - in: path
  *        name: stationId
@@ -71,6 +73,8 @@ export async function PUT(request, { params }) {
  * /api/stations/{stationId}:
  *   delete:
  *    description: Delete a station
+ *    tags:
+ *      - stations
  *    parameters:
  *     - in: path
  *       name: stationId

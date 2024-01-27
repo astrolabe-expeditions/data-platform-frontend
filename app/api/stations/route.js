@@ -6,15 +6,17 @@ import { NextResponse } from 'next/server'
  * /api/stations:
  *   get:
  *     description: Returns all stations
+ *     tags:
+ *       - stations
  *     parameters:
- *      - in: query
- *        name: type
- *        schema:
- *          type: string
- *        description: Filter by type of station (e.g. 'Mobile', 'Fixed')
+ *       - in: query
+ *         name: type
+ *         schema:
+ *           type: string
+ *         description: Filter by type of station (e.g. 'Mobile', 'Fixed')
  *     responses:
  *       200:
- *        description: Success
+ *         description: Success
  */
 export async function GET(request) {
   const type = request.nextUrl.searchParams.get('type')
@@ -44,6 +46,8 @@ export async function GET(request) {
  * /api/stations:
  *   post:
  *    description: Create a new station
+ *    tags:
+ *      - stations
  *    requestBody:
  *      description: Optional description in *Markdown*
  *    responses:
