@@ -1,6 +1,47 @@
 import { db } from '@/lib/db'
 import { NextResponse } from 'next/server'
 
+/**
+ * @swagger
+ * /api/stations/{stationId}:
+ *  get:
+ *    description: Get a station
+ *    parameters:
+ *      - in: path
+ *        name: stationId
+ *        schema:
+ *        type: string
+ *    responses:
+ *      200:
+ *        description: Success
+ *      404:
+ *        description: Not Found
+ */
+export async function GET(request, { params }) {
+  const { id } = params
+  const station = await db.station.findUnique({
+    where: {
+      id: id,
+    },
+    select: {
+      id: true,
+      name: true,
+      type: true,
+      latitude: true,
+      longitude: true,
+      description: true,
+      image_url: true,
+      sensors: true,
+    },
+  })
+
+  if (station === null) {
+    return NextResponse.json({ data: null }, { status: 404 })
+  }
+
+  return NextResponse.json({ station }, { status: 200 })
+}
+
 export async function PUT(request, { params }) {
   const { id } = params
   const { name, type, latitude, longitude, description, image_url, sensors } =
@@ -23,26 +64,6 @@ export async function PUT(request, { params }) {
     { message: 'Station Updated Successfully' },
     { status: 200 },
   )
-}
-
-export async function GET(request, { params }) {
-  const { id } = params
-  const station = await db.station.findUnique({
-    where: {
-      id: id,
-    },
-    select: {
-      id: true,
-      name: true,
-      type: true,
-      latitude: true,
-      longitude: true,
-      description: true,
-      image_url: true,
-      sensors: true,
-    },
-  })
-  return NextResponse.json({ station }, { status: 200 })
 }
 
 /**
