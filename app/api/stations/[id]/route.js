@@ -44,6 +44,24 @@ export async function GET(request, { params }) {
   return NextResponse.json({ station }, { status: 200 })
 }
 
+/**
+ * @swagger
+ * /api/stations/{stationId}:
+ *   put:
+ *     description: Update a station
+ *     tags:
+ *       - stations
+ *     parameters:
+ *       - in: path
+ *         name: stationId
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       description: Optional description in *Markdown*
+ *     responses:
+ *       200:
+ *         description: Success
+ */
 export async function PUT(request, { params }) {
   const { id } = params
   const { name, type, latitude, longitude, description, image_url, sensors } =
