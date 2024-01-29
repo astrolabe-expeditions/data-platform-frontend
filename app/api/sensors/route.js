@@ -1,6 +1,17 @@
 import { db } from '@/lib/db'
 import { NextResponse } from 'next/server'
 
+/**
+ * @swagger
+ * /api/sensors:
+ *   get:
+ *     description: Returns all sensors
+ *     tags:
+ *       - sensors
+ *     responses:
+ *       200:
+ *         description: Success
+ */
 export async function GET() {
   const sensors = await db.sensor.findMany({
     where: {
@@ -25,6 +36,19 @@ export async function GET() {
   return NextResponse.json(sensors, { status: 200 })
 }
 
+/**
+ * @swagger
+ * /api/sensors:
+ *   post:
+ *    description: Create a new sensor
+ *    tags:
+ *      - sensors
+ *    requestBody:
+ *      description: Optional description in *Markdown*
+ *    responses:
+ *      200:
+ *        description: Success
+ */
 export async function POST(request) {
   const { identifier, type, nbr_measures } = await request.json()
   await db.sensor.create({
