@@ -85,3 +85,52 @@ export async function POST(request) {
 
   return NextResponse.json({ success: true, data: sensor }, { status: 201 })
 }
+
+/**
+ * @swagger
+ * /api/sensors/{sensorId}:
+ *   delete:
+ *    description: Delete a sensor
+ *    tags:
+ *      - sensors
+ *    parameters:
+ *     - in: path
+ *       name: sensorId
+ *       schema:
+ *         type: string
+ *    responses:
+ *      200:
+ *        description: Success
+ */
+export async function DELETE(request, { params }) {
+  const { id } = params
+
+  // Check if the sensor with the given id exists
+  const existingSensor = await db.sensor.findUnique({
+    where: {
+      id,
+    },
+  })
+
+  // If the sensor doesn't exist, return a 404 response
+  if (!existingSensor) {
+    return NextResponse.json({ error: 'Sensor not found' }, { status: 404 })
+  }
+
+  // Perform the soft delete
+  await db.sensor.update({
+    where: {
+      id,
+    },
+    data: {
+      deleted: true,
+      deleted_at: new Date(),
+      // deleted_by_id,
+    },
+  })
+
+  return NextResponse.json(
+    { message: 'Sensor Soft Deleted Successfully' },
+    { status: 200 },
+  )
+}
