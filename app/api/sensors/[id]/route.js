@@ -1,35 +1,24 @@
 import { db } from '@/lib/db'
 import { NextResponse } from 'next/server'
 
-export async function PUT(request, { params }) {
-  const { id } = params
-  const {
-    identifier,
-    type,
-    nbr_measures,
-    // station_id,
-    // records,
-    // files,
-  } = await request.json()
-  await db.sensor.update({
-    where: {
-      id: id,
-    },
-    data: {
-      identifier,
-      type,
-      nbr_measures,
-      // station_id,
-      // records,
-      // files,
-    },
-  })
-  return NextResponse.json(
-    { message: 'Sensor Updated Successfully' },
-    { status: 200 },
-  )
-}
-
+/**
+ * @swagger
+ * /api/sensors/{sensorId}:
+ *  get:
+ *    description: Get a sensor
+ *    tags:
+ *      - sensors
+ *    parameters:
+ *      - in: path
+ *        name: sensorId
+ *        schema:
+ *        type: string
+ *    responses:
+ *      200:
+ *        description: Success
+ *      404:
+ *        description: Not Found
+ */
 export async function GET(request, { params }) {
   const { id } = params
   const sensor = await db.sensor.findUnique({
@@ -47,6 +36,43 @@ export async function GET(request, { params }) {
     },
   })
   return NextResponse.json({ sensor }, { status: 200 })
+}
+
+/**
+ * @swagger
+ * /api/sensors/{sensorId}:
+ *   put:
+ *     description: Update a sensor
+ *     tags:
+ *       - sensors
+ *     parameters:
+ *       - in: path
+ *         name: sensorId
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       description: Optional description in *Markdown*
+ *     responses:
+ *       200:
+ *         description: Success
+ */
+export async function PUT(request, { params }) {
+  const { id } = params
+  const { identifier, type, nbr_measures } = await request.json()
+  await db.sensor.update({
+    where: {
+      id: id,
+    },
+    data: {
+      identifier,
+      type,
+      nbr_measures,
+    },
+  })
+  return NextResponse.json(
+    { message: 'Sensor Updated Successfully' },
+    { status: 200 },
+  )
 }
 
 /**
