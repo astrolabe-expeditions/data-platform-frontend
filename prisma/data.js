@@ -10,16 +10,16 @@ const stations = [
   {
     name: 'Station n°2',
     type: 'Fixed',
-    latitude: '34.0522',
-    longitude: '-118.2437',
+    latitude: 34.0522,
+    longitude: -118.2437,
     description: 'Fixed station in Los Angeles',
     image_url: 'https://picsum.photos/200/300.jpg',
   },
   {
     name: 'Station n°3',
     type: 'Fixed',
-    latitude: '48.8566',
-    longitude: '2.3522',
+    latitude: 48.8566,
+    longitude: 2.3522,
     description: 'Fixed station in Paris',
     image_url: 'https://picsum.photos/200/300.jpg',
   },
@@ -32,8 +32,8 @@ const stations = [
   {
     name: 'Station n°5',
     type: 'Fixed',
-    latitude: '41.8781',
-    longitude: '-87.6298',
+    latitude: 41.8781,
+    longitude: -87.6298,
     description: 'Fixed station in Chicago',
     image_url: 'https://picsum.photos/200/300.jpg',
   },
@@ -74,8 +74,8 @@ const sensors = [
 
 const records = [
   {
-    latitude: '34.0522',
-    longitude: '-118.2437',
+    latitude: 34.0522,
+    longitude: -118.2437,
     recorded_at: new Date(),
     battery_voltage: 3.6,
     battery_percentage: 75,
@@ -88,8 +88,8 @@ const records = [
     ec_sea_mean: 36.1,
   },
   {
-    latitude: '48.8566',
-    longitude: '2.3522',
+    latitude: 48.8566,
+    longitude: 2.3522,
     recorded_at: new Date(),
     battery_voltage: 3.6,
     battery_percentage: 87,

@@ -20,8 +20,8 @@ model Station {
   id              String      @id @default(auto()) @map("_id") @db.ObjectId
   name            String
   type            StationType
-  latitude        String?
-  longitude       String?
+  latitude        Float?
+  longitude       Float?
   description     String?
   image_url       String?
   sensors         Sensor[]   // Define a relation to Sensor
@@ -69,8 +69,8 @@ model Sensor {
 
 model Record {
   id                  String      @id @default(auto()) @map("_id") @db.ObjectId
-  latitude            String
-  longitude           String
+  latitude            Float
+  longitude           Float
   recorded_at         DateTime    @default(now())
   battery_voltage     Float
   battery_percentage  Float
@@ -80,7 +80,7 @@ model Record {
   temp_sea            Float[]
   temp_sea_mean       Float
   ec_sea              Float[]
-  ec_sea_mean         Float 
+  ec_sea_mean         Float
   sensor_id           String?     @db.ObjectId  // Reference to Sensor model
   sensor              Sensor?     @relation(fields: [sensor_id], references: [id])
   created_at          DateTime?   @default(now())

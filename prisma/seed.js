@@ -188,8 +188,8 @@ const load = async () => {
               records: {
                 create: [
                   {
-                    latitude: '52.5200',
-                    longitude: '13.4050',
+                    latitude: 52.52,
+                    longitude: 13.405,
                     recorded_at: new Date('2022-10-23T06:45:00.000Z'),
                     battery_voltage: 3.5,
                     battery_percentage: 88,
@@ -230,8 +230,8 @@ const load = async () => {
       data: {
         name: 'Station n°7',
         type: 'Fixed',
-        latitude: '52.5200',
-        longitude: '13.4050',
+        latitude: 52.52,
+        longitude: 13.405,
         description: 'Fixed station in Berlin',
         image_url: 'https://picsum.photos/200/300.jpg',
         created_at: new Date('2023-11-01T08:45:00.000Z'),
@@ -251,8 +251,8 @@ const load = async () => {
               records: {
                 create: [
                   {
-                    latitude: '52.5200',
-                    longitude: '13.4050',
+                    latitude: 52.52,
+                    longitude: 13.405,
                     recorded_at: new Date('2023-10-03T16:45:00.000Z'),
                     battery_voltage: 3.8,
                     battery_percentage: 91,
@@ -312,8 +312,8 @@ const load = async () => {
               records: {
                 create: [
                   {
-                    latitude: '41.8781',
-                    longitude: '-87.6298',
+                    latitude: 41.8781,
+                    longitude: -87.6298,
                     recorded_at: new Date('2023-10-13T10:45:00.000Z'),
                     battery_voltage: 3.6,
                     battery_percentage: 87,
@@ -354,8 +354,8 @@ const load = async () => {
       data: {
         name: 'Station n°9',
         type: 'Fixed',
-        latitude: '52.2297',
-        longitude: '21.0122',
+        latitude: 52.2297,
+        longitude: 21.0122,
         description: 'Fixed station in Warsaw',
         image_url: 'https://picsum.photos/200/300.jpg',
         created_at: new Date('2023-10-04T11:45:00.000Z'),
@@ -375,8 +375,8 @@ const load = async () => {
               records: {
                 create: [
                   {
-                    latitude: '52.2297',
-                    longitude: '21.0122',
+                    latitude: 52.2297,
+                    longitude: 21.0122,
                     recorded_at: new Date('2022-10-03T16:45:00.000Z'),
                     battery_voltage: 3.6,
                     battery_percentage: 75,
@@ -436,8 +436,8 @@ const load = async () => {
               records: {
                 create: [
                   {
-                    latitude: '40.7128',
-                    longitude: '-74.0060',
+                    latitude: 40.7128,
+                    longitude: -74.006,
                     recorded_at: new Date('2022-10-13T16:45:00.000Z'),
                     battery_voltage: 3.7,
                     battery_percentage: 90,
@@ -478,8 +478,8 @@ const load = async () => {
       data: {
         name: 'Station n°11',
         type: 'Fixed',
-        latitude: '40.7128',
-        longitude: '-74.0060',
+        latitude: 40.7128,
+        longitude: -74.006,
         description: 'Fixed station in New York',
         image_url: 'https://picsum.photos/200/300.jpg',
         created_at: new Date('2023-11-05T10:00:00.000Z'),
@@ -499,8 +499,8 @@ const load = async () => {
               records: {
                 create: [
                   {
-                    latitude: '40.7128',
-                    longitude: '-74.0060',
+                    latitude: 40.7128,
+                    longitude: -74.006,
                     recorded_at: new Date('2023-11-05T10:30:00.000Z'),
                     battery_voltage: 3.6,
                     battery_percentage: 90,
@@ -543,8 +543,8 @@ const load = async () => {
               records: {
                 create: [
                   {
-                    latitude: '40.7128',
-                    longitude: '-74.0060',
+                    latitude: 40.7128,
+                    longitude: -74.006,
                     recorded_at: new Date('2023-11-05T10:45:00.000Z'),
                     battery_voltage: 3.7,
                     battery_percentage: 91,
@@ -585,8 +585,8 @@ const load = async () => {
       data: {
         name: 'Station n°12',
         type: 'Fixed',
-        latitude: '48.390394',
-        longitude: '-4.486076',
+        latitude: 48.390394,
+        longitude: -4.486076,
         description: 'Fixed station in Brest',
         image_url: 'https://picsum.photos/200/301.jpg',
         created_at: new Date('2023-11-06T10:15:00.000Z'),
@@ -606,8 +606,8 @@ const load = async () => {
               records: {
                 create: [
                   {
-                    latitude: '48.390394',
-                    longitude: '-4.486076',
+                    latitude: 48.390394,
+                    longitude: -4.486076,
                     recorded_at: new Date('2023-11-06T10:45:00.000Z'),
                     battery_voltage: 3.8,
                     battery_percentage: 92,
@@ -650,8 +650,8 @@ const load = async () => {
               records: {
                 create: [
                   {
-                    latitude: '48.390394',
-                    longitude: '-4.486076',
+                    latitude: 48.390394,
+                    longitude: -4.486076,
                     recorded_at: new Date('2023-11-06T10:45:00.000Z'),
                     battery_voltage: 3.9,
                     battery_percentage: 93,
@@ -694,8 +694,8 @@ const load = async () => {
               records: {
                 create: [
                   {
-                    latitude: '48.390394',
-                    longitude: '-4.486076',
+                    latitude: 48.390394,
+                    longitude: -4.486076,
                     recorded_at: new Date('2023-11-06T10:45:00.000Z'),
                     battery_voltage: 3.9,
                     battery_percentage: 93,
