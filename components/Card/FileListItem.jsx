@@ -13,7 +13,10 @@ const FileListItem = ({ file, className }) => {
 
   const handleRelaunch = () => {
     console.log('Relaunch process')
-    mutate(file.id)
+    mutate({
+      fileId: file.id,
+      sensorId: file.sensor_id,
+    })
   }
 
   return (
