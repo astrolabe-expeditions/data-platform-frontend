@@ -8,9 +8,9 @@ import {
 
 /**
  * @swagger
- * /api/sensors/{sensorId}/upload:
+ * /api/sensors/{sensorId}/files:
  *   post:
- *    description: Create a new station
+ *    description: Create a new file for a sensor
  *    parameters:
  *     - in: path
  *       name: sensorId
