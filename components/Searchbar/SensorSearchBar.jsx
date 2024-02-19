@@ -43,7 +43,7 @@ export default function SensorSearchbar({ data }) {
         showBack
         actions={
           <Button
-            href="/sensors/add"
+            href="/admin/sensors/add"
             component={Link}
             label={t('labels.add_sensor')}
           />

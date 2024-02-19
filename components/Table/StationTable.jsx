@@ -48,7 +48,7 @@ export default function StationTable({ data }) {
               <Table.Cell>
                 {row.sensors.map((sensor) => (
                   <div key={sensor.id}>
-                    <Link href={`/sensors/${sensor.id}`}>
+                    <Link href={`/admin/sensors/${sensor.id}`}>
                       {sensor.identifier}
                     </Link>
                   </div>

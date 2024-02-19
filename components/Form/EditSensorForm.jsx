@@ -28,7 +28,7 @@ export default function EditSensorForm({ sensor }) {
   const { mutate, isError, error } = useMutation(editSensor, {
     onSuccess: () => {
       router.refresh()
-      router.push('/sensors')
+      router.push('/admin/sensors')
     },
   })
 
