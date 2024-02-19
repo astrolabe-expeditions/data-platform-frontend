@@ -3,32 +3,32 @@ import { NextResponse } from 'next/server'
 
 /**
  * @swagger
- * /api/records:
+ * /api/sensors/{sensorId}/records:
  *   get:
- *     description: Returns records
+ *     description: Returns records for a sensor
  *     tags:
- *       - records
+ *       - sensors
  *     parameters:
+ *       - in: path
+ *         name: sensorId
+ *         schema:
+ *           type: string
  *       - in: query
  *         name: format
  *         schema:
  *           type: string
  *         description: Change format to GeoJSON (e.g. 'geojson', 'json')
- *       - in: query
- *         name: sensorId
- *         schema:
- *           type: string
- *         description: filter record by sensorId
  *     responses:
  *       200:
  *         description: Success
  */
-export async function GET(request) {
+export async function GET(request, { params }) {
   const format = request.nextUrl.searchParams.get('format')
-  const sensorId = request.nextUrl.searchParams.get('sensorId')
+  const { id: sensorId } = params
+
   const records = await db.record.findMany({
     where: {
-      ...(sensorId ? { sensor_id: sensorId } : {}),
+      sensor_id: sensorId,
     },
   })
 
