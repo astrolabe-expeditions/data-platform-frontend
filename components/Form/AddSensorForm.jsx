@@ -50,7 +50,7 @@ export default function AddSensor() {
         }),
       })
       if (res.ok) {
-        router.push('/sensors')
+        router.push('/admin/sensors')
       } else {
         throw new Error('Failed to add sensor')
       }

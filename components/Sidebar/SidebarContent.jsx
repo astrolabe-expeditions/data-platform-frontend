@@ -8,13 +8,17 @@ function SidebarContent({ onItemClick }) {
       <SidebarLogo className="px-3 pb-6 hidden lg:block" height={110} />
       <nav>
         <ul className="flex flex-col gap-1">
-          <SidebarItem name="Dashboard" to="/" onItemClick={onItemClick} />
+          <SidebarItem name="Dashboard" to="/admin" onItemClick={onItemClick} />
           <SidebarItem
             name="Stations"
-            to="/stations"
+            to="/admin/stations"
             onItemClick={onItemClick}
           />
-          <SidebarItem name="Sensors" to="/sensors" onItemClick={onItemClick} />
+          <SidebarItem
+            name="Sensors"
+            to="/admin/sensors"
+            onItemClick={onItemClick}
+          />
         </ul>
       </nav>
       <div className="mt-auto">
