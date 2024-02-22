@@ -1,6 +1,6 @@
 /**
  * @swagger
- * /api/sensors/{sensorId}/records/create_or_update_many:
+ * /api/v1/sensors/{sensorId}/records/create_or_update_many:
  *   post:
  *    description: Create or update many records. Limit 100 records per request
  *    tags:

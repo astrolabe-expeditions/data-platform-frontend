@@ -55,7 +55,7 @@ export default function EditSensorForm({ sensor }) {
     const fetchStationName = async () => {
       try {
         const stationResponse = await fetch(
-          `/api/stations/${formData.station_id}`,
+          `/api/v1/stations/${formData.station_id}`,
         )
         const stationData = await stationResponse.json()
         setStationName(stationData.station.name) // set station name
