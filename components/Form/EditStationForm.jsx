@@ -74,7 +74,7 @@ export default function EditStationForm({ station }) {
     async () => {
       setSensorStatus('loading')
       try {
-        const res = await fetch('/api/sensors')
+        const res = await fetch('/api/v1/sensors')
         if (!res.ok) {
           throw new Error('Failed to fetch sensors')
         }

@@ -8,7 +8,7 @@ import {
 
 /**
  * @swagger
- * /api/sensors/{sensorId}/files:
+ * /api/v1/sensors/{sensorId}/files:
  *   post:
  *    description: Create a new file for a sensor
  *    parameters:

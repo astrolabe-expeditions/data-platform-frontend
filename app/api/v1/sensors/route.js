@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server'
 
 /**
  * @swagger
- * /api/sensors:
+ * /api/v1/sensors:
  *   get:
  *     description: Returns all sensors
  *     tags:
@@ -38,7 +38,7 @@ export async function GET() {
 
 /**
  * @swagger
- * /api/sensors:
+ * /api/v1/sensors:
  *   post:
  *    description: Create a new sensor
  *    tags:

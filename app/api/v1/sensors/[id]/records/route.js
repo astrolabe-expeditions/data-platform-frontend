@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server'
 
 /**
  * @swagger
- * /api/sensors/{sensorId}/records:
+ * /api/v1/sensors/{sensorId}/records:
  *   get:
  *     description: Returns records for a sensor
  *     tags:

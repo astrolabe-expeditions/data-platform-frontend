@@ -10,7 +10,7 @@ const SensorTableDropdown = ({ obj, ...props }) => {
     const confirmed = confirm('Are you sure you want to delete this Sensor?')
 
     if (confirmed) {
-      const res = await fetch(`/api/sensors/${obj.id}`, {
+      const res = await fetch(`/api/v1/sensors/${obj.id}`, {
         method: 'DELETE',
       })
       if (res.ok) {

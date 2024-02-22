@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server'
 
 /**
  * @swagger
- * /api/stations:
+ * /api/v1/stations:
  *   get:
  *     description: Returns all stations
  *     tags:
@@ -43,7 +43,7 @@ export async function GET(request) {
 
 /**
  * @swagger
- * /api/stations:
+ * /api/v1/stations:
  *   post:
  *    description: Create a new station
  *    tags:

@@ -3,14 +3,14 @@ import { NextResponse } from 'next/server'
 
 /**
  * @swagger
- * /api/sensors/{sensorId}:
+ * /api/v1/stations/{stationId}:
  *  get:
- *    description: Get a sensor
+ *    description: Get a station
  *    tags:
- *      - sensors
+ *      - stations
  *    parameters:
  *      - in: path
- *        name: sensorId
+ *        name: stationId
  *        schema:
  *        type: string
  *    responses:
@@ -21,33 +21,39 @@ import { NextResponse } from 'next/server'
  */
 export async function GET(request, { params }) {
   const { id } = params
-  const sensor = await db.sensor.findUnique({
+  const station = await db.station.findUnique({
     where: {
       id: id,
     },
     select: {
       id: true,
-      identifier: true,
+      name: true,
       type: true,
-      nbr_measures: true,
-      station_id: true,
-      records: true,
-      files: true,
+      latitude: true,
+      longitude: true,
+      description: true,
+      image_url: true,
+      sensors: true,
     },
   })
-  return NextResponse.json({ sensor }, { status: 200 })
+
+  if (station === null) {
+    return NextResponse.json({ data: null }, { status: 404 })
+  }
+
+  return NextResponse.json({ station }, { status: 200 })
 }
 
 /**
  * @swagger
- * /api/sensors/{sensorId}:
+ * /api/v1/stations/{stationId}:
  *   put:
- *     description: Update a sensor
+ *     description: Update a station
  *     tags:
- *       - sensors
+ *       - stations
  *     parameters:
  *       - in: path
- *         name: sensorId
+ *         name: stationId
  *         schema:
  *           type: string
  *     requestBody:
@@ -58,33 +64,38 @@ export async function GET(request, { params }) {
  */
 export async function PUT(request, { params }) {
   const { id } = params
-  const { identifier, type, nbr_measures } = await request.json()
-  await db.sensor.update({
+  const { name, type, latitude, longitude, description, image_url, sensors } =
+    await request.json()
+  await db.station.update({
     where: {
       id: id,
     },
     data: {
-      identifier,
+      name,
       type,
-      nbr_measures,
+      latitude,
+      longitude,
+      description,
+      image_url,
+      sensors,
     },
   })
   return NextResponse.json(
-    { message: 'Sensor Updated Successfully' },
+    { message: 'Station Updated Successfully' },
     { status: 200 },
   )
 }
 
 /**
  * @swagger
- * /api/sensors/{sensorId}:
+ * /api/v1/stations/{stationId}:
  *   delete:
- *    description: Delete a sensor
+ *    description: Delete a station
  *    tags:
- *      - sensors
+ *      - stations
  *    parameters:
  *     - in: path
- *       name: sensorId
+ *       name: stationId
  *       schema:
  *         type: string
  *    responses:
@@ -94,32 +105,18 @@ export async function PUT(request, { params }) {
 export async function DELETE(request, { params }) {
   const { id } = params
 
-  // Check if the sensor with the given id exists
-  const existingSensor = await db.sensor.findUnique({
-    where: {
-      id,
-    },
-  })
-
-  // If the sensor doesn't exist, return a 404 response
-  if (!existingSensor) {
-    return NextResponse.json({ error: 'Sensor not found' }, { status: 404 })
-  }
-
-  // Perform the soft delete
-  await db.sensor.update({
+  await db.station.update({
     where: {
       id,
     },
     data: {
       deleted: true,
       deleted_at: new Date(),
-      // deleted_by_id,
     },
   })
 
   return NextResponse.json(
-    { message: 'Sensor Soft Deleted Successfully' },
+    { message: 'Station Soft Deleted Successfully' },
     { status: 200 },
   )
 }

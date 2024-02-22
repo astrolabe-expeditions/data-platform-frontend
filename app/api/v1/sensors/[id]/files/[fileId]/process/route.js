@@ -4,7 +4,7 @@ import { sendMessageToProcessingQueue } from '@/lib/aws'
 
 /**
  * @swagger
- * /api/sensors/{sensorId}/files/{fileId}/process:
+ * /api/v1/sensors/{sensorId}/files/{fileId}/process:
  *   get:
  *     description: Process a file
  *     tags:
