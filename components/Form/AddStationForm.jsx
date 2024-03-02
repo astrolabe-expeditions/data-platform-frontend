@@ -19,8 +19,8 @@ export default function AddStation() {
     name: '',
     type: '',
     sensors: [],
-    longitude: '',
-    latitude: '',
+    longitude: null,
+    latitude: null,
     description: '',
     image_url: '',
   })
@@ -69,8 +69,8 @@ export default function AddStation() {
           sensors: {
             connect: formData.sensors.map((sensor) => ({ id: sensor.id })),
           },
-          longitude: formData.longitude,
-          latitude: formData.latitude,
+          longitude: parseFloat(formData.longitude),
+          latitude: parseFloat(formData.latitude),
           description: formData.description,
           image_url: formData.image_url,
         }),
