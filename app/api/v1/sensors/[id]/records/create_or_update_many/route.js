@@ -1,3 +1,6 @@
+import { db } from '@/lib/db'
+import { NextResponse } from 'next/server'
+
 /**
  * @swagger
  * /api/v1/sensors/{sensorId}/records/create_or_update_many:
@@ -14,7 +17,12 @@
  *        description: To many records in request
  */
 export async function POST(request) {
-  const records = await request.json()
+  const { data } = await request.json()
+  const records = JSON.parse(data).map((record) => {
+    const recordedAt = new Date(record.recorded_at).toISOString()
+    return { ...record, recorded_at: recordedAt }
+  })
+
   if (records.length > 100) {
     return NextResponse.json(
       { error: 'To many records in request' },
@@ -22,9 +30,27 @@ export async function POST(request) {
     )
   }
 
-  await db.record.createMany({
-    data: records,
-  })
+  for (const record of records) {
+    const existingRecord = await db.record.findFirst({
+      where: {
+        sensor_id: record.sensor_id,
+        recorded_at: record.recorded_at,
+      },
+    })
+
+    if (existingRecord) {
+      await db.record.update({
+        where: {
+          id: existingRecord.id,
+        },
+        data: record,
+      })
+    } else {
+      await db.record.create({
+        data: record,
+      })
+    }
+  }
 
   return NextResponse.json(
     { message: 'Sensor Created Successfully' },
