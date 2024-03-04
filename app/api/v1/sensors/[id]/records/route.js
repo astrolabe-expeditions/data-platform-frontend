@@ -30,11 +30,14 @@ export async function GET(request, { params }) {
     where: {
       sensor_id: sensorId,
     },
+    orderBy: {
+      recorded_at: 'asc',
+    },
   })
 
   if (format === 'geojson') {
     const geojson = getGeojsonFromRecord(records)
-    return NextResponse.json({ data: geojson }, { status: 200 })
+    return NextResponse.json({ ...geojson }, { status: 200 })
   }
 
   return NextResponse.json({ data: records }, { status: 200 })
@@ -44,17 +47,21 @@ function getGeojsonFromRecord(recordList) {
   let geojson = {
     type: 'FeatureCollection',
     features: [
-      ...recordList.map((record) => {
-        const { id, latitude, longitude, ...properties } = record
-        return {
-          type: 'Feature',
-          geometry: {
-            type: 'Point',
-            coordinates: [longitude.toString(), latitude.toString()],
-          },
-          properties,
-        }
-      }),
+      ...recordList.map(
+        ({ id, latitude, longitude, recorded_at, properties }) => {
+          return {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [longitude.toString(), latitude.toString()],
+            },
+            properties: {
+              recorded_at,
+              ...properties,
+            },
+          }
+        },
+      ),
       {
         type: 'Feature',
         geometry: {
