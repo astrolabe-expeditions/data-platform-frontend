@@ -5,12 +5,6 @@ import { Page } from '@/components/Page/Page'
 import AddStationForm from '@/components/Form/AddStationForm'
 
 export default async function AddStation() {
-  const session = await getServerSession(authOptions)
-
-  if (!session) {
-    redirect('/auth/login')
-  }
-
   return (
     <Page>
       <AddStationForm />

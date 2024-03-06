@@ -5,17 +5,11 @@ import { db } from '@/lib/db'
 import { StationView } from '@/components/View/ViewStation'
 
 async function Home({ params }) {
-  const session = await getServerSession(authOptions)
-
   const station = await db.station.findUnique({
     where: {
       id: params.id,
     },
   })
-
-  if (!session) {
-    redirect('/auth/login')
-  }
 
   return (
     <Page>
