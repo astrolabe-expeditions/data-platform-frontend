@@ -179,5 +179,8 @@
     "sensors": "Capteurs",
     "settings": "Paramètres",
     "logout": "Se déconnecter"
+  },
+  "Dashboard": {
+    "title": "Tableau de bord"
   }
 }
