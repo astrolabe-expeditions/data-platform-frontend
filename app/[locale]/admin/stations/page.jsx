@@ -18,7 +18,7 @@ const stations = await db.station.findMany({
   },
 })
 
-async function Home() {
+async function StationList() {
   return (
     <Page>
       <StationSearchBar data={stations} />
@@ -26,4 +26,4 @@ async function Home() {
   )
 }
 
-export default Home
+export default StationList

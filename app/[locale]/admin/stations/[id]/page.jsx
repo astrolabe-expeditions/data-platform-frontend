@@ -4,7 +4,7 @@ import { Page } from '@/components/Page/Page'
 import { db } from '@/lib/db'
 import { StationView } from '@/components/View/ViewStation'
 
-async function Home({ params }) {
+async function StationDetail({ params }) {
   const station = await db.station.findUnique({
     where: {
       id: params.id,
@@ -18,4 +18,4 @@ async function Home({ params }) {
   )
 }
 
-export default Home
+export default StationDetail

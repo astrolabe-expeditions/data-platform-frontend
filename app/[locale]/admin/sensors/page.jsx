@@ -18,7 +18,7 @@ const sensors = await db.sensor.findMany({
   },
 })
 
-async function Home() {
+async function SensorList() {
   return (
     <Page>
       <SensorSearchBar data={sensors} />
@@ -26,4 +26,4 @@ async function Home() {
   )
 }
 
-export default Home
+export default SensorList
