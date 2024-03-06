@@ -47,8 +47,9 @@ function getGeojsonFromRecord(recordList) {
   let geojson = {
     type: 'FeatureCollection',
     features: [
-      ...recordList.map(
-        ({ id, latitude, longitude, recorded_at, properties }) => {
+      ...recordList
+        .filter(({ latitude, longitude }) => latitude !== 0 && longitude !== 0)
+        .map(({ id, latitude, longitude, recorded_at, properties }) => {
           return {
             type: 'Feature',
             geometry: {
@@ -60,16 +61,16 @@ function getGeojsonFromRecord(recordList) {
               ...properties,
             },
           }
-        },
-      ),
+        }),
       {
         type: 'Feature',
         geometry: {
           type: 'LineString',
-          coordinates: recordList.map((record) => [
-            record.longitude,
-            record.latitude,
-          ]),
+          coordinates: recordList
+            .filter(
+              ({ latitude, longitude }) => latitude !== 0 && longitude !== 0,
+            )
+            .map((record) => [record.longitude, record.latitude]),
         },
       },
     ],
