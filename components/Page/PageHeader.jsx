@@ -8,7 +8,7 @@ import { Typography } from '../ui/Typography'
 import { Left } from '../ui/Icons'
 import { Button } from '../ui/Button'
 
-const PageHeader = ({ title, className, showBack, actions }) => {
+const PageHeader = ({ title, subtitle, className, showBack, actions }) => {
   const t = useTranslations('PageHeader')
   const router = useRouter()
 
@@ -25,11 +25,20 @@ const PageHeader = ({ title, className, showBack, actions }) => {
         />
       ) : null}
       <div className="flex flex-col items-start md:flex-row md:items-center">
-        <Typography variant="title">{title}</Typography>
+        {typeof title === 'string' ? (
+          <Typography variant="title">{title}</Typography>
+        ) : (
+          title
+        )}
         {actions ? (
           <div className="md:ml-auto md:mt-0 mt-4">{actions}</div>
         ) : null}
       </div>
+      {subtitle ? (
+        <div className="mt-2">
+          <Typography variant="subtitle">{subtitle}</Typography>
+        </div>
+      ) : null}
     </header>
   )
 }

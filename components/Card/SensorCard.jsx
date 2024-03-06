@@ -16,7 +16,6 @@ const SensorCard = ({ sensor }) => {
               <Text as="div" size="2" color="gray">
                 <strong>{t('upload_screen.type')}:</strong>
               </Text>
-              <Badge color="orange">{sensor.type}</Badge>
             </Flex>
             <Text as="div" size="2" color="gray">
               <strong>{t('upload_screen.nbr_measures')}: </strong>

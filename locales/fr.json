@@ -162,5 +162,12 @@
     "title": "Fichiers",
     "upload": "Mettre en ligne",
     "noFile": "Aucun fichier"
+  },
+  "SensorDetail": {
+    "title": "Capteur {identifier}",
+    "subtitle": "Ce capteur est associé à la station d'observation",
+    "actions": {
+      "edit": "Éditer"
+    }
   }
 }

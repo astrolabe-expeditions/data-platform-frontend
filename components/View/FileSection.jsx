@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import { FileListItem } from '@/components/Card/FileListItem'
+import { Card } from '@/components/ui/Card/Card'
 import { Button } from '@/components/ui/Button/Button'
 import { Typography } from '@/components/ui/Typography'
 import { uploadFile } from '@/lib/queries'
@@ -30,8 +31,8 @@ const FilesSection = ({ sensorId, files }) => {
   }
 
   return (
-    <section className="mt-6">
-      <header className="flex items-center">
+    <Card className="mt-6">
+      <header className="flex items-center pb-3 border-b">
         <Typography variant="sectionTitle">{t('title')}</Typography>
         <div className="ml-auto">
           <input
@@ -41,10 +42,15 @@ const FilesSection = ({ sensorId, files }) => {
             style={{ display: 'none' }}
             accept=".csv"
           />
-          <Button onClick={handleClick} label={t('upload')} />
+          <Button
+            onClick={handleClick}
+            label={t('upload')}
+            variant="link"
+            colorScheme="primary"
+          />
         </div>
       </header>
-      <div className="flex flex-col mt-4">
+      <div className="flex flex-col mt-3">
         {files.length === 0 ? (
           <Typography variant="body1">{t('noFile')}</Typography>
         ) : null}
@@ -54,7 +60,7 @@ const FilesSection = ({ sensorId, files }) => {
             })
           : null}
       </div>
-    </section>
+    </Card>
   )
 }
 
