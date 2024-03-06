@@ -146,5 +146,12 @@
     "view_screen": {
       "title": "View Sensor"
     }
+  },
+  "SensorDetail": {
+    "title": "Sensor {identifier}",
+    "subtitle": "This sensor is associated with the station",
+    "actions": {
+      "edit": "Edit"
+    }
   }
 }
