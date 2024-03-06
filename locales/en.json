@@ -156,5 +156,12 @@
   },
   "Settings": {
     "title": "Settings"
+  },
+  "Sidebar": {
+    "dashboard": "Dashboard",
+    "stations": "Stations",
+    "sensors": "Sensors",
+    "settings": "Settings",
+    "logout": "Logout"
   }
 }

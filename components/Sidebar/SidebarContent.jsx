@@ -1,22 +1,36 @@
+import { useTranslations } from 'next-intl'
+
 import { SidebarItem } from './SidebarItem'
 import { SidebarLogo } from './SidebarLogo'
 import { SidebarLogout } from './SidebarLogout'
 
 function SidebarContent({ onItemClick }) {
+  const t = useTranslations('Sidebar')
+
   return (
     <div className="h-full flex flex-col">
       <SidebarLogo className="px-3 pb-6 hidden lg:block" height={110} />
       <nav>
         <ul className="flex flex-col gap-1">
-          <SidebarItem name="Dashboard" to="/admin" onItemClick={onItemClick} />
           <SidebarItem
-            name="Stations"
+            name={t('dashboard')}
+            to="/admin"
+            onItemClick={onItemClick}
+            exact
+          />
+          <SidebarItem
+            name={t('stations')}
             to="/admin/stations"
             onItemClick={onItemClick}
           />
           <SidebarItem
-            name="Sensors"
+            name={t('sensors')}
             to="/admin/sensors"
+            onItemClick={onItemClick}
+          />
+          <SidebarItem
+            name={t('settings')}
+            to="/admin/settings"
             onItemClick={onItemClick}
           />
         </ul>
