@@ -153,5 +153,8 @@
     "actions": {
       "edit": "Edit"
     }
+  },
+  "Settings": {
+    "title": "Settings"
   }
 }
