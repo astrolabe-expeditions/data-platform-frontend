@@ -19,12 +19,6 @@ const stations = await db.station.findMany({
 })
 
 async function Home() {
-  const session = await getServerSession(authOptions)
-
-  if (!session) {
-    redirect('/auth/login')
-  }
-
   return (
     <Page>
       <StationSearchBar data={stations} />
