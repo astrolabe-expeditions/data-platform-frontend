@@ -172,5 +172,12 @@
   },
   "Settings": {
     "title": "Paramètres"
+  },
+  "Sidebar": {
+    "dashboard": "Tableau de bord",
+    "stations": "Station d'observations",
+    "sensors": "Capteurs",
+    "settings": "Paramètres",
+    "logout": "Se déconnecter"
   }
 }
