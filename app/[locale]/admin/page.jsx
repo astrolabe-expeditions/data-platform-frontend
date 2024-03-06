@@ -1,10 +1,16 @@
+'use client'
+
+import { useTranslations } from 'next-intl'
+
 import { Page } from '@/components/Page/Page'
 import { PageHeader } from '@/components/Page/PageHeader'
 
-async function Dashboard() {
+function Dashboard() {
+  const t = useTranslations('Dashboard')
+
   return (
     <Page>
-      <PageHeader title="Dashboard" />
+      <PageHeader title={t('title')} />
     </Page>
   )
 }

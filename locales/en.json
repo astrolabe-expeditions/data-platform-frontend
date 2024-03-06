@@ -163,5 +163,8 @@
     "sensors": "Sensors",
     "settings": "Settings",
     "logout": "Logout"
+  },
+  "Dashboard": {
+    "title": "Dashboard"
   }
 }
