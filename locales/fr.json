@@ -169,5 +169,8 @@
     "actions": {
       "edit": "Éditer"
     }
+  },
+  "Settings": {
+    "title": "Paramètres"
   }
 }
