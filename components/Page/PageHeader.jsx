@@ -35,7 +35,7 @@ const PageHeader = ({ title, subtitle, className, showBack, actions }) => {
         ) : null}
       </div>
       {subtitle ? (
-        <div className="mt-2">
+        <div className="mt-1">
           <Typography variant="subtitle">{subtitle}</Typography>
         </div>
       ) : null}
