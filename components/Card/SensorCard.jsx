@@ -6,7 +6,7 @@ const SensorCard = ({ sensor }) => {
 
   return (
     <Card className="mb-2">
-      <a href={`/admin/sensors/${sensor.id}`}>
+      <a href={`/sensors/${sensor.id}`}>
         <Flex gap="3" align="center">
           <Box>
             <Text as="div" size="2" weight="bold">

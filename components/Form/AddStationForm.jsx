@@ -76,7 +76,7 @@ export default function AddStation() {
         }),
       })
       if (res.ok) {
-        router.push('/admin/stations')
+        router.push('/stations')
       } else {
         throw new Error('Failed to add station')
       }

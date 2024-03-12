@@ -31,7 +31,7 @@ export default function EditStationForm({ station }) {
   const { mutate, isError, error } = useMutation(editStation, {
     onSuccess: () => {
       router.refresh()
-      router.push('/admin/stations')
+      router.push('/stations')
     },
   })
 

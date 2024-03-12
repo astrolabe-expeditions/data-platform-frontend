@@ -57,7 +57,7 @@ function SensorDetail({ params }) {
             <Typography variant="subtitle">
               {t('subtitle')}
               <Link
-                href={`/admin/stations/${stationId}`}
+                href={`/stations/${stationId}`}
                 as={NavLink}
                 className="ml-1">
                 {station.name}
@@ -68,7 +68,7 @@ function SensorDetail({ params }) {
         showBack
         actions={
           <Button
-            href={`/admin/sensors/${id}/edit`}
+            href={`/sensors/${id}/edit`}
             component={NavLink}
             label={t('actions.edit')}
           />
