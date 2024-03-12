@@ -46,7 +46,7 @@ export default function StationSearchbar({ data }) {
         showBack
         actions={
           <Button
-            href="/admin/stations/add"
+            href="/stations/add"
             component={Link}
             label={t('labels.add_station')}
           />

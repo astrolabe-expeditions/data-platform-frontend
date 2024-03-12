@@ -8,7 +8,7 @@ const StationCard = ({ station }) => {
   console.log(station)
   return (
     <Card className="mb-2">
-      <a href={`/admin/stations/${station.id}`}>
+      <a href={`/stations/${station.id}`}>
         <Flex gap="3" align="center">
           <Avatar size="3" radius="full" fallback={'S'} />
           <Box>

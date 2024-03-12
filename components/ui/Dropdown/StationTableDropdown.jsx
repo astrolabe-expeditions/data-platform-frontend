@@ -30,7 +30,7 @@ const StationTableDropdown = ({ obj, ...props }) => {
         </IconButton>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content>
-        <Link href={`/admin/stations/${obj.id}/edit`}>
+        <Link href={`/stations/${obj.id}/edit`}>
           <DropdownMenu.Item>Edit</DropdownMenu.Item>
         </Link>
         <DropdownMenu.Separator />

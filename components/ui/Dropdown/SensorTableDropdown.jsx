@@ -30,7 +30,7 @@ const SensorTableDropdown = ({ obj, ...props }) => {
         </IconButton>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content>
-        <Link href={`/admin/sensors/${obj.id}/edit`}>
+        <Link href={`/sensors/${obj.id}/edit`}>
           <DropdownMenu.Item>Edit</DropdownMenu.Item>
         </Link>
         <DropdownMenu.Separator />

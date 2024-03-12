@@ -29,11 +29,10 @@ const authMiddleware = withAuth(
 
 export default function middleware(req) {
   const publicPathnameRegex = RegExp(
-    `^(/(${locales.join('|')}))?(${publicPages
-      .flatMap((p) => (p === '/' ? ['', '/'] : p))
-      .join('|')})/?$`,
+    `^(/(${locales.join('|')}))?(/(upload|auth).*)$`,
     'i',
   )
+
   const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname)
 
   if (isPublicPage) {

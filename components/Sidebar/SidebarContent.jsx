@@ -14,23 +14,23 @@ function SidebarContent({ onItemClick }) {
         <ul className="flex flex-col gap-1">
           <SidebarItem
             name={t('dashboard')}
-            to="/admin"
+            to="/"
             onItemClick={onItemClick}
             exact
           />
           <SidebarItem
             name={t('stations')}
-            to="/admin/stations"
+            to="/stations"
             onItemClick={onItemClick}
           />
           <SidebarItem
             name={t('sensors')}
-            to="/admin/sensors"
+            to="/sensors"
             onItemClick={onItemClick}
           />
           <SidebarItem
             name={t('settings')}
-            to="/admin/settings"
+            to="/settings"
             onItemClick={onItemClick}
           />
         </ul>
