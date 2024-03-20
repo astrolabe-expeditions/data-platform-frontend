@@ -5,15 +5,29 @@ import { useQuery } from '@tanstack/react-query'
 import { useTranslations } from 'next-intl'
 import NavLink from 'next/link'
 import { Badge } from '@radix-ui/themes'
+import { Copy } from 'lucide-react'
 
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
 import { Page } from '@/components/Page/Page'
 import { PageHeader } from '@/components/Page/PageHeader'
 import { SensorView } from '@/components/View/ViewSensor'
-import { findSensorById, findStationById } from '@/lib/queries'
+import {
+  findSensorById,
+  findStationById,
+  getSensorShareToken,
+} from '@/lib/queries'
 import NotFound from '@/components/404'
-import { Button } from '@/components/ui/Button'
+import { Button, IconButton } from '@/components/ui/Button'
 import { Typography } from '@/components/ui/Typography'
 import { Link } from '@/components/ui/Link'
+import { Input } from '@/components/ui/Input/Input'
 
 function SensorDetail({ params }) {
   const t = useTranslations('SensorDetail')
@@ -34,8 +48,16 @@ function SensorDetail({ params }) {
     enabled: !!stationId,
   })
 
-  console.log('station', station)
-  console.log('sensor', sensor)
+  const { data: token } = useQuery({
+    queryKey: ['sensors', id, 'share'],
+    queryFn: () => getSensorShareToken(id),
+  })
+
+  const shareLink = `${process.env.NEXT_PUBLIC_BASE_URL}/upload?token=${token?.data?.token}`
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(shareLink)
+  }
 
   return (
     <Page>
@@ -67,11 +89,43 @@ function SensorDetail({ params }) {
         }
         showBack
         actions={
-          <Button
-            href={`/sensors/${id}/edit`}
-            component={NavLink}
-            label={t('actions.edit')}
-          />
+          <>
+            <Button
+              href={`/sensors/${id}/edit`}
+              component={NavLink}
+              variant="secondary"
+              label={t('actions.edit')}
+            />
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button className="ml-4" label={t('actions.share')} />
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-md">
+                <DialogHeader>
+                  <DialogTitle>{t('shareDialog.title')}</DialogTitle>
+                  <DialogDescription>
+                    {t('shareDialog.description')}
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="flex items-center space-x-2">
+                  <div className="grid flex-1 gap-2">
+                    <Input
+                      label="Link"
+                      id="link"
+                      defaultValue={shareLink}
+                      readOnly
+                    />
+                  </div>
+                  <IconButton
+                    onClick={handleCopy}
+                    icon={<Copy className="h-4 w-4" />}
+                    size="sm"
+                    label={t('actions.share')}
+                  />
+                </div>
+              </DialogContent>
+            </Dialog>
+          </>
         }
       />
       {isLoading && <p>Loading...</p>}

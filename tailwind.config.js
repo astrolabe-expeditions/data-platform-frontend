@@ -26,6 +26,7 @@ module.exports = {
       primary: colors.blue,
       destructive: colors.red,
       white: '#FFF',
+      black: '#000',
     },
     boxShadow: {
       xs: '0px 1px 2px 0px rgba(16, 24, 40, 0.05)',
