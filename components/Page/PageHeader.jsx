@@ -31,7 +31,7 @@ const PageHeader = ({ title, subtitle, className, showBack, actions }) => {
           title
         )}
         {actions ? (
-          <div className="md:ml-auto md:mt-0 mt-4">{actions}</div>
+          <div className="md:ml-auto md:mt-0 mt-4 flex">{actions}</div>
         ) : null}
       </div>
       {subtitle ? (

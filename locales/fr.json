@@ -167,7 +167,13 @@
     "title": "Capteur {identifier}",
     "subtitle": "Ce capteur est associé à la station d'observation",
     "actions": {
-      "edit": "Éditer"
+      "edit": "Éditer",
+      "share": "Partager"
+    },
+    "shareDialog": {
+      "title": "Partager",
+      "description": "Partager le lien avec d'autres utilisateurs",
+      "copy": "Copier le lien"
     }
   },
   "Settings": {
@@ -182,5 +188,8 @@
   },
   "Dashboard": {
     "title": "Tableau de bord"
+  },
+  "Upload": {
+    "upload": "Mettre en ligne"
   }
 }

@@ -151,7 +151,13 @@
     "title": "Sensor {identifier}",
     "subtitle": "This sensor is associated with the station",
     "actions": {
-      "edit": "Edit"
+      "edit": "Edit",
+      "share": "Share"
+    },
+    "shareDialog": {
+      "title": "Share",
+      "description": "Share this sensor with other users",
+      "copy": "Copy the link"
     }
   },
   "Settings": {
@@ -166,5 +172,8 @@
   },
   "Dashboard": {
     "title": "Dashboard"
+  },
+  "Upload": {
+    "upload": "Mettre en ligne"
   }
 }
