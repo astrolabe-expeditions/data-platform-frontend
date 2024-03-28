@@ -53,7 +53,7 @@ function SensorDetail({ params }) {
     queryFn: () => getSensorShareToken(id),
   })
 
-  const shareLink = `${process.env.NEXT_PUBLIC_BASE_URL}/upload?token=${token?.data?.token}`
+  const shareLink = `${process.env.NEXT_PUBLIC_BASE_URL}upload?token=${token?.data?.token}`
 
   const handleCopy = () => {
     navigator.clipboard.writeText(shareLink)
