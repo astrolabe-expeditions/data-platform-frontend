@@ -123,7 +123,6 @@
     }
   },
   "SensorsTable": {
-    "title": "Tableau des capteurs",
     "labels": {
       "add_sensor": "Ajouter un capteur",
       "search": "Rechercher",
@@ -162,6 +161,12 @@
     "title": "Fichiers",
     "upload": "Mettre en ligne",
     "noFile": "Aucun fichier"
+  },
+  "SensorList": {
+    "title": "Capteurs",
+    "actions": {
+      "add": "Ajouter un capteur"
+    }
   },
   "SensorDetail": {
     "title": "Capteur {identifier}",

@@ -2,11 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
-import Link from 'next/link'
 
 import SensorTable from '@/components/Table/SensorTable'
-import { Button } from '@/components/ui/Button'
-import { PageHeader } from '@/components/Page/PageHeader'
 
 export default function SensorSearchbar({ data }) {
   const [searchTerm, setSearchTerm] = useState('')
@@ -38,17 +35,6 @@ export default function SensorSearchbar({ data }) {
 
   return (
     <div>
-      <PageHeader
-        title={t('title')}
-        showBack
-        actions={
-          <Button
-            href="/sensors/add"
-            component={Link}
-            label={t('labels.add_sensor')}
-          />
-        }
-      />
       <form>
         <input
           className="search"

@@ -121,7 +121,6 @@
     }
   },
   "SensorsTable": {
-    "title": "Sensor Table",
     "labels": {
       "add_sensor": "Add Sensor",
       "search": "Search",
@@ -145,6 +144,12 @@
     },
     "view_screen": {
       "title": "View Sensor"
+    }
+  },
+  "SensorList": {
+    "title": "Sensors",
+    "actions": {
+      "add": "Add a sensor"
     }
   },
   "SensorDetail": {

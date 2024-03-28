@@ -23,17 +23,12 @@ export async function GET() {
       type: true,
       nbr_measures: true,
       station_id: true,
-      records: true,
-      files: true,
+      created_at: true,
+      updated_at: true,
     },
   })
 
-  // If the sensor doesn't exist, return a 404 response
-  if (!sensors || sensors.length === 0) {
-    return NextResponse.json({ error: 'Sensors not found' }, { status: 404 })
-  }
-
-  return NextResponse.json(sensors, { status: 200 })
+  return NextResponse.json({ data: sensors }, { status: 200 })
 }
 
 /**
