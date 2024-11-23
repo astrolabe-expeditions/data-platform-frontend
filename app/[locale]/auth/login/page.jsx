@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import NextLink from 'next/link'
 import { useTranslations as getTranslations } from 'next-intl'
+import { useRouter } from 'next/navigation'
 
 import { Input } from '@/components/ui/Input/Input'
 import { Button } from '@/components/ui/Button/Button'
@@ -12,6 +13,7 @@ import { signIn } from 'next-auth/react'
 
 export default function Login() {
   const t = getTranslations('Login')
+  const router = useRouter()
 
   const [formData, setFormData] = useState({
     name: '',
@@ -26,12 +28,19 @@ export default function Login() {
     })
   }
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault()
-    signIn('credentials', {
+
+    const res = await signIn('credentials', {
       ...formData,
-      callbackUrl: '/',
+      redirect: false,
     })
+    if (res?.status == 200) {
+      router.push('/')
+    } else {
+      console.log(res)
+      console.error('Login failed')
+    }
   }
 
   return (
