@@ -2,8 +2,6 @@
 
 This platform is designed to centralize and manage data collected from the various citizen expeditions organized by Astrolabe Expeditions. This repository contains the back-office and API components of the application. Additional parts of the project include an [ETL (Extract, Transform, Load) pipeline](https://github.com/astrolabe-expeditions/data-platform-processing) for processing data, and a [map application](https://github.com/astrolabe-expeditions/data-platform-map) for visualizing the collected data.
 
-Feel free to [open an issue](https://github.com/astrolabe-expeditions/data-platform/issues/new) for questions and suggestions.
-
 ## What is Astrolabe Expeditions?
 
 [Astrolabe Expeditions](https://www.astrolabe-expeditions.org/) is an non-profit association that develops participatory science programmes with
@@ -74,6 +72,8 @@ pass: hi123
 ## How to contribute?
 
 We are eager for contributions and very happy when we receive them! It can be code, of course, but it can also take other forms. The workflow is explained in [the contributing guide](https://github.com/astrolabe-expeditions/data-platform/blob/dev/docs/CONTRIBUTING.md).
+
+Feel free to [open an issue](https://github.com/astrolabe-expeditions/data-platform/issues/new) for questions and suggestions.
 
 ## Licensing
 
