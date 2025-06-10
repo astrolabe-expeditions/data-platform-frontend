@@ -1,17 +1,15 @@
 # Data platform
 
+This platform is designed to centralize and manage data collected from the various citizen expeditions organized by Astrolabe Expeditions. This repository contains the back-office and API components of the application. Additional parts of the project include an [ETL (Extract, Transform, Load) pipeline](https://github.com/astrolabe-expeditions/data-platform-processing) for processing data, and a [map application](https://github.com/astrolabe-expeditions/data-platform-map) for visualizing the collected data.
+
+Feel free to [open an issue](https://github.com/astrolabe-expeditions/data-platform/issues/new) for questions and suggestions.
+
 ## What is Astrolabe Expeditions?
 
 [Astrolabe Expeditions](https://www.astrolabe-expeditions.org/) is an non-profit association that develops participatory science programmes with
 laboratories to enable citizens to actively contribute to scientific research.
 
 Citizens' expeditions are set up to collect large-scale scientific data and involve citizens in understanding and preserving the ocean.
-
-## What is the data plaform?
-
-This platform aims to simplify the process of gathering all data from the various citizen expeditions.
-
-Feel free to [open an issue](https://github.com/astrolabe-expeditions/data-platform/issues/new) for questions and suggestions.
 
 ## Installation
 
@@ -79,4 +77,4 @@ We are eager for contributions and very happy when we receive them! It can be co
 
 ## Licensing
 
-Data plaform is an Open Source software, released under the MIT License.
+Data platform is an Open Source software, released under the MIT License.
